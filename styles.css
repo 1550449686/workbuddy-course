@@ -180,3 +180,4 @@ a:hover, .nav-links a:hover, .dropdown-content a:hover {
 .category-card.collapsed .order-hint,
 .category-card.collapsed .ability-test-block { display:none; }
 .category-card.collapsed .card-toggle { transform:rotate(-90deg); }
+/* V6.4 force refresh */
