@@ -1,12 +1,12 @@
 /* V8.0 Minimalist Design System */
 :root {
-  --bg: #fafafa;
+  --bg: #ffffff;
   --card: #ffffff;
-  --text: #1a1a1a;
+  --text: #333;
   --sub: #999;
-  --border: #e8e8e8;
-  --accent: #6c5ce7;
-  --accent-light: #f5f3ff;
+  --border: #eee;
+  --accent: #8b77e8;
+  --accent-light: #f8f6ff;
   --green: #00b894;
   --gold: #e17055;
   --gold-light: #fff5f3;
@@ -253,13 +253,13 @@ body {
 .category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
 .category-card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 20px;
+  border-radius: 8px;
+  padding: 24px;
 }
 .category-card.hidden { display: none; }
 .card-header {
@@ -270,8 +270,8 @@ body {
   cursor: pointer;
   user-select: none;
 }
-.card-header:hover { opacity: 0.8; }
-.card-emoji { font-size: 1.4rem; line-height: 1; }
+.card-header:hover { background: #fafafa; border-radius: 4px; }
+.card-emoji { font-size: 1.1rem; line-height: 1; font-weight: 500; color: var(--accent); }
 .card-title { font-size: 1rem; font-weight: 700; }
 .card-sub { font-size: 0.78rem; color: var(--sub); }
 .card-toggle { font-size: 1rem; margin-left: auto; transition: transform 0.2s; color: var(--sub); }
@@ -324,12 +324,12 @@ body {
 .work-order-block .wo-btn {
   display: inline-block;
   margin-top: 8px;
-  padding: 6px 14px;
+  padding: 6px 16px;
   background: #fff;
   border: 1px solid var(--accent);
   color: var(--accent);
   border-radius: 4px;
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.15s;
@@ -338,24 +338,24 @@ body {
 
 /* ====== Ability Test Block ====== */
 .ability-test-block {
-  border: 1px solid var(--accent);
+  border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 16px;
-  margin-top: 16px;
+  padding: 18px;
+  margin-top: 18px;
   background: var(--card);
 }
 .ability-test-block .at-title { font-weight: 700; color: var(--accent); font-size: 0.88rem; margin-bottom: 4px; }
 .ability-test-block .at-desc { font-size: 0.76rem; color: var(--sub); line-height: 1.6; }
-.ability-test-block .at-btns { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-.at-btn { padding: 7px 16px; border-radius: 4px; font-size: 0.78rem; font-weight: 600; text-decoration: none; transition: all 0.15s; border: none; cursor: pointer; }
-.at-btn-free { background: var(--accent); color: #fff; }
-.at-btn-free:hover { opacity: 0.85; }
+.ability-test-block .at-btns { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.at-btn { padding: 8px 18px; border-radius: 4px; font-size: 0.78rem; font-weight: 600; text-decoration: none; transition: all 0.15s; cursor: pointer; display: inline-block; }
+.at-btn-free { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+.at-btn-free:hover { opacity: 0.88; }
 .at-btn-pro { background: #fff; border: 1px solid var(--accent); color: var(--accent); }
 .at-btn-pro:hover { background: var(--accent-light); }
 
 /* ====== Job Panel ====== */
 .job-panel {
-  margin-top: 12px;
+  margin-top: 16px;
   border: 1px solid var(--border);
   border-radius: 6px;
   overflow: hidden;
@@ -363,16 +363,17 @@ body {
 .job-header {
   cursor: pointer;
   padding: 10px 14px;
-  background: var(--accent-light);
-  font-weight: 700;
+  background: #fafafa;
+  font-weight: 600;
   font-size: 0.84rem;
   color: var(--accent);
   display: flex;
   align-items: center;
   gap: 6px;
   user-select: none;
+  border-bottom: 1px solid var(--border);
 }
-.job-header:hover { background: #e8e0ff; }
+.job-header:hover { background: var(--accent-light); }
 .job-icon { font-size: 0.85rem; transition: transform 0.2s; }
 .job-panel.job-open .job-icon { transform: rotate(45deg); }
 .job-body { display: none; padding: 16px; }
@@ -387,34 +388,34 @@ body {
   margin-bottom: 10px;
 }
 .job-dept {
-  margin: 6px 0 6px 16px;
-  padding: 4px 0 4px 12px;
-  border-left: 2px solid var(--border);
+  margin: 8px 0 8px 20px;
+  padding: 0;
+  border-left: 1px solid var(--border);
+  padding-left: 12px;
 }
 .job-dept-title { font-weight: 600; font-size: 0.78rem; color: #555; margin-bottom: 4px; }
 .job-item {
-  background: #fafafa;
-  border: 1px solid #f0f0f0;
-  border-radius: 4px;
-  padding: 8px 10px;
-  margin-bottom: 4px;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 10px 0;
+  margin-bottom: 0;
 }
-.job-pos { font-weight: 600; font-size: 0.78rem; color: var(--text); display: flex; align-items: center; gap: 4px; }
+.job-item:last-child { border-bottom: none; }
+.job-pos { font-weight: 600; font-size: 0.8rem; color: var(--text); display: flex; align-items: center; gap: 6px; }
 .job-badge {
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   background: var(--accent-light);
   color: var(--accent);
   padding: 1px 6px;
   border-radius: 3px;
   font-weight: 600;
 }
-.job-sc { font-size: 0.74rem; color: var(--sub); line-height: 1.6; margin-top: 2px; }
-.job-note { font-size: 0.68rem; color: #aaa; margin-top: 2px; }
+.job-sc { font-size: 0.76rem; color: var(--sub); line-height: 1.8; margin-top: 4px; }
+.job-note { font-size: 0.68rem; color: #bbb; margin-top: 4px; }
 
-/* ====== Positions Section (old) ====== */
+/* ====== Positions Section (legacy, now replaced by job-panel) ====== */
 .positions-section { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 8px; }
-.pos-section-header { cursor: pointer; padding: 8px 12px; background: var(--accent-light); border-radius: 4px; font-weight: 700; font-size: 0.84rem; color: var(--accent); display: flex; align-items: center; gap: 6px; }
-.pos-section-header:hover { background: #e8e0ff; }
+.pos-section-header { cursor: pointer; padding: 8px 12px; background: #fafafa; border-radius: 4px; font-weight: 600; font-size: 0.84rem; color: var(--accent); display: flex; align-items: center; gap: 6px; border: 1px solid var(--border); }
+.pos-section-header:hover { background: var(--accent-light); }
 .pos-section-body { display: none; }
 .positions-section.pos-section-open .pos-section-body { display: block; }
 .position-card { border: 1px solid var(--border); border-radius: 4px; margin: 6px 0; background: #fafafa; }
@@ -490,14 +491,14 @@ body {
 
 /* ====== Footer ====== */
 .footer-enhanced {
-  background: #f5f5f5;
-  color: #888;
+  background: #fafafa;
+  color: #aaa;
   text-align: center;
-  padding: 28px 20px;
-  margin-top: 40px;
+  padding: 32px 20px;
+  margin-top: 48px;
   border-radius: 0;
   font-size: 0.78rem;
-  line-height: 2;
+  line-height: 2.2;
   border-top: 1px solid var(--border);
 }
 .footer-enhanced .footer-path { color: #555; font-weight: 600; font-size: 0.84rem; }
@@ -520,40 +521,5 @@ a, button, .card-header, .ep-head, .ch-tabs button, .tag-item, .cta-btn,
 .dropbtn, .at-btn, .wo-btn, .float-btn, .nav-links a { cursor: pointer; transition: all 0.15s ease; }
 
 
-/* V8.1: Hand-drawn sketch entrance animation */
-@keyframes sketchIn {
-  0% { clip-path: inset(0 100% 0 0); opacity: 0; }
-  40% { clip-path: inset(0 0 0 0); opacity: 0.6; }
-  100% { clip-path: inset(0 0 0 0); opacity: 1; }
-}
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(8px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-@keyframes paperIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-.sketch-loading .container,
-.sketch-loading .top-nav,
-.sketch-loading .float-btn,
-.sketch-loading .footer-enhanced { opacity: 0; }
-
-.sketch-ready { animation: paperIn 0.4s ease forwards; }
-.sketch-nav { animation: sketchIn 0.5s ease forwards; }
-.sketch-title { animation: fadeUp 0.5s 0.15s ease both; }
-.sketch-card { animation: fadeUp 0.5s 0.3s ease both; }
-.sketch-content { animation: fadeUp 0.5s 0.45s ease both; }
-.sketch-footer { animation: fadeUp 0.4s 0.6s ease both; }
-.sketch-float { animation: fadeUp 0.4s 0.8s ease both; }
-
-body.sketch-loading { background: #f5f2eb; }
-body.sketch-ready { background: var(--bg); transition: background 0.6s ease; }
-
-.top-nav, .header, .banner-card, .category-card, .ep-item,
-.job-panel, .ability-test-block, .work-order-block,
-.cta-btn, .at-btn, .float-btn {
-  will-change: transform, opacity;
-}
-/* CDN refresh 1781957674 */
+/* ====== Smooth transition defaults ====== */
+.top-nav, .category-card, .job-panel, .ability-test-block, .float-btn { transition: opacity 0.2s ease; }
