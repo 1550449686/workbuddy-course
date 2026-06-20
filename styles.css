@@ -247,4 +247,17 @@ a:hover, .nav-links a:hover, .dropdown-content a:hover {
 /* Position filter on index/home */
 .pos-filter { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0; align-items: center; }
 .pos-filter select { padding: 8px 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 0.82rem; }
-/* V7.0 CDN refresh 1781933615 */
+
+
+/* V7.1: Unified job position panels */
+.job-panel { margin-top: 8px; border: 2px solid var(--accent); border-radius: 10px; overflow: hidden; }
+.job-header { cursor: pointer; padding: 10px 14px; background: var(--alight); font-weight: 700; font-size: 0.85rem; color: var(--accent); display: flex; align-items: center; gap: 6px; user-select: none; border-radius: 8px 8px 0 0; }
+.job-header:hover { background: #dde4ff; }
+.job-icon { font-size: 0.85rem; transition: transform 0.3s; }
+.job-panel.job-open .job-icon { transform: rotate(45deg); }
+.job-body { display: none; padding: 12px; }
+.job-panel.job-open .job-body { display: block; }
+.job-item { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+.job-title { font-weight: 600; font-size: 0.82rem; color: var(--text); margin-bottom: 4px; }
+.job-scenarios { font-size: 0.76rem; color: var(--sub); line-height: 1.6; }
+.job-hint { font-size: 0.68rem; color: #059669; margin-top: 4px; font-style: italic; }
