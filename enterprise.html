@@ -3,10 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>企业入驻 | （AI）爱之城</title>
+<title>企业入驻 & 能力测验 | （AI）爱之城</title>
 <link rel="stylesheet" href="styles.css">
 <style>
+.ent-hero { text-align:center; padding:32px 24px 20px; background:#fff; border:1px solid var(--border); border-radius:8px; margin-bottom:20px; }
+.ent-hero h1 { font-size:1.5rem; font-weight:700; margin-bottom:6px; }
+.ent-hero p { font-size:0.88rem; color:var(--sub); max-width:600px; margin:0 auto; line-height:1.8; }
+.ent-hero .ent-cta { margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.ent-hero .ent-btn { padding:8px 20px; border-radius:4px; font-size:0.84rem; font-weight:600; text-decoration:none; cursor:pointer; border:none; font-family:inherit; }
+.ent-btn-primary { background:var(--accent); color:#fff; }
+.ent-btn-primary:hover { opacity:0.88; }
+.ent-btn-outline { background:#fff; border:1px solid var(--accent); color:var(--accent); }
+.ent-btn-outline:hover { background:var(--accent-light); }
 
+.ent-section { background:#fff; border:1px solid var(--border); border-radius:8px; padding:24px; margin-bottom:16px; }
+.ent-section h3 { font-size:1.05rem; font-weight:700; margin-bottom:6px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+.ent-section .ent-desc { font-size:0.8rem; color:var(--sub); margin-bottom:16px; line-height:1.7; }
+
+.flow-steps { display:flex; gap:12px; flex-wrap:wrap; counter-reset:step; }
+.flow-step { flex:1; min-width:180px; text-align:center; padding:16px; border:1px solid var(--border); border-radius:6px; position:relative; }
+.flow-step::before { counter-increment:step; content:counter(step); position:absolute; top:-10px; left:50%; transform:translateX(-50%); width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff; font-size:0.72rem; font-weight:700; line-height:24px; }
+.flow-step h4 { font-size:0.88rem; font-weight:700; margin:8px 0 4px; }
+.flow-step p { font-size:0.74rem; color:var(--sub); line-height:1.6; }
+
+.mode-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.mode-card { border:1px solid var(--border); border-radius:6px; padding:18px; }
+.mode-card h4 { font-size:0.9rem; font-weight:700; margin-bottom:8px; }
+.mode-card p, .mode-card li { font-size:0.78rem; color:#555; line-height:1.7; }
+.mode-card ul { padding-left:18px; margin-top:6px; }
+.mode-card.online { border-left:3px solid var(--accent); }
+.mode-card.local { border-left:3px solid var(--green); }
+
+.pricing-grid { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+.pricing-card { border:1px solid var(--border); border-radius:6px; padding:20px; width:200px; text-align:center; }
+.pricing-card.featured { border-color:var(--accent); border-width:2px; }
+.pricing-card .price-num { font-size:1.8rem; font-weight:800; color:var(--accent); }
+.pricing-card .price-unit { font-size:0.72rem; color:var(--sub); }
+.pricing-card .price-desc { font-size:0.72rem; color:var(--sub); margin-top:6px; line-height:1.6; }
+.pricing-card.featured .price-num { color:#e17055; }
+.pricing-card.enterprise-tier .price-num { color:var(--green); }
+.pricing-card .price-badge { font-size:0.62rem; background:var(--accent-light); color:var(--accent); padding:2px 8px; border-radius:3px; display:inline-block; margin-bottom:8px; }
+
+.contact-bar { text-align:center; padding:20px; background:var(--accent-light); border-radius:6px; margin-top:16px; }
+.contact-bar p { font-size:0.84rem; color:var(--accent); font-weight:600; }
+.contact-bar .contact-btn { display:inline-block; margin-top:8px; padding:8px 24px; background:var(--accent); color:#fff; border-radius:4px; font-weight:600; font-size:0.84rem; text-decoration:none; }
+
+@media(max-width:768px){
+  .mode-grid { grid-template-columns:1fr; }
+  .flow-steps { flex-direction:column; }
+  .pricing-card { width:100%; }
+}
 </style>
 </head>
 <body>
@@ -41,90 +87,183 @@
       <a href="enterprise.html">企业入驻&amp;能力测验</a>
       <a href="order-center.html">学员接单中心</a>
       <a href="enterprise.html#pricing" style="color:#f59e0b;font-weight:700;">会员/单课购买</a>
-    
       <a href="community.html">社区</a>
     </div>
-    <div class="nav-search">
-      <input type="text" id="navSearch" placeholder="全局搜索课程..." oninput="applyFilters()">
-    </div>
+    <div class="nav-search"><input type="text" id="navSearch" placeholder="搜索课程..." oninput="var v=this.value.trim();if(v)window.location.href='workbuddy.html?q='+encodeURIComponent(v)"></div>
   </div>
 </div>
 <div class="container">
-<div class="enterprise-section" id="enterprise">
-  <h2>企业入驻 &amp; 能力测验</h2>
-  <div class="enterprise-grid">
-    <div class="enterprise-card">
-      <h4>企业自主上传</h4>
-      <p>企业可自主上传岗位SOP文档、内部教学课程、培训资料，平台自动结构化处理。</p>
-      <ul><li>支持 PDF/Word/PPT/视频 多格式上传</li><li>AI自动提取知识点并生成试题</li><li>自定义企业内部课程体系</li></ul>
+
+<div class="ent-hero" id="enterprise">
+  <h1>企业入驻 &amp; 能力测验</h1>
+  <p>企业可自主上传岗位SOP、自建能力题库、发布远程/同城工单，精准匹配已通过测验的持证学员。<br>学员通过能力测验获得电子证书，企业按证书筛选合格人才。</p>
+  <div class="ent-cta">
+    <a href="#pricing" class="ent-btn ent-btn-primary">查看合作套餐</a>
+    <a href="#ability" class="ent-btn ent-btn-outline">了解能力测验</a>
+  </div>
+</div>
+
+<div class="ent-section">
+  <h3>企业入驻流程</h3>
+  <p class="ent-desc">四步完成企业入驻，开始匹配优质AI办公学员</p>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <h4>注册企业账号</h4>
+      <p>提交企业基本信息、营业执照，平台审核后开通企业后台</p>
     </div>
-    <div class="enterprise-card">
-      <h4>自定义岗位能力题库</h4>
-      <p>企业可根据岗位需求自定义能力测评题库，筛选合格的学员。</p>
-      <ul><li>多维度能力标签体系</li><li>自定义测评难度和通过标准</li><li>自动评分和报告生成</li></ul>
+    <div class="flow-step">
+      <h4>上传岗位SOP &amp; 课程</h4>
+      <p>上传企业岗位标准操作流程、内部培训资料，平台AI自动结构化处理并生成测评题目</p>
     </div>
-    <div class="enterprise-card">
-      <h4>两种发包模式</h4>
-      <p><strong>远程线上工单</strong>：全国范围匹配学员，在线完成工单交付。</p>
-      <p><strong>同城就近线下工单</strong>：按地理位置匹配本地学员，适合需要现场操作的行业（设计/手工艺/餐饮等）。</p>
+    <div class="flow-step">
+      <h4>发布能力测评</h4>
+      <p>按岗位定制测评题库，设定通过标准，发布到学员端进行定向筛选</p>
     </div>
-    <div class="enterprise-card">
-      <h4>合作套餐报价</h4>
+    <div class="flow-step">
+      <h4>发包匹配学员</h4>
+      <p>按行业+岗位发布工单，系统自动匹配已通过测评的持证学员承接</p>
+    </div>
+  </div>
+</div>
+
+<div class="ent-section">
+  <h3>自定义岗位能力题库</h3>
+  <p class="ent-desc">企业可根据自身岗位需求，上传专业知识文档，AI自动提取知识点并生成多维度测评题库</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+    <div style="border:1px solid var(--border);border-radius:6px;padding:14px;">
+      <h4 style="font-size:0.84rem;font-weight:700;margin-bottom:6px;">知识提取</h4>
+      <p style="font-size:0.76rem;color:var(--sub);line-height:1.7;">支持 PDF/Word/PPT/视频，AI自动提取关键知识点并结构化分类</p>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:6px;padding:14px;">
+      <h4 style="font-size:0.84rem;font-weight:700;margin-bottom:6px;">题库生成</h4>
+      <p style="font-size:0.76rem;color:var(--sub);line-height:1.7;">自动生成单选/多选/判断/情景题，支持难度分级与标签分类</p>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:6px;padding:14px;">
+      <h4 style="font-size:0.84rem;font-weight:700;margin-bottom:6px;">评分标准</h4>
+      <p style="font-size:0.76rem;color:var(--sub);line-height:1.7;">自定义及格线和优秀线，自动评卷生成能力报告，多维度可视化</p>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:6px;padding:14px;">
+      <h4 style="font-size:0.84rem;font-weight:700;margin-bottom:6px;">证书发放</h4>
+      <p style="font-size:0.76rem;color:var(--sub);line-height:1.7;">通过测评自动生成电子资质证书，企业发包可按证书类型筛选学员</p>
+    </div>
+  </div>
+</div>
+
+<div class="ent-section">
+  <h3>两种发包模式</h3>
+  <p class="ent-desc">企业可根据工单性质选择远程线上或同城线下交付方式</p>
+  <div class="mode-grid">
+    <div class="mode-card online">
+      <h4>远程线上工单</h4>
+      <p>适用场景：数据分析、文档处理、内容创作、代码开发等可在线完成的任务</p>
       <ul>
-        <li><strong>单行业授权包</strong>：9,800元/行业/年 - 含课程+题库+50个工单名额</li>
-        <li><strong>全平台年度会员包</strong>：29,800元/年 - 全部24行业课程+无限题库+200工单名额</li>
-        <li><strong>企业定制内训包</strong>：面议 - 定制课程+专属智能体+驻场培训</li>
+        <li>全国范围匹配已认证学员</li>
+        <li>在线提交需求，学员远程交付成果</li>
+        <li>平台担保支付，自动结算</li>
+        <li>工单进度实时追踪</li>
       </ul>
     </div>
-    <div class="enterprise-card">
-      <h4>合作案例展示</h4>
-      <p style="color:#a5b4fc;">[ 案例展示区域预留 ]</p>
-      <p>成功合作企业案例将在此展示：企业名称 / 合作内容 / 学员承接工单数 / 满意度评价</p>
+    <div class="mode-card local">
+      <h4>同城就近线下工单</h4>
+      <p>适用场景：设计驻场、手工艺制作、餐饮协助、房地产带看等需现场操作的工单</p>
+      <ul>
+        <li>LBS定位匹配同城持证学员</li>
+        <li>就近派单，降低通勤成本</li>
+        <li>面谈确认需求，现场交付</li>
+        <li>建立本地行业人脉协作网络</li>
+      </ul>
     </div>
-    <div class="enterprise-card" id="order-center">
-      <h4>学员接单中心</h4>
-      <p>完成课程学习和能力测验后，学员可在此浏览和承接企业发布的工单。</p>
-      <ul><li>按行业/区域/难度筛选工单</li><li>在线提交接单申请和交付物</li><li>积累接单评分和信用等级</li></ul>
+  </div>
+</div>
+
+<div class="ent-section" id="ability">
+  <h3>能力测验系统</h3>
+  <p class="ent-desc">学员通过学习课程后参加测评，通过可获得电子资质证书。企业可按「行业+岗位」筛选持证学员发包。</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    <div style="border:1px solid var(--border);border-radius:6px;padding:18px;text-align:center;">
+      <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:8px;">免费入门能力测评</h4>
+      <p style="font-size:0.76rem;color:var(--sub);margin-bottom:12px;line-height:1.6;">覆盖24个行业 · 基础能力评估 · 答题15分钟 · 60分及格获得入门证书</p>
+      <a href="workbuddy.html" style="display:inline-block;padding:8px 20px;background:var(--accent);color:#fff;border-radius:4px;font-weight:600;font-size:0.82rem;text-decoration:none;">进入测评</a>
+    </div>
+    <div style="border:1px solid var(--accent);border-radius:6px;padding:18px;text-align:center;background:var(--accent-light);">
+      <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:8px;">企业定制专业测评</h4>
+      <p style="font-size:0.76rem;color:var(--sub);margin-bottom:12px;line-height:1.6;">按岗位定制 · 企业级难度 · 含实操题 · 80分及格获高级证书 · 企业直接筛选</p>
+      <a href="#contact" style="display:inline-block;padding:8px 20px;background:#fff;border:1px solid var(--accent);color:var(--accent);border-radius:4px;font-weight:600;font-size:0.82rem;text-decoration:none;">申请定制</a>
     </div>
   </div>
 </div>
 
-
-
-
-<div style="background:var(--card); border-radius:14px; padding:30px; margin:30px 0; text-align:center; border:1px solid var(--border);" id="pricing">
-  <h3 style="font-size:1.3rem; margin-bottom:20px;">课程定价</h3>
-  <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-    <div style="background:#f8faff; border:2px solid #4f46e5; border-radius:14px; padding:20px; width:200px;">
-      <div style="font-size:1.8rem; font-weight:800; color:#4f46e5;">99元</div>
-      <div style="font-size:0.85rem; color:var(--sub);">单课购买</div>
-      <div style="font-size:0.72rem; color:var(--sub); margin-top:6px;">按需选购，永久回看</div>
+<div class="ent-section" id="pricing">
+  <h3>合作套餐</h3>
+  <p class="ent-desc">灵活选择适合企业规模的合作方案</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div style="font-size:0.84rem;font-weight:700;margin-bottom:8px;">单行业授权包</div>
+      <div class="price-num">9,800<span class="price-unit">元/年</span></div>
+      <div class="price-desc">选定1个行业<br>课程+题库+50个工单名额<br>基础数据看板</div>
     </div>
-    <div style="background:linear-gradient(135deg,#fef3c7,#fffbeb); border:2px solid #f59e0b; border-radius:14px; padding:20px; width:220px; transform:scale(1.05);">
-      <div style="font-size:0.7rem; color:#b45309; font-weight:700;">推荐</div>
-      <div style="font-size:1.8rem; font-weight:800; color:#b45309;">299元</div>
-      <div style="font-size:0.85rem; color:#92400e; font-weight:600;">全行业年会员</div>
-      <div style="font-size:0.72rem; color:#92400e; margin-top:6px;">236集任意学+接单资质</div>
+    <div class="pricing-card featured">
+      <div class="price-badge">推荐</div>
+      <div style="font-size:0.84rem;font-weight:700;margin-bottom:8px;">全平台年度会员</div>
+      <div class="price-num">29,800<span class="price-unit">元/年</span></div>
+      <div class="price-desc">全部24行业课程<br>无限题库+200工单名额<br>专属数据看板+API</div>
     </div>
-    <div style="background:#f0fdf4; border:2px solid #10b981; border-radius:14px; padding:20px; width:200px;">
-      <div style="font-size:1.8rem; font-weight:800; color:#065f46;">面议</div>
-      <div style="font-size:0.85rem; color:var(--sub);">企业定制内训包</div>
-      <div style="font-size:0.72rem; color:var(--sub); margin-top:6px;">定制课程+智能体</div>
+    <div class="pricing-card enterprise-tier">
+      <div style="font-size:0.84rem;font-weight:700;margin-bottom:8px;">企业定制内训包</div>
+      <div class="price-num">面议</div>
+      <div class="price-desc">定制课程体系<br>专属智能体开发<br>驻场培训+持续支持</div>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:0.72rem;color:#bbb;margin-top:12px;">以上价格含税，所有套餐均可开具增值税专用发票</p>
+</div>
+
+<div class="ent-section">
+  <h3>学员个人定价</h3>
+  <p class="ent-desc">个人学员按需选购课程，灵活学习</p>
+  <div class="pricing-grid" style="margin-top:0;">
+    <div class="pricing-card">
+      <div style="font-size:0.84rem;font-weight:700;margin-bottom:8px;">单课购买</div>
+      <div class="price-num">99<span class="price-unit">元/课</span></div>
+      <div class="price-desc">按需选购<br>永久回看<br>含课后工单</div>
+    </div>
+    <div class="pricing-card featured">
+      <div class="price-badge">推荐</div>
+      <div style="font-size:0.84rem;font-weight:700;margin-bottom:8px;">全行业年会员</div>
+      <div class="price-num">299<span class="price-unit">元/年</span></div>
+      <div class="price-desc">236集任意学<br>解锁接单资质<br>优先工单匹配</div>
     </div>
   </div>
 </div>
+
+<div class="ent-section">
+  <h3>合作案例</h3>
+  <p class="ent-desc">企业入驻合作案例展示（预留）</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;">
+    <div style="border:1px dashed var(--border);border-radius:6px;padding:20px;text-align:center;">
+      <p style="font-size:0.78rem;color:#bbb;">案例展位 1<br>企业名称 | 合作行业 | 成效数据</p>
+    </div>
+    <div style="border:1px dashed var(--border);border-radius:6px;padding:20px;text-align:center;">
+      <p style="font-size:0.78rem;color:#bbb;">案例展位 2<br>企业名称 | 合作行业 | 成效数据</p>
+    </div>
+    <div style="border:1px dashed var(--border);border-radius:6px;padding:20px;text-align:center;">
+      <p style="font-size:0.78rem;color:#bbb;">案例展位 3<br>企业名称 | 合作行业 | 成效数据</p>
+    </div>
+  </div>
+</div>
+
+<div class="contact-bar" id="contact">
+  <p>企业入驻合作咨询</p>
+  <p style="font-size:0.76rem;color:#888;font-weight:400;">邮箱：1550449686@qq.com | 提交企业信息后1个工作日内专人对接</p>
+  <a href="mailto:1550449686@qq.com" class="contact-btn">联系合作</a>
+</div>
+
 </div>
 <div class="footer-enhanced">
   <div class="footer-path">学习AI场景课程 到 完成行业能力测验 到 线上远程接单/同城就近线下接单 到 长期行业职场协作生态</div>
-  <p style="margin-top:10px;">WorkBuddy 精细化教案 V5.1 | 236集+ | WorkBuddy 24行业 + Codex 22行业 | Codex + 通用AI工具合集</p>
+  <p style="margin-top:10px;">WorkBuddy 精细化教案 · 236集+覆盖24大行业 · 企业入驻合作</p>
   <p style="margin-top:6px;font-size:0.72rem;">2026 （AI）爱之城 - 学完即可接单 - 企业入驻合作：1550449686@qq.com</p>
 </div>
 <a href="enterprise.html" class="float-btn">接单咨询/企业合作</a>
-<script>
-
-</script>
-<script>
-</script>
 <script src="admin.js"></script>
 </body>
 </html>
