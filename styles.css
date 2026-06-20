@@ -116,3 +116,11 @@
   .enterprise-card ul { padding-left:16px; }
   .footer-enhanced { background:#1a1a2e; color:#aaa; text-align:center; padding:36px 20px; margin-top:30px; border-radius:14px; font-size:0.82rem; line-height:1.8; }
   .footer-enhanced .footer-path { color:#a5b4fc; font-weight:600; font-size:0.9rem; margin:10px 0; }
+
+.category-card .card-header { cursor:pointer; user-select:none; }
+.category-card .card-header:hover { opacity:0.8; }
+.card-toggle { font-size:1.2rem; margin-left:auto; transition:transform 0.2s; }
+.category-card.collapsed .ep-list,
+.category-card.collapsed .order-hint,
+.category-card.collapsed .ability-test-block { display:none; }
+.category-card.collapsed .card-toggle { transform:rotate(-90deg); }

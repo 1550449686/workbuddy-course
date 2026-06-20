@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WorkBuddy专区 | AI办公学院</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+
+</style>
 </head>
 <body>
 <div class="top-nav">
@@ -13,7 +16,7 @@
     <div class="nav-links">
       <a href="index.html">首页</a>
       <a href="workbuddy.html" class="accent">WorkBuddy专区</a>
-      <a href="codex.html">Codex行业编程办公专区</a>
+      <a href="codex.html">Codex编程办公专区</a>
       <a href="ai-universal.html">通用AI办公合集</a>
       <div class="dropdown">
         <button class="dropbtn">全行业课程库 ▼</button>
@@ -43,15 +46,6 @@
   </div>
 </div>
 <div class="container">
-<div class="search-bar">
-  <input type="text" id="q" placeholder="🔍 搜索课程关键词（如：备课、合同审查、出题、供应商、SQL...）" oninput="applyFilters()">
-  <select id="chFilter" onchange="applyFilters()">
-    <option value="all">📚 全部章节</option>
-    <option value="0">🟢 通用基础入门</option><option value="1">🎓 教育/培训类</option><option value="2">🛒 电商/零售类</option><option value="3">🏭 制造业/供应链类</option><option value="4">💼 商务/企业服务类</option><option value="5">💻 IT/科技类</option><option value="6">📊 金融/财会类</option><option value="7">🎨 创意/营销类</option><option value="8">🏥 医疗/卫生类</option><option value="9">⚖️ 法律/咨询类</option><option value="10">📱 新媒体/内容创作类</option><option value="11">🍽️ 餐饮/酒店类</option><option value="12">🏗️ 房地产/建筑类</option><option value="13">🚚 物流/运输类</option><option value="14">🎮 游戏/娱乐类</option><option value="15">🌾 农业/食品类</option><option value="16">🏛️ 政府/公共服务类</option><option value="17">🔬 科研/学术类</option><option value="18">🔧 🔧 Skills开发教学</option><option value="19">🧠 🧠 高阶Prompt Engineering</option><option value="20">🤖 🤖 AI工作流自动化</option><option value="21">📈 📈 数据分析进阶</option><option value="22">🔒 🔒 AI安全与合规</option>
-  </select>
-</div>
-
-
 <div id="workbuddy-section"></div>
 <div class="ch-tabs" id="tabs"></div>
 <div class="info" id="info"></div>
@@ -70,9 +64,9 @@
 
 <div class="category-grid" id="catGrid">
   <div class="category-card" data-ch="0">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🟢</div>
-        <div><div class="card-title">通用基础入门</div><div class="card-sub">第0章 · 共2集</div></div>
+        <div><div class="card-title">通用基础入门</div><div class="card-sub">第0章 · 共2集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="0" data-ep="1" data-search="认识 WorkBuddy —— 你的 AI 办公助手  情境导入（1.5分钟）设计意图：用&quot;失控的桌面&quot;画面引发共鸣，量化认知差距。 - 知识工作者日均花费 2.5小时 在文件查找、重复录入、格式调整上 - 传统AI工具局限：只能&quot;对话&quot;，不能&quot;读文件、改文件、搜网络&quot; - WorkBuddy 定位：主动干活的 AI 助手，而非被动聊天的机器人 教学手法：屏幕展示一个模拟桌面——30个混乱文件（合同、报表、图片混杂），讲师手动整理耗时2分钟→WorkBuddy一句话10秒完成，制造视觉冲击。 概念建构（3分钟）能力 · 普通AI · WorkBuddy · 典型场景 |------|--------|-----------|----------| 读文件 · ❌ 不支持 · ✅ 拖入即读 · Excel/PDF/Word直接分析 改文件 · ❌ 不支持 · ✅ 自动操作 · 批量重命名、格式转换 搜网络 · ❌ 知识截止 · ✅ 实时联网 · 查最新政策法规 写代码 · ⚠️ 需复制粘贴 · ✅ 直接运行 · 数据分析脚本自动执行 四种工作模式对比： 模式 · 触发词 · 适用场景 · 数据安全 |------|--------|----------|----------| Craft · &quot;帮我做...&quot; · 任务明确，直接执行 · 会修改文件 Plan · &quot;帮我规划...&quot; · 复杂任务，先 操作演示（4分钟）演示任务：整理一个混乱的&quot;工作文件夹&quot; Step 1：拖拽文件夹到 WorkBuddy 对话框 Step 2：输入指令 — &quot;帮我把这个文件夹按文件类型分类，PDF、Word、Excel、图片各放一个子文件夹&quot; Step 3：确认 Craft 模式，回车 Step 4：观察 WorkBuddy 自动操作（创建文件夹→识别类型→移动文件→输出统计） 关键知识点： - 拖拽 = 上传，无需额外操作 - 指令越具体结果越好（&quot;按类型分类&quot; vs &quot;整理一下&quot;） - Craft 模式下 AI 会直接修改文件系统 - 可随时按停止按钮中断操作 学员跟练（2分钟）练习任务：让学员用自己电脑操作 1. 打开 WorkBuddy 2. 找一个最乱的文件夹 3. 输入：&quot;帮我把这个文件夹按文件类型整理，完成后告诉我统计结果&quot; 4. 观察执行过程 预期问题与解答： 常见问题 · 解答 |----------|------| &quot;它会不会删我文件？&quot; · 整理类操作只移动不删除，可从历史记录撤销 &quot;中文文件名能识别吗？&quot; · 完全支持，且能读文件内容判断归类 &quot;能处理多少文件？&quot; · 单次1000+文件没问题 总结与测验（1.5分钟）知识要点回顾： 1. WorkBuddy 三大能力：读文件、改文件、搜网络 2. 三种模式：Craft（直接做）、Plan（先规划）、Ask（只聊不干） 3. 文件操作：拖拽即上传，Craft模式直接操作 4. 指令口诀：做什么 + 给什么材料 + 要什么结果 参考答案：使用 Craft 模式，指令：&quot;帮我按A列'区域'的值，把这个 Excel 拆分成多个文件，每个区域一个独立的 Excel，文件名用区域名命名。&quot;">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -114,9 +108,9 @@
       </div>
 
     </div><div class="category-card" data-ch="1">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🎓</div>
-        <div><div class="card-title">教育/培训类</div><div class="card-sub">第1章 · 共12集</div></div>
+        <div><div class="card-title">教育/培训类</div><div class="card-sub">第1章 · 共12集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="1" data-ep="1" data-search="WorkBuddy 在教育场景中的基础应用  痛点矩阵（2分钟）设计意图：用数据+场景引发教育工作者共鸣。 教师时间消耗调研数据： 工作类别 · 周均耗时 · AI可替代比例 · 年节省时间 |----------|----------|:----------:|------------| 备课写教案 · 8小时 · 70% · 290小时 批改作业 · 6小时 · 50% · 156小时 出题组卷 · 3小时 · 80% · 125小时 成绩统计分析 · 2小时 · 90% · 94小时 家校沟通 · 3小时 · 60% · 94小时 合计 · 22小时 · — · 759小时/年 知识内容：每减少1小时非教学劳动，教师可多投入教研、个性化辅导、自我提升。 教育全链路 AI 赋能地图（3分钟）知识框架：教学五环节闭环 备课 ──→ 授课 ──→ 作业 ──→ 评估 ──→ 反馈 │        │        │        │        │ │        │        │        │        │ 教案生成  互动课件  自动批改  成绩分析  个性评语 PPT制作   知识图谱  错题统计  薄弱诊断  家长沟通 分层设计  课堂游戏  作业归档  趋势预测  学习建议 每个环节的 WorkBuddy 能力映射： 1. 备课：教案→PPT一键生成，支持三档难度 2. 授课：HTML 互动小游戏、思维导图、倒计时工具 3. 作业：拍照批改、高频错题自动归类、个性化练习推荐 4. 评估：成绩统计分析、知识点掌握热力图 5. 反馈：批量生成个性化评语、家 五个闪电演示（4分钟）每个演示控制在40秒内，纯效果展示，不讲操作（后面每集细讲）。 演示 · 输入 · 输出 · 传统耗时 |------|------|------|----------| 备课 · &quot;帮我设计勾股定理教案，45分钟，基础中等&quot; · 完整教案+PPT大纲 · 2小时 批改 · 拍照上传学生数学题答案 · 判对错+错误原因分析 · 1小时/班 出题 · &quot;出勾股定理单元测试卷，满分100分&quot; · 完整试卷+答案+评分标准 · 3小时 分析 · 上传班级成绩Excel · 分析报告+薄弱知识点排行 · 30分钟 沟通 · &quot;写50份个性化期末评语，参考成绩表&quot; · 50份各不相同的学生评语 · 2小时 知识要点：AI不是替代教学判断，是替代重复性劳动。教师的时间应该花在&quot;教什么&quot;而非&quot;怎么排版&quot;上 教育工作者的必备技能安装（2分钟）技能 · 安装指令 · 典型用途 |------|----------|----------| pptx-generator · &quot;帮我安装 pptx-generator&quot; · 教案→课件PPT minimax-xlsx · &quot;帮我安装 minimax-xlsx&quot; · 成绩分析、批量处理 tencent-survey · &quot;帮我安装 tencent-survey&quot; · 家长问卷、学生测评 可复制的教学工作流（1分钟）周一备课日 → 周三出题日 → 周五分析日 → 周末沟通日 节奏 · 动作 · WorkBuddy 指令模板 |------|------|-------------------| 周一 · 备本周全部课程 · &quot;帮我设计{年级}{学科}{课题}的教案，45分钟，含分层设计&quot; 周三 · 出周末练习卷 · &quot;根据本周教学内容出一道练习卷，含答案和评分标准&quot; 周五 · 分析本周小测 · &quot;分析这份成绩数据，找出全班最弱的3个知识点&quot; 周末 · 发放家长通知 · &quot;为每位学生生成50字个性化评语，包含优势和改进建议&quot; 学员收获：掌握教育全链路AI赋能视角，明确哪些环节优先用AI。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -298,9 +292,9 @@
       </div>
 
     </div><div class="category-card" data-ch="2">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🛒</div>
-        <div><div class="card-title">电商/零售类</div><div class="card-sub">第2章 · 共12集</div></div>
+        <div><div class="card-title">电商/零售类</div><div class="card-sub">第2章 · 共12集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="2" data-ep="1" data-search="WorkBuddy 在电商场景中的基础应用  电商全链路拆解（2分钟）知识内容：电商经营=产品流+信息流+资金流 选品 → 上架 → 运营 → 客服 → 物流 → 复购 │       │       │       │      │       │ 市场分析  标题优化  活动策划  自动回复  库存管理  会员运营 竞品调研  详情页   广告投放  评价管理  物流追踪  老客营销 价格策略  多平台上架 数据分析  售后处理  供应商管理  复购分析 电商AI能力速览（4分钟）电商环节 · WorkBuddy 能力 · 典型操作 |----------|---------------|----------| 选品调研 · 网络搜索+数据整理 · &quot;搜索{品类}最新热销榜，整理成对比表&quot; 商品上架 · Excel批量处理 · &quot;把供应商报价表转为淘宝标准格式&quot; 客服应答 · 文本生成+FAQ · &quot;生成20条常见售后问题的标准回复&quot; 数据分析 · Excel分析+图表 · &quot;分析本月各渠道ROI，生成对比图&quot; 内容营销 · 文案生成+多版本 · &quot;为这款产品写5种不同风格的推广文案&quot; 五个闪电演示（3分钟）演示 · 操作 · 产出 |------|------|------| 批量标题 · 上传产品参数表→&quot;为每款生成SEO优化标题&quot; · 100条标题 智能客服 · &quot;根据店铺FAQ生成自动回复话术库&quot; · 50条话术 评价分析 · 上传1000条评价→&quot;情感分析+差评归类&quot; · 分析报告 竞品调研 · &quot;搜索{品类}TOP5竞品的价格/卖点/评价&quot; · 竞品对比表 数据看板 · 上传多平台数据→&quot;合并生成运营看板&quot; · 可视化仪表盘 电商必装技能（2分钟）技能 · 用途 |------|------| minimax-xlsx · 商品批量处理、订单数据清洗 minimax-pdf · 报价单、合同PDF生成 pptx-generator · 运营方案PPT、选品汇报 电商AI工作流模板（1分钟）日/周/月运营节奏： 频率 · 任务 · WorkBuddy 指令关键词 |------|------|---------------------| 每日 · 订单异常检测、客服回复 · &quot;检查今天订单有无异常&quot; 每周 · 数据分析周报 · &quot;生成本周运营数据周报&quot; 每月 · 经营分析+选品复盘 · &quot;输出月度经营分析报告&quot;">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -482,9 +476,9 @@
       </div>
 
     </div><div class="category-card" data-ch="3">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🏭</div>
-        <div><div class="card-title">制造业/供应链类</div><div class="card-sub">第3章 · 共12集</div></div>
+        <div><div class="card-title">制造业/供应链类</div><div class="card-sub">第3章 · 共12集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="3" data-ep="1" data-search="WorkBuddy 在制造业场景中的基础应用  制造业信息化痛点（1.5分钟）设计意图：用数据引发制造从业者共鸣。 制造业数字化现状数据： 环节 · 传统方式 · 耗时特征 · AI改造空间 |------|----------|----------|:--------:| 供应商管理 · Excel手工维护 · 表格散乱、版本混乱 · 85% 询价比价 · 邮件/微信反复沟通 · 信息不对称 · 90% 合同审查 · 法务逐条审核 · 周期长、易遗漏 · 80% 生产排程 · ERP/MRP系统 · 规则僵化、无法灵活调整 · 70% 质量分析 · 纸质记录→Excel统计 · 事后分析、时效差 · 85% 库存管理 · 系统库存≠实际库存 · 数据不准 · 80% 设备管理 · 纸质台账 · 丢失、不统计 · 90% 成本核算 · 月底加班算 · 滞后、不精准 · 制造业全链路 AI 赋能地图（3分钟）知识框架：制造业五大核心价值链 采购 ──→ 生产 ──→ 质量 ──→ 仓储 ──→ 成本 │        │        │        │        │ 供应商评估  计划排程   检验记录   库存优化   成本核算 询价比价   生产跟单   不良分析   出入库管理  降本分析 合同审查   设备维护   质量报告   物流调度   利润预测 每个环节的 WorkBuddy 能力映射： 1. 采购：供应商资质评分、询价单自动生成、报价数据标准化对比、合同风险条款识别 2. 生产：生产计划自动排程、工单状态追踪、产能瓶颈分析 3. 质量：不良品数据自动归类、检验报告一键生成、质量趋势分析 4. 仓储：库存预警、呆滞料分析、MRP物料需求计算 5. 成本：料工费自动归集、单 五个闪电演示（4分钟）每个演示控制在40秒内，纯效果展示。 演示 · 输入 · 输出 · 传统耗时 |------|------|------|----------| 供应商评估 · 上传5家供应商资料 · 多维度评分排名表+评估报告 · 2天 询价比价 · 上传3份报价单 · 标准化对比表+偏差分析 · 1天 合同审查 · 拖入采购合同PDF · 风险条款标注+修改建议 · 3天 不良品分析 · 上传当月不良数据 · 分类统计+根因定位+对策建议 · 4小时 库存优化 · 上传出入库记录 · 安全库存建议+呆滞料清单 · 2天 知识要点：制造业AI的核心价值不在&quot;替代决策&quot;，而在&quot;加速信息处理&quot;——把3天变成3分钟。 制造业必装技能（2分钟）技能 · 安装指令 · 核心用途 |------|----------|----------| minimax-xlsx · &quot;帮我安装 minimax-xlsx&quot; · 报价单标准化、质量数据统计、库存分析 minimax-pdf · &quot;帮我安装 minimax-pdf&quot; · 合同审查、检验报告生成 minimax-docx · &quot;帮我安装 minimax-docx&quot; · 采购合同、技术协议文档 pptx-generator · &quot;帮我安装 pptx-generator&quot; · 供应商评审PPT、质量汇报 制造业AI工作流模板（1.5分钟）制造业日/周/月工作节奏： 频率 · 任务 · WorkBuddy 指令关键词 |------|------|---------------------| 每日 · 质量日报、生产进度、异常预警 · &quot;生成今日质量日报&quot; 每周 · 采购订单追踪、库存预警 · &quot;追踪本周未交付采购单&quot; 每月 · 供应商绩效评估、成本核算 · &quot;输出月度供应商评分&quot; 每季 · 合同到期提醒、降本复盘 · &quot;生成季度降本分析报告&quot; 学员收获：建立制造业全链路AI赋能视角，明确从采购到成本各环节的AI应用点。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -666,9 +660,9 @@
       </div>
 
     </div><div class="category-card" data-ch="4">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">💼</div>
-        <div><div class="card-title">商务/企业服务类</div><div class="card-sub">第4章 · 共12集</div></div>
+        <div><div class="card-title">商务/企业服务类</div><div class="card-sub">第4章 · 共12集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="4" data-ep="1" data-search="WorkBuddy 在企业办公场景中的基础应用  企业办公时间去哪了（1.5分钟）设计意图：用量化数据让职场人意识到AI替代空间。 白领工作日时间分配： 工作类型 · 日均耗时 · AI可替代比例 · 年节省时间 |----------|:------:|:----------:|------------| 邮件处理 · 1.5小时 · 60% · 230小时 会议相关 · 2小时 · 50% · 260小时 文档写作 · 1.5小时 · 70% · 270小时 数据处理 · 1小时 · 80% · 200小时 信息搜索 · 1小时 · 85% · 220小时 流程审批 · 0.5小时 · 40% · 50小时 合计 · 7.5小时 · — · 1230小时/年 核心观点：白领每天7.5小时工作中，约有4.5小时可以通过AI大幅提效——相当于每天多出半天时间。 企业办公全场景 AI 赋能地图（3分钟）企业办公七大场景： 公文写作 ──→ 会议管理 ──→ HR管理 ──→ 销售CRM │              │            │           │ 通知/报告/纪要   议程/纪要/跟进  招聘/绩效/培训  客户/商机/报价 周报年报 ──→ 项目管理 ──→ 数据分析 ──→ 知识管理 │              │            │           │ 数据汇总/模板  计划/进度/复盘  报表/看板/洞察  知识库/FAQ/SOP 每个场景的 WorkBuddy 能力映射： 场景 · 核心痛点 · AI解决方案 |------|----------|-----------| 公文写作 · 措辞纠结、格式不一 · 模板化+语气适配 会议管理 · 纪要 五个闪电演示（4分钟）演示 · 输入 · 输出 · 传统耗时 |------|------|------|----------| 公文通知 · &quot;写一份关于开展Q3安全自查的公司通知&quot; · 格式规范的红头通知 · 1小时 会议纪要 · 上传会议录音转文字 · 结构化纪要+待办清单+责任人 · 2小时 简历筛选 · 上传50份简历+JD · 匹配度排序+评分+面试问题 · 1天 周报生成 · &quot;汇总本周项目A/项目B/项目C的进展&quot; · 一份可直接提交的周报 · 2小时 数据分析 · 上传3个月销售数据 · 趋势图+异常标注+经营建议 · 半天 企业办公必装技能（2分钟）技能 · 安装指令 · 用途 |------|----------|------| pptx-generator · &quot;帮我安装 pptx-generator&quot; · 汇报PPT一键生成 minimax-xlsx · &quot;帮我安装 minimax-xlsx&quot; · 数据处理、报表生成 minimax-docx · &quot;帮我安装 minimax-docx&quot; · 公文、合同、报告撰写 minimax-pdf · &quot;帮我安装 minimax-pdf&quot; · 文件格式转换、合同审阅 tencent-meeting-skill · &quot;帮我安装 腾讯会议&quot; · 会议创建、纪要导出 企业办公AI工作流模板（1.5分钟）日/周/月工作节奏： 频率 · 任务 · WorkBuddy 指令关键词 |------|------|---------------------| 每日 · 邮件草拟、日程整理 · &quot;帮我回复这封邮件&quot; 每周 · 周报撰写、下周计划 · &quot;生成本周工作周报&quot; 每月 · 月度报告、绩效回顾 · &quot;输出月度经营分析&quot; 每季 · 季度规划、OKR回顾 · &quot;生成本季度OKR复盘&quot; 学员收获：建立企业办公全场景AI提效意识，掌握从文档到决策的AI辅助方法。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -850,9 +844,9 @@
       </div>
 
     </div><div class="category-card" data-ch="5">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">💻</div>
-        <div><div class="card-title">IT/科技类</div><div class="card-sub">第5章 · 共12集</div></div>
+        <div><div class="card-title">IT/科技类</div><div class="card-sub">第5章 · 共12集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="5" data-ep="1" data-search="WorkBuddy 在技术场景中的基础应用  开发者时间消费真相（1.5分钟）设计意图：用量化数据颠覆&quot;写代码最快&quot;的认知。 开发者时间分配调研： 活动 · 时间占比 · AI提效空间 |------|:------:|:--------:| 阅读和理解代码 · 35% · 50% 编写新代码 · 25% · 40% 调试和排错 · 20% · 60% 文档撰写 · 10% · 80% 开会/沟通 · 10% · 50% 核心洞察：开发者只有25%的时间在真正写新代码——AI可以大幅优化另外75%的时间。 技术开发全场景 AI 赋能地图（3分钟）开发全生命周期： 需求分析 ──→ 技术设计 ──→ 编码实现 ──→ 代码审查 ──→ 测试部署 ──→ 运维监控 │              │            │            │            │            │ PRD撰写       架构评审      代码生成      Code Review  自动化测试    日志分析 需求拆分      方案对比      项目脚手架    Bug检测       CI/CD       故障定位 用户故事      接口设计      代码补全      重构建议      环境搭建    性能优化 验收标准      数据库设计    API对接      安全扫描      部署脚本    容量规划 五个闪电演示（4分钟）演示 · 输入 · 产出 · 传统耗时 |------|------|------|----------| 代码生成 · &quot;用Python写一个REST API，连接MySQL&quot; · 完整可运行的API代码 · 2小时 Bug排查 · 粘贴错误日志+相关代码 · 根因定位+修复方案 · 1小时 PRD撰写 · &quot;做一个用户管理系统&quot; · 结构化PRD文档 · 4小时 代码审查 · 粘贴代码文件 · 安全+性能+可读性建议 · 30分钟 数据库设计 · &quot;设计电商系统的数据库&quot; · ER图描述+DDL语句 · 4小时 知识要点：WorkBuddy不仅能写代码，还能直接读写本地文件、执行脚本——这是与传统AI编程助手的本质区别。 开发者必装技能与配置（3分钟）技能/工具 · 安装指令 · 用途 |-----------|----------|------| minimax-xlsx · &quot;帮我安装 minimax-xlsx&quot; · 测试数据生成、Excel导入导出 minimax-pdf · &quot;帮我安装 minimax-pdf&quot; · 技术文档PDF生成 pptx-generator · &quot;帮我安装 pptx-generator&quot; · 技术方案PPT minimax-docx · &quot;帮我安装 minimax-docx&quot; · 技术文档Word cloudstudio-deploy · &quot;帮我安装 cloudstudio-deploy&quot; · 前端项目部署预览 高效配置建议： 配置项 · 建议 · 指令示例 |--------|------|------- 技术工作流模板（2.5分钟）日常开发节奏： 频率 · 任务 · WorkBuddy 指令关键词 |------|------|---------------------| 每日 · 写代码、调试、Code Review · &quot;帮我实现&quot; / &quot;这段代码哪里有问题&quot; 每周 · 技术方案、接口文档 · &quot;设计XX模块的技术方案&quot; 每迭代 · PRD转开发计划、技术评审 · &quot;把这个PRD拆分为Sprint任务&quot; 每季度 · 技术债务清理、架构升级 · &quot;分析代码库的技术债务&quot; 学员收获：建立技术开发全生命周期AI赋能视角，掌握WorkBuddy与本地文件系统交互的独特能力。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -1034,9 +1028,9 @@
       </div>
 
     </div><div class="category-card" data-ch="6">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">📊</div>
-        <div><div class="card-title">金融/财会类</div><div class="card-sub">第6章 · 共12集</div></div>
+        <div><div class="card-title">金融/财会类</div><div class="card-sub">第6章 · 共12集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="6" data-ep="1" data-search="财务场景基础应用 —— WorkBuddy财务人第一课  财务痛点矩阵（1.5分钟）设计意图：用量化数据引发共鸣，让财务人员认识到AI不是替代而是解放。 痛点 · 时间占比 · 年损失(按年薪) · WorkBuddy替代效果 |------|:------:|:----------:|------------------| 数据录入与核对 · 35% · 约70,000元 · 减少80%重复劳动 报表编制与格式调整 · 25% · 约50,000元 · 提速90% 跨系统数据搬运 · 20% · 约40,000元 · 自动化衔接 政策法规查阅 · 10% · 约20,000元 · 实时检索+解读 分析洞察与决策支撑 · 10% · — · 从10%提升到50%+ 核心观点：财务人员的价值不在&quot;做表&quot;，而在&quot;读懂表、用好表&quot;。WorkBuddy把机械劳动自动化，释放分析决策 财务AI能力地图（3分钟）设计意图：建立财务人员在WorkBuddy中的全景能力认知。 能力维度 · 具体能力 · 典型指令示例 |----------|----------|------------| 数据处理 · Excel/CSV自动处理 · &quot;帮我把这个对账单的重复行找出来并删除&quot; 报表生成 · 三张表自动编制 · &quot;根据这个科目余额表生成资产负债表&quot; 财务分析 · 比率分析/趋势/杜邦 · &quot;分析这份财报的偿债能力和盈利能力&quot; 税务处理 · 税金计算/申报辅助 · &quot;帮我计算本月的增值税和附加税&quot; 合规审查 · 内控测试/异常检测 · &quot;审查这批报销单是否存在合规风险&quot; 文档生成 · 报告/说明/分析 · &quot;写一份应收账款账龄分析报告&quot; 联网查询 · 政策/准则/汇率 · &quot;查询最新的研发费用加计扣除政策&quot; 五个闪电演示（4分钟）设计意图：用5个高频场景让学员快速建立&quot;AI能帮我做什么&quot;的体感。 演示1：发票信息提取（40秒） 拖入10张发票照片/PDF： &quot;帮我把这些发票的信息提取到一个Excel表里，包括发票号码、日期、金额、税额、销方名称、购买方名称&quot; 产出：结构化发票台账，一键完成人工20分钟工作。 演示2：银行对账（50秒） 拖入银行流水和账务明细： &quot;帮我核对银行流水和账务明细，标记差异项，生成银行存款余额调节表&quot; 产出：自动勾对+差异标记+调节表。 演示3：费用分析（50秒） 拖入费用明细表： &quot;按费用类别汇总，用饼图展示占比，对比各月趋势，标注异常波动的月份&quot; 产出：可视化费用分析图表+异常标注。 演示4：税务计算（50秒） &quot;我公司是小规模纳税人，本月含税销售额103万元，请帮我计算应缴增值税及附加 财务必备技能安装（2分钟）设计意图：确保学员装上核心技能，为后续课程打好基础。 必装技能清单： 技能名 · 功能 · 安装指令 · 应用场景 |--------|------|----------|----------| minimax-xlsx · Excel全能力 · &quot;帮我安装 minimax-xlsx&quot; · 报表/数据/建模 minimax-pdf · PDF生成编辑 · &quot;帮我安装 minimax-pdf&quot; · 报告/合同/凭证 minimax-docx · Word文档 · &quot;帮我安装 minimax-docx&quot; · 制度/说明/报告 pptx-generator · 演示文稿 · &quot;帮我安装 pptx-generator&quot; · 财务汇报/分析展示 Step 1：输入 /skills 查看已装技能 Ste 可复制的财务工作流（1.5分钟）设计意图：给学员一个课后就能用的工作流模板。 财务日常工作流模板： 早间三步走： 1. &quot;帮我查询今天的外汇牌价（美元/欧元），整理成简易汇率表&quot; 2. &quot;检查我昨天的银行流水，汇总收入与支出，标记大额交易(&gt;5万)&quot; 3. &quot;今天有哪些税务申报截止日期？帮我列出&quot; 周度任务流： 1. 拖入一周的费用报销单：&quot;帮我分类汇总，标记不合规项&quot; 2. &quot;根据附件数据生成本周经营快报（收入/成本/费用/利润）&quot; 3. &quot;检查固定资产折旧计提是否完整&quot; 月度任务流： 1. 拖入科目余额表：&quot;帮我生成资产负债表和利润表&quot; 2. &quot;对本月的财务指标做同比和环比分析&quot; 3. &quot;生成下月资金计划初稿&quot; 总结（1分钟）知识要点回顾： 1. 财务AI能力七维度：数据→报表→分析→税务→合规→文档→查询 2. 模式选择原则：改文件用Craft，纯分析用Ask，复杂任务Plan+Ask+Craft 3. 核心技能四件套：xlsx/pdf/docx/pptx 4. 工作流口诀：早查汇率流水，周做报销快报，月出报表分析 学员收获：建立财务AI应用全景认知，掌握5个高频场景指令，安装4个核心技能，获得可复制的工作流模板。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -1218,9 +1212,9 @@
       </div>
 
     </div><div class="category-card" data-ch="7">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🎨</div>
-        <div><div class="card-title">创意/营销类</div><div class="card-sub">第7章 · 共12集</div></div>
+        <div><div class="card-title">创意/营销类</div><div class="card-sub">第7章 · 共12集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="7" data-ep="1" data-search="创意营销场景基础应用  营销人痛点矩阵（1.5分钟）设计意图：用量化数据让营销人员看到AI能释放多少创意时间。 痛点 · 时间占比 · 典型场景 · WorkBuddy替代效果 |------|:------:|----------|------------------| 信息搜集与竞品研究 · 30% · 手动查资料、整理竞品 · 自动搜集+结构化输出 内容创作（文案/视觉） · 35% · 写标题/文案/方案 · 从0到初稿仅需30秒 数据处理与分析 · 15% · Excel透视、PPT画图 · 自动化处理+可视化 多平台分发与运营 · 20% · 各平台手动发布回复 · 统一内容+多平台适配 核心观点：营销人的核心价值在创意策略，不在执行操作。WorkBuddy把执行自动化，释放策略和创意时间。 AI营销能力全景地图（3分钟）设计意图：建立从调研到复盘的全链路AI营销能力认知。 能力维度 · 具体能力 · 典型指令示例 |----------|----------|------------| 调研洞察 · 竞品/市场/消费者分析 · &quot;分析XX品牌的社交媒体策略&quot; 策略定位 · 品牌定位/人群画像/USP提炼 · &quot;为我们的新产品提炼3个核心卖点&quot; 内容创作 · 文案/脚本/视觉 · &quot;写10个双11促销标题&quot; 视觉呈现 · PPT/海报/视频脚本 · &quot;把这份方案转成提案PPT&quot; 数据运营 · 投放分析/ROI/复盘 · &quot;分析这个月的广告投放数据&quot; 客户运营 · 话术/邮件/社群 · &quot;设计一套VIP客户激活话术&quot; WorkBuddy营销工作模式选择： 任务类型 · 推荐模式 · 说明 |---------- 五个闪电演示（4分钟）设计意图：5个高频场景让学员迅速建立&quot;AI能帮我干活&quot;的直接体感。 演示1：竞品一句话分析（45秒） &quot;帮我分析可口可乐和百事可乐在中国市场的品牌定位差异，包括目标人群、核心卖点、社交媒体策略，用表格对比&quot; 产出：结构化对比表，替代1小时手动搜索整理。 演示2：爆款标题批量生成（45秒） &quot;我是做护肤品的品牌。帮我写20个小红书种草笔记的标题，要符合平台爆款套路：痛点+解决方案、数字吸引、明星类比&quot; 产出：20个可直接选用的标题，覆盖多种爆款公式。 演示3：营销文案一周产出（50秒） &quot;帮我为一个新上市的智能手表写：1条60秒短视频脚本、1篇公众号推文大纲、5条朋友圈文案、1份产品详情页文案框架&quot; 产出：4种内容形态的一键生成。 演示4：广告数据分析（50秒） 拖入广告投放数据： &quot;分析各渠 营销人必备技能安装（2分钟）技能名 · 功能 · 安装指令 · 应用场景 |--------|------|----------|----------| pptx-generator · 文字→PPT · &quot;帮我安装 pptx-generator&quot; · 方案/提案/汇报 minimax-docx · Word文档 · &quot;帮我安装 minimax-docx&quot; · 方案/合同/手册 minimax-xlsx · Excel处理 · &quot;帮我安装 minimax-xlsx&quot; · 数据/报表/预算 minimax-pdf · PDF文档 · &quot;帮我安装 minimax-pdf&quot; · 方案/报告/白皮书 可复制的营销工作流（1.5分钟）晨间快速启动： &quot;帮我搜索今天行业内的热点新闻，列出与我们品牌相关的3条，并给出蹭热点的角度建议&quot; 创意产出模式： &quot;输入：产品信息 + 目标人群 + 传播渠道 + 数量要求 → AI批量生成初稿 → 人选优+改 → 发布&quot; 数据驱动迭代： &quot;分析本周社交媒体的互动数据，找出表现最好的3条内容，提炼'爆款公式'，应用到下周的选题规划&quot; 月度复盘自动化： &quot;生成月度营销报告：核心KPI达成 / 爆款内容分析 / 各渠道ROI / 竞品动态 / 下月行动计划&quot; 总结（1分钟）知识要点回顾： 1. 营销AI能力六维度：调研→策略→内容→视觉→数据→运营 2. 闪电演示五场景：竞品分析/标题批量/多形态创作/数据诊断/方案PPT 3. 核心技能四件套：pptx/docx/xlsx/pdf 4. 工作流口诀：早看热点找角度，创意量产靠AI，数据分析定方向，月度复盘自动化 学员收获：建立营销AI应用全景认知，掌握5个高频场景指令，安装核心技能，获得可复制的日/周/月营销工作流。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -1402,9 +1396,9 @@
       </div>
 
     </div><div class="category-card" data-ch="8">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🏥</div>
-        <div><div class="card-title">医疗/卫生类</div><div class="card-sub">第8章 · 共12集</div></div>
+        <div><div class="card-title">医疗/卫生类</div><div class="card-sub">第8章 · 共12集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="8" data-ep="1" data-search="医疗场景基础应用  医疗工作者的时间都去哪了（1.5分钟）设计意图：用量化数据呈现医疗工作者被非临床工作占据的现实。 痛点 · 时间占比 · 具体表现 · WorkBuddy替代效果 |------|:------:|----------|------------------| 文书书写 · 40% · 病历/病程/出院小结 · 语音转文字+结构化 文献查阅 · 15% · 查指南/查文献/查药品 · 智能检索+自动总结 数据处理 · 10% · 科研统计/排班/报表 · 自动化分析 行政事务 · 15% · 排班/会议/制度 · 模板+自动生成 患教沟通 · 10% · 重复解释相同问题 · 个性化患教材料 实际诊疗 · 10% · 真正看病人的时间 · 从10%提升到30%+ 核心观点：医生的价值在诊疗判断，不在抄写文书。WorkBuddy把医 AI医疗能力全景地图（3分钟）设计意图：建立医疗健康行业各岗位的AI赋能全景认知。 能力维度 · 覆盖场景 · 典型指令示例 |----------|----------|------------| 文书智能 · 病历/病程/出院小结 · &quot;根据以下信息生成一份规范的入院记录&quot; 文献检索 · 指南/论文/药品信息 · &quot;搜索2024-2026年关于XX病的最新诊疗指南&quot; 临床辅助 · 鉴别诊断/用药参考 · &quot;列出血小板减少的鉴别诊断清单&quot; 患者教育 · 患教材料/科普文章 · &quot;为糖尿病患者写一份饮食指导手册&quot; 科研统计 · 数据分析/论文辅助 · &quot;帮我对这组临床数据做统计分析&quot; 行政管理 · 排班/制度/质控 · &quot;生成科室下个月的排班表&quot; 重要提示（必须强调）： 五个闪电演示（4分钟）设计意图：用5个高频医疗场景快速建立使用体感。 演示1：入院记录生成（50秒） &quot;帮我生成一份规范的入院记录： 患者：男性，45岁 主诉：反复上腹痛2年，加重1周 病史：有饮酒史15年，每日白酒约200ml 要求：按入院记录标准格式，包含所有必要章节&quot; 产出：结构化入院记录，符合病历书写规范。 演示2：文献检索与总结（50秒） &quot;搜索近3年关于'二甲双胍在非糖尿病患者中的潜在获益'的最新研究，总结关键发现和临床意义&quot; 产出：文献检索结果+结构化总结+临床启示。 演示3：患者教育材料（45秒） &quot;为一位刚确诊高血压的患者写一份通俗易懂的健康教育材料，包括：什么是高血压、饮食注意事项、运动建议、用药提醒。语言要通俗，不用医学术语&quot; 产出：患者看得懂的患教手册。 演示4：科室排班表（50秒） &quot;帮 医疗必备技能安装（2分钟）技能名 · 核心功能 · 安装指令 · 典型应用 |--------|----------|----------|----------| minimax-docx · Word文档专业处理 · &quot;帮我安装 minimax-docx&quot; · 病历/制度/报告 minimax-xlsx · Excel数据处理 · &quot;帮我安装 minimax-xlsx&quot; · 研究数据/排班/统计 minimax-pdf · PDF生成编辑 · &quot;帮我安装 minimax-pdf&quot; · 论文/指南/手册 pptx-generator · PPT制作 · &quot;帮我安装 pptx-generator&quot; · 科室汇报/学术演讲 可复制的医疗工作流（1.5分钟）临床日常工作流： &quot;帮我整理今天需要关注的病人： - 查看昨日的检查结果回报 - 列出今天需要更换医嘱的病人 - 提醒哪些病人的病程记录超过3天未写&quot; 查房时（语音输入）： &quot;记录：患者XX今日主诉XXX，查体XXX，调整医嘱为XXX&quot; &quot;根据今天的查房记录，帮我生成3份病程记录&quot; &quot;帮我查一下XXX药物的说明书，重点看禁忌症和药物相互作用&quot; 周末/空闲时： &quot;搜索XX领域的最新文献，帮我做文献摘录&quot; &quot;统计这个月的质控数据，生成质控月报&quot; &quot;帮我分析这批临床数据的统计学差异&quot; &quot;为这篇论文生成参考文献列表（Vancouver格式）&quot; 总结（1分钟）知识要点回顾： 1. 医疗AI能力六维度：文书/文献/临床辅助/患教/科研/行政 2. ⚠️ AI辅助≠AI替代，诊断决策必须医生确认 3. 核心技能四件套：docx/xlsx/pdf/pptx 4. 工作流口诀：早查检验写病程，查房语音录医嘱，晚间整理出文书，空闲科研查文献 学员收获：建立医疗AI应用全景认知，掌握5个高频场景指令，安装核心技能，获得可复制的日/周工作流。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -1586,9 +1580,9 @@
       </div>
 
     </div><div class="category-card" data-ch="9">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">⚖️</div>
-        <div><div class="card-title">法律/咨询类</div><div class="card-sub">第9章 · 共12集</div></div>
+        <div><div class="card-title">法律/咨询类</div><div class="card-sub">第9章 · 共12集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="9" data-ep="1" data-search="法律咨询场景基础应用  法律人的时间黑洞（1.5分钟）设计意图：用量化数据引发共鸣，让律师/法务意识到AI不是威胁而是生产力工具。 工作环节 · 传统耗时占比 · AI可辅助程度 · 释放时间意义 |----------|:------:|:------:|----------| 法律检索 · 30% · 70% · 从半天到5分钟 文书起草 · 25% · 60% · 初稿自动生成 合同审查 · 20% · 50% · 风险点自动标注 案卷整理 · 15% · 80% · 一键结构化 客户沟通 · 10% · 30% · 会议纪要自动生成 核心理念: WorkBuddy 是法律人的&quot;初级律师助理&quot;——它负责信息收集、文书初稿、风险初筛，律师负责专业判断、策略设计和最终决策。 法律人AI能力矩阵（3分钟）设计意图：建立AI辅助法律工作的认知框架。 能力层级 · 能力项 · 典型场景 · WorkBuddy指令模板 |----------|--------|----------|-------------------| L1 信息获取 · 法条检索/案例搜索/政策追踪 · 查最新法规 · &quot;帮我查找最新发布的XX法规全文&quot; L2 信息处理 · 合同审查/证据整理/案卷摘要 · 审100页合同 · &quot;审查这份合同，标注风险条款&quot; L3 内容生成 · 文书撰写/意见书/诉讼材料 · 写起诉状 · &quot;根据案件事实撰写民事起诉状&quot; L4 策略分析 · 胜诉率预测/案例对比/策略模拟 · 庭前准备 · &quot;分析被告可能的主张，预测争议焦点&quot; L5 流程管理 · 案件进度/时效监控/团队协作 · 多案件管理 法律场景核心操作演示（4分钟）设计意图：演示法律人最常用的三个操作——拖入审查、联网检索、模板生成。 演示一：合同快速审查（1.5分钟） Step 1：拖入一份《采购合同》PDF到WorkBuddy Step 2：输入指令：&quot;你是合同审查律师，请审查这份采购合同： - 识别所有风险条款和不公平条款 - 标注违约责任条款中对我方不利的部分 - 检查关键条款是否缺失（验收标准、付款条件、争议解决） - 以表格形式输出审查意见：条款号|原文摘要|风险等级|修改建议&quot; Step 3：WorkBuddy逐条分析，输出结构化的审查意见表 演示二：法条速查（1.5分钟） Step 1：输入指令：&quot;我处理的案件涉及以下问题，请帮我检索相关法条： - 合同违约的精神损害赔偿是否可以主张 - 请分别列出《民法典》中的相关条款 - 请搜索近两 学员跟练（2.5分钟）练习1（2分钟）：找一份你手头的合同文件，拖入WorkBuddy， 输入：&quot;审查这份合同的违约责任条款，指出对我方不利的地方， 并给出修改建议&quot; 对比AI审查结果和你的专业判断 练习2（30秒）：输入：&quot;帮我查找'情势变更'原则在《民法典》中的条款 及相关司法解释&quot;，体验5秒出结果 预期问题与解答： 常见问题 · 解答 |----------|------| &quot;AI审查合同靠不靠谱？&quot; · AI做80%的初筛（格式条款、风险标记），律师做20%的专业判断和策略决策 &quot;法条引用会不会出错？&quot; · 建议重要文书验证法条编号和内容；WorkBuddy支持联网验证 &quot;涉密文件能上传吗？&quot; · 脱敏处理或使用本地模式；敏感信息可用[XXXX]替代 效率对比与误区澄清（2分钟）任务 · 传统耗时 · AI辅助耗时 · 效率提升 |------|:------:|:------:|:------:| 审100页采购合同 · 3小时 · 15min(初筛)+30min(复核) · 75% 查找法条+案例 · 2小时 · 5分钟 · 96% 起草起诉状初稿 · 1.5小时 · 10min(生成)+20min(修改) · 67% 整理案卷摘要 · 3小时 · 15分钟 · 92% 常见误区澄清： 总结与课后任务（1分钟）学员收获：掌握WorkBuddy在法律场景的三大核心操作（合同审查、法条速查、文书生成），建立AI辅助≠AI替代的正确认知。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -1770,9 +1764,9 @@
       </div>
 
     </div><div class="category-card" data-ch="10">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">📱</div>
-        <div><div class="card-title">新媒体/内容创作类</div><div class="card-sub">第10章 · 共12集</div></div>
+        <div><div class="card-title">新媒体/内容创作类</div><div class="card-sub">第10章 · 共12集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="10" data-ep="1" data-search="新媒体场景基础应用  新媒体人的时间黑洞（1分钟）设计意图：让内容创作者意识到你的时间大部分花在&quot;非创作&quot;环节。 工作环节 · 传统耗时占比 · AI可提效程度 · 释放时间可以做什么 |----------|:------:|:------:|----------| 选题调研 · 20% · 60% · 更多深度思考 素材收集 · 15% · 80% · 更多创作时间 内容撰写 · 25% · 50% · 产出更多篇 排版美化 · 15% · 70% · 关注内容质量 多平台适配 · 15% · 80% · 扩展更多平台 数据分析 · 10% · 70% · 优化内容策略 核心理念: AI不是替你创作，而是替你完成那些&quot;必要但不创造核心价值&quot;的工作。 WorkBuddy内容创作能力全景（3分钟）能力模块 · 具体能力 · 典型场景 · WorkBuddy指令 |----------|----------|----------|--------------| 灵感获取 · 热点追踪/趋势分析/竞品研究 · 今天有什么热点 · &quot;搜索今天热搜话题，筛选与我领域相关的&quot; 内容创作 · 选题/文案/脚本/标题 · 帮我想10个选题 · &quot;基于我的定位生成本周选题规划&quot; 素材处理 · 图片/视频/音频/数据 · 帮我处理这张图 · &quot;把这张图尺寸改成小红书封面尺寸&quot; 平台优化 · SEO/标签/发布时间 · 怎么优化标题 · &quot;为这篇文章生成5个高点击率标题&quot; 数据驱动 · 阅读/互动/转化分析 · 为什么这篇爆了 · &quot;分析这篇文章的数据，找出爆款原因&quot; 效率工具 · 批量生成/自动排版/ 三大核心操作演示（4.5分钟）演示一：热点追踪与选题灵感（1.5分钟） Step 1：输入指令： &quot;帮我追踪今天适合我追的热点： - 我的领域：职场成长/个人品牌 - 要求：列出5个今日热点话题，每个附热度评估/结合角度/建议切入方式&quot; Step 2：对感兴趣选题深挖： &quot;'00后整顿职场'这个话题，帮我想5个不同切入角度：支持派/理性分析派/管理者视角/00后视角/数据说话&quot; 演示二：选题到内容初稿（1.5分钟） Step 1（Plan模式）：&quot;帮我为公众号文章规划结构：主题00后为什么敢'整顿职场'&quot; Step 2（Craft模式）：&quot;按确认大纲撰写2000字全文+3个备选标题&quot; 演示三：多平台内容适配（1.5分钟） &quot;把这篇2000字公众号文章，改编为：小红书笔记(800字/emoji分段/金句/话题标签) +60 学员跟练（2.5分钟）练习1（1.5分钟）：&quot;帮我搜索今天的热搜话题，筛选3个与[你的领域]相关的，分析切入角度和爆款潜力&quot; 练习2（1分钟）：&quot;帮我写一篇800字的小红书笔记初稿，主题[热门话题]，有共鸣感/有干货/有互动引导&quot; 效率对比与创作误区（2分钟）任务 · 传统耗时 · AI辅助耗时 · 效率提升 |------|:------:|:------:|:------:| 选题调研（周度） · 3h · 30min · 83% 一篇公众号文章 · 4-6h · 1.5-2h · 60-67% 一篇文章多平台改编 · 2h/平台 · 15min/平台 · 87% 短视频脚本 · 2h · 30min · 75% 常见创作误区： 总结与课后任务（1分钟）学员收获：掌握WorkBuddy在内容创作场景的三大核心操作（热点追踪→选题→内容初稿），建立&quot;AI做80%基础工作+我做20%核心创作&quot;的协作模式。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -1954,9 +1948,9 @@
       </div>
 
     </div><div class="category-card" data-ch="11">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🍽️</div>
-        <div><div class="card-title">餐饮/酒店类</div><div class="card-sub">第11章 · 共8集</div></div>
+        <div><div class="card-title">餐饮/酒店类</div><div class="card-sub">第11章 · 共8集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="11" data-ep="1" data-search="餐饮酒店场景基础应用  餐饮人的时间黑洞（1.5分钟）设计意图：让餐饮从业者意识到，你的时间被碎片化事务吞噬，AI可以释放你的核心精力。 工作环节 · 传统耗时占比 · AI可提效程度 · 释放时间可以做什么 |----------|:------:|:------:|----------| 菜单排版与更新 · 10% · 75% · 设计更多季节菜品 食材采购比价 · 12% · 65% · 供应商关系管理 排班协调 · 15% · 60% · 员工培训与关怀 食安文档整理 · 8% · 80% · 现场食安检查落实 评价回复与口碑 · 10% · 70% · 客户体验优化 报表统计 · 12% · 85% · 经营策略分析 活动策划 · 10% · 65% · 创新菜品研发 日常行政 · 23% · 60% · 门店运营优化 核心痛点：餐饮 WorkBuddy餐饮能力全景（3分钟）能力模块 · 具体能力 · 典型场景 · WorkBuddy指令示例 |----------|----------|----------|--------------| 菜单工程 · 菜单设计/定价策略/利润分析 · 设计新菜单 · &quot;根据食材成本和市场价格，帮我设计春季菜单定价&quot; 供应链 · 采购比价/库存管理/供应商评估 · 比价采购 · &quot;分析这三家供应商的报价，帮我做最优决策&quot; 食安合规 · 文档生成/法规检索/检查清单 · 生成HACCP文档 · &quot;帮我生成一份凉菜间的卫生操作规范SOP&quot; 人力资源 · 排班表/培训计划/绩效考核 · 自动排班 · &quot;根据我这周客流预测，生成本周排班表&quot; 客户管理 · 评价分析/回复模板/投诉处理 · 批量回复评价 · &quot;帮我分析本月50条差评，总 三大核心操作演示（4.5分钟）演示一：菜单智能设计与成本核算（1.5分钟） Step 1：拖入食材成本Excel和竞品菜单照片 Step 2：输入指令： &quot;帮我设计一份夏季新菜单： - 分析附件中食材成本数据 - 结合竞品菜单定价策略 - 按前菜/主菜/甜品/饮品四类分类 - 每个菜品标注食材成本/建议售价/毛利率 - 用表格呈现，包含菜品描述和卖点提炼&quot; 演示二：食安检查文档自动生成（1.5分钟） Step 1：输入指令（Plan模式）： &quot;帮我规划一份餐饮服务食品安全自查清单的结构： - 覆盖食材验收/仓储/加工/留样/消毒/人员健康等6大模块 - 每个模块5-10个检查项，分'关键项'和'一般项'&quot; Step 2（Craft模式）： &quot;按照确认的大纲，生成完整自查清单Excel，含检查项、标准要求、评分标准、不合格 学员跟练（2.5分钟）练习1（1.5分钟）： &quot;假设我的餐厅人均消费80元，主打川菜。帮我设计一份冬季新品菜单： - 列出8-10道菜品建议（含食材/口味/定价/毛利预估） - 用表格呈现，标注推荐指数和营销卖点&quot; 练习2（1分钟）： &quot;帮我写一份餐厅周度门店会议纪要模板，包含：上周数据回顾/问题复盘/本周目标/重点任务分工/待解决问题&quot; 效率对比与误区（1.5分钟）任务 · 传统耗时 · AI辅助耗时 · 效率提升 |------|:------:|:------:|:------:| 设计一份新菜单（含成本核算） · 8h · 1.5h · 81% 生成食安检查文档 · 3h · 20min · 89% 分析100条评价 · 4h · 30min · 88% 排班表制作 · 2h · 15min · 88% 活动策划方案 · 4h · 45min · 81% 总结与课后任务（1分钟）学员收获：掌握WorkBuddy在餐饮场景的三大核心操作（菜单工程→食安文档→评价管理），建立&quot;AI做基础+人做决策&quot;的餐饮AI工作模式。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -2082,9 +2076,9 @@
       </div>
 
     </div><div class="category-card" data-ch="12">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🏗️</div>
-        <div><div class="card-title">房地产/建筑类</div><div class="card-sub">第12章 · 共6集</div></div>
+        <div><div class="card-title">房地产/建筑类</div><div class="card-sub">第12章 · 共6集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="12" data-ep="1" data-search="房地产场景基础应用  房产人的效率黑洞（1分钟）设计意图：用数据揭示房产从业者时间被庞杂信息淹没的现实。 工作环节 · 传统耗时占比 · AI可提效程度 · 瓶颈描述 |----------|:------:|:------:|----------| 房源信息整理 · 20% · 80% · 手动录入/格式不统一/多平台重复 客户匹配推荐 · 15% · 65% · 人工记忆/翻文件夹/容易遗漏 合同文档处理 · 18% · 75% · 模板化但每次要改/字段多易错 文案与发布 · 12% · 85% · 每套房要不同文案/多平台手动发 数据报表 · 10% · 90% · 手工统计/容易算错/格式不一 客户沟通跟进 · 25% · 50% · 量大/容易忘/跟进不系统 WorkBuddy房产能力全景（3分钟）能力模块 · 具体能力 · 典型场景 · WorkBuddy指令示例 |----------|----------|----------|--------------| 房源管理 · 信息提取/格式化/分类 · 批量整理房源 · &quot;帮我把这份房源清单按户型/面积/价格分类整理&quot; 文案生成 · 房源描述/卖点提炼/推广文案 · 生成房源介绍 · &quot;基于房源参数生成3版房源推荐文案&quot; 客户管理 · 需求匹配/跟进提醒/画像分析 · 匹配房源 · &quot;根据客户需求帮我筛选最匹配的5套房源&quot; 合同文档 · 模板生成/条款审核/风险评估 · 审查合同 · &quot;审查这份购房合同，标注风险条款&quot; 数据分析 · 市场行情/价格评估/竞品分析 · 房价分析 · &quot;分析这个小区近3个月成交数据趋势&quot; 报价算价 ·  三大核心操作演示（4.5分钟）演示一：房源信息智能整理与发布（1.5分钟） Step 1：拖入房源信息Excel（含户型/面积/楼层/朝向/装修/价格等字段） Step 2：输入指令： &quot;帮我整理这批房源信息： 1. 按户型（1室/2室/3室/4室+）和价格段（100万以下/100-200万/200-300万/300万+）双层分类 2. 为每套房源生成一段200字推荐文案（含卖点提炼+适合人群+看房引导） 3. 生成一份房源推荐PPT——每页一套房，含核心参数+卖点+照片位 4. 标注性价比TOP5房源（按同小区均价对比）&quot; 演示二：客户需求智能匹配（1.5分钟） Step 1：输入客户需求： &quot;客户画像：年轻夫妻/预算200-250万/需求2-3室/地铁沿线30分钟内/ 学区中等以上/5年内次新房优先/采光好/有电梯  学员跟练（2.5分钟）练习1（1.5分钟）： &quot;假设你拿到了5套新房源信息（随便找几套身边的真实房源），用AI： - 一键生成每套的推荐文案 - 按价格高低排序，标注每套的核心卖点 练习2（1分钟）： &quot;假设一个客户找你买房（描述他的需求），用AI： - 帮你生成客户需求分析表 - 提供匹配房源的搜索关键词/条件组合建议&quot; 效率对比与误区（1.5分钟）任务 · 传统耗时 · AI辅助耗时 · 效率提升 |------|:------:|:------:|:------:| 整理50套房源信息 · 4h · 20min · 92% 为10套房写推荐文案 · 3h · 15min · 92% 客户需求匹配推荐 · 1h · 10min · 83% 市场分析报告 · 5h · 40min · 87% 购房算价（1套） · 30min · 5min · 83% 总结与课后任务（1.5分钟）学员收获：掌握WorkBuddy在房产场景的三大核心操作（房源管理→客户匹配→市场分析），建立&quot;AI做标准化+人做个性化&quot;的房产AI工作模式。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -2182,9 +2176,9 @@
       </div>
 
     </div><div class="category-card" data-ch="13">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🚚</div>
-        <div><div class="card-title">物流/运输类</div><div class="card-sub">第13章 · 共6集</div></div>
+        <div><div class="card-title">物流/运输类</div><div class="card-sub">第13章 · 共6集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="13" data-ep="1" data-search="物流场景基础应用  物流人的"忙盲茫"（1分钟）设计意图：物流行业是典型的&quot;信息密集型+流程密集型&quot;行业，AI提升空间极大。 工作环节 · 传统耗时占比 · AI可提效程度 · 瓶颈描述 |----------|:------:|:------:|----------| 路线规划 · 15% · 70% · 经验为主/不系统/无数据支撑 单据处理 · 20% · 85% · 格式多/录入重复/易出错 在途跟踪 · 18% · 60% · 信息滞后/异常发现晚 仓储管理 · 15% · 75% · 手工盘点/账实不符/效率低 报关文件 · 12% · 80% · 报关单复杂/易填错/退单多 数据分析 · 10% · 90% · 数据散落各处/汇总难 客户沟通 · 10% · 50% · 反复确认/信息不透明 核心痛点：物流人最痛苦的不是体力 WorkBuddy物流能力全景（3分钟）能力模块 · 具体能力 · 典型场景 · WorkBuddy指令示例 |----------|----------|----------|--------------| 路线优化 · 多约束路径规划/成本计算 · 运输调度 · &quot;帮我规划明天10个送货点的最优路线&quot; 单据处理 · 自动填单/批量生成/格式转换 · 运单/提单 · &quot;根据这批发货数据批量生成运单&quot; 仓储管理 · 库存分析/盘点辅助/储位优化 · 库存盘点 · &quot;对比系统库存和实际盘点差异，分析原因&quot; 报关文件 · 报关单/箱单/发票自动生成 · 出口报关 · &quot;根据发货信息生成全套报关文件&quot; 数据分析 · KPI看板/成本分析/效率诊断 · 月度经营分析 · &quot;生成月度物流运营分析报告&quot; 客户服务 · 查询响应/异常通知/报告 三大核心操作演示（4.5分钟）演示一：运输路线智能规划（1.5分钟） Step 1：拖入送货地址清单Excel（含地址/货物/时间窗/优先级） Step 2：输入指令： &quot;帮我规划明天的配送路线： - 10个送货点（附地址清单） - 车型：4.2米厢式货车/载重2吨 - 约束：客户A必须10:00前送到/客户C只收下午/市区限行17:00-19:00 - 优化目标：总里程最短/总用时最少/油耗最低 - 输出：配送顺序表/每段里程/预计用时/预计油耗/总成本估算&quot; 演示二：运单批量自动生成（1.5分钟） Step 1：拖入发货数据Excel（含发货人/收货人/品名/件数/重量/体积等） Step 2：输入指令： &quot;帮我根据这批发货数据生成完整运单： - 自动填充所有运单字段 - 检查地址格式/手机号格式是否正确 - 按目的 学员跟练（2.5分钟）练习1（1.5分钟）： &quot;假设你有5个送货地址（自己编地址），用AI规划最优路线： - 附上地址/货物信息/时间要求 - 让AI输出排序列表和总里程/时间预估&quot; 练习2（1分钟）： &quot;拖入一份你自己工作中的Excel数据（发货/库存/财务任意），用AI： - '帮我分析这份数据，找出3个可以优化的点'&quot; 效率对比与误区（1.5分钟）任务 · 传统耗时 · AI辅助耗时 · 效率提升 |------|:------:|:------:|:------:| 路线规划（20个点） · 1.5h · 10min · 89% 批量生成运单（100单） · 3h · 15min · 92% 库存盘点分析 · 4h · 30min · 88% 月度运营报告 · 5h · 30min · 90% 报关文件制作 · 2h/票 · 20min/票 · 83% 总结与课后任务（1.5分钟）学员收获：掌握WorkBuddy在物流场景的三大核心操作（路线规划→运单生成→数据分析），建立&quot;AI处理数据+人做决策判断&quot;的物流AI工作模式。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -2282,9 +2276,9 @@
       </div>
 
     </div><div class="category-card" data-ch="14">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🎮</div>
-        <div><div class="card-title">游戏/娱乐类</div><div class="card-sub">第14章 · 共6集</div></div>
+        <div><div class="card-title">游戏/娱乐类</div><div class="card-sub">第14章 · 共6集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="14" data-ep="1" data-search="游戏娱乐场景基础应用  游戏人的文档地狱（1分钟）设计意图：游戏行业是&quot;文档密集型+数据密集型&quot;行业，策划案/数值表/运营分析占大量时间。 工作环节 · 传统耗时占比 · AI可提效程度 · 瓶颈描述 |----------|:------:|:------:|----------| 策划文档 · 25% · 65% · 格式排版/重复描述/版本管理 数值配置 · 20% · 55% · Excel海量数据/公式复杂/易错 运营数据分析 · 18% · 80% · 多维度交叉分析/报告撰写 本地化翻译 · 15% · 70% · 量大/语种多/术语一致性 社区管理 · 12% · 60% · 回复量大/多平台/多语言 竞品调研 · 10% · 75% · 信息散落/整理耗时 WorkBuddy游戏能力全景（3分钟）能力模块 · 具体能力 · 典型场景 · WorkBuddy指令示例 |----------|----------|----------|--------------| 策划文档 · 设计文档/系统文档/角色文档 · 写角色技能设计 · &quot;帮我写一个新英雄的技能设计方案&quot; 数值设计 · 数值建模/平衡分析/参数批量调整 · 数值平衡 · &quot;分析这份装备数值表，找出超模/废品装备&quot; 运营分析 · 玩家数据/营收分析/留存分析 · 活动复盘 · &quot;分析这次活动数据，评估ROI和优化方向&quot; 社区管理 · 公告撰写/回复话术/舆情分析 · 写更新公告 · &quot;帮我写一份版本更新公告和社区互动话术&quot; 本地化 · 多语言翻译/术语一致性/LQA · 翻译文本 · &quot;把这段中文游戏文本翻译成英文，保持原风格 三大核心操作演示（4.5分钟）演示一：游戏策划文档生成（1.5分钟） Step 1（Plan模式）： &quot;帮我为一款休闲放置类手游设计一个新英雄的策划方案大纲： - 定位：辅助型英雄/水系/远程 - 要求在现有多英雄体系中有独特性和互补性 - 大纲含：英雄背景故事/技能设计(1被动+3主动+1大招)/定位分析/配队建议&quot; Step 2（Craft模式）： &quot;按照确认的大纲，生成完整的英雄策划文档： - 技能数值表（含1-5级升级数值/冷却时间/消耗/伤害公式） - 与其他英雄的克制/被克制关系 - 美术需求单（原画/特效/动作/音效各需要什么）&quot; 演示二：运营活动数据分析（1.5分钟） &quot;拖入上周活动数据Excel（含每日参与人数/付费金额/道具消耗/留存等），帮我： 1. 活动核心指标总览：参与率/付费率/ARPU/RO 学员跟练（2.5分钟）练习1（1.5分钟）： &quot;设计你熟悉的游戏中的一个小功能/小玩法的策划文档，用AI： - Plan模式先出大纲 - Craft模式生成完整文档&quot; 练习2（1分钟）： &quot;拖入一份你工作中的游戏数据，用AI： '帮我分析这份数据，输出3个洞察和3个优化建议'&quot; 效率对比与误区（1.5分钟）任务 · 传统耗时 · AI辅助耗时 · 效率提升 |------|:------:|:------:|:------:| 英雄策划文档（完整版） · 8h · 1.5h · 81% 活动数据分析报告 · 5h · 40min · 87% 多语言翻译（万字） · 40h · 8h · 80% 版本更新公告 · 1h · 10min · 83% 竞品拆解报告 · 6h · 1h · 83% 总结与课后任务（1.5分钟）学员收获：掌握WorkBuddy在游戏场景的三大核心操作（策划文档→数据运营→多语言本地化），建立&quot;AI做结构+人做创意&quot;的游戏AI工作模式。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -2382,9 +2376,9 @@
       </div>
 
     </div><div class="category-card" data-ch="15">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🌾</div>
-        <div><div class="card-title">农业/食品类</div><div class="card-sub">第15章 · 共6集</div></div>
+        <div><div class="card-title">农业/食品类</div><div class="card-sub">第15章 · 共6集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="15" data-ep="1" data-search="农业食品场景基础应用  农业人的效率困境（1.5分钟）设计意图：用&quot;农场日常&quot;的碎片化工作场景引发共鸣，量化AI可介入的空间。 农业食品从业者典型痛点 · 时间占比 · AI替代潜力 |------------------------|:------:|:------:| 农事记录与档案填写 · 25% · 高-自动生成与归档 天气/市场/政策信息检索 · 20% · 高-实时联网汇总 检测报告与合规文档 · 15% · 高-模板化自动生成 数据分析与报表制作 · 15% · 高-拖入即分析 销售文案与电商运营 · 15% · 中高-批量生成 培训材料与科普文章 · 10% · 中-AI辅助创作 核心理念：农业数字化不是&quot;高大上的IT系统&quot;，而是&quot;从每天重复的文档和数据工作中解放出来&quot;。 WorkBuddy农业食品能力全景（3分钟）能力模块 · 具体功能 · 典型场景 |----------|----------|----------| 文档生成 · 种植计划/农事日志/检测报告 · 一键生成标准化文档 数据分析 · 产量分析/成本核算/价格走势 · 拖入表格即出分析 信息检索 · 政策查询/气象数据/市场行情 · 实时联网获取最新信息 电商运营 · 产品描述/上架文案/客户回复 · 批量生成电商全链路内容 合规管理 · 溯源文档/认证材料/食安手册 · 自动生成合规文档体系 知识科普 · 农技文章/培训材料/消费者教育 · AI辅助内容创作 教学手法：以&quot;一个农场主的早晨&quot;为主线，演示从查天气→写农事记录→生成销售文案→分析上周数据的完整WorkBuddy工作流。 三大核心演示（4分钟）&quot;帮你完成一个农场主的日常AI工作流： 演示一：晨间信息汇总 '帮我汇总今日农场运作所需信息： - 未来3天本地天气预报（温度/降雨/风力/霜冻预警） - 本品种今日批发市场价格（三市场对比） - 今日农事提醒（基于种植计划自动生成） - 昨日销售数据简报 输出格式：一张A4纸可打印的晨报' 演示二：农事记录自动生成 '拖入今日作业数据，帮我生成标准化农事记录： - 地块A3：施用追肥（复合肥25kg/亩），操作人员XXX - 地块B1：滴灌2小时，EC值2.0/pH6.5 - 地块C2：采摘番茄850kg，一等果率78% - 自动标注：日期/天气/温湿度/操作人/投入品/产出量 - 输出：符合GAP规范的农事记录表' 演示三：产品宣传文案 '为我们的'高原有机番茄'写一套电商文案： - 抖 学员跟练——我的农场AI第一课（2.5分钟）&quot;动手试试（选择你所在细分领域）： 如果你做种植： '帮我生成一份[作物名]的本周农事管理要点，含： 当前物候期/病虫害预警/水肥建议/采收标准' 如果你做养殖： '帮我生成一份[品种]本周饲养管理清单： 饲料配方/免疫计划/环境控制参数/出栏标准' 如果你做食品加工： '帮我生成一份新品开发文档模板： 配方/工艺参数/质检标准/包装规格/保质期测试方案' 如果你做农产品销售： '帮我的[产品名]生成3条不同平台的卖货文案'&quot; 效率对比与场景拓展（1.5分钟）任务 · 传统方式 · WorkBuddy · 节省 |------|:------:|:------:|:--:| 每日农事记录 · 30min手写 · 3min自动生成 · 90% 晨间信息汇总 · 45min多平台查 · 2min一键汇总 · 95% 产品文案写作 · 2h憋文案 · 10min批量生成 · 92% 学员收获：掌握农业食品行业WorkBuddy三大核心场景（信息汇总、文档生成、文案写作），理解AI在农业数字化中的轻量级入口价值。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -2482,9 +2476,9 @@
       </div>
 
     </div><div class="category-card" data-ch="16">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🏛️</div>
-        <div><div class="card-title">政府/公共服务类</div><div class="card-sub">第16章 · 共8集</div></div>
+        <div><div class="card-title">政府/公共服务类</div><div class="card-sub">第16章 · 共8集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="16" data-ep="1" data-search="政务场景基础应用  基层减负——政务AI的时代使命（1.5分钟）设计意图：用中央&quot;基层减负&quot;政策精神和真实数据引发共鸣。 基层工作负担现状 · 数据表现 · AI介入空间 |-----------------|----------|-----------| 填报各类报表台账 · 月均填表20+种/耗时40h+ · 自动汇总+智能校验+一键生成 撰写各类汇报材料 · 周均2-3份/每份3-5h · 基于数据自动生成报告初稿 会议记录与纪要整理 · 日均1-2场/纪要2h+ · 录音转文字+AI提炼纪要 政策文件学习与解读 · 人均年读文件200+份 · AI摘要+要点提炼+对比分析 群众诉求受理与回复 · 日均10-50件 · AI辅助分类+回复草拟+满意度分析 核心理念：AI赋能政务的核心逻辑——把干部从&quot;填表、写材料、翻文件&quot;中解放出来，把更多时间用于 WorkBuddy政务能力全景（3分钟）能力模块 · 具体功能 · 政务场景示例 |----------|----------|-------------| 智能写作 · 公文/报告/方案/讲话稿 · 通知/请示/汇报/调研报告 数据处理 · 表格分析/统计汇总/可视化 · 经济数据/民生数据/考核指标 信息检索 · 政策检索/法规比对/知识问答 · 查最新政策/理解法规条款 会议管理 · 议程/纪要/决议跟踪 · 党委会/常务会/专题会 公众沟通 · 政策解读/回应稿/宣传文案 · 新闻发布/舆情回应/政策宣传 档案管理 · 分类/索引/检索/摘要 · 电子档案系统辅助整理 政务AI安全使用三原则： 1. 数据分级：内部数据/工作秘密/国家秘密严格分级，涉密不上网 2. 脱敏处理：涉及个人隐私、敏感信息必须脱敏后再用AI处理 3 四大核心场景演示（4.5分钟）&quot;演示政务工作中最常用的四个AI场景： 演示一：通知撰写（1min） '帮我起草一份通知： - 事项：关于做好2026年防汛抗旱工作的通知 - 下发范围：各乡镇人民政府、街道办事处 - 格式：标准红头文件格式 - 内容要素：工作要求/责任分工/时间节点/信息报送要求 - 附：信息报送表模板' 演示二：数据汇总分析（1min） '拖入各乡镇报上来的经济指标表（12个乡镇×15项指标），帮我： - 自动汇总全县数据 - 各指标排名（前三/后三彩色标注） - 与年度目标对比完成率 - 生成一份2页纸的简报（含关键数据可视化描述）' 演示三：政策解读稿（1min） '这是省里刚下的关于XX工作的新政策文件（拖入），帮我： - 生成300字政策核心要点摘要 - 标注与我县现行做法有变化的部分 - 生成 政务AI安全使用规范（2分钟）安全层级 · 数据类型 · 处理方式 · 注意事项 |----------|----------|----------|----------| 公开信息 · 公开政策/公告/统计公报 · 可直接使用AI处理 · 核对数据来源 内部信息 · 工作文件/会议纪要/内部数据 · 可脱敏后使用AI辅助 · 脱敏再上传 工作秘密 · 未公开决策/内部讨论 · 仅使用本地脱敏版本 · 确认脱敏完整性 国家秘密 · 涉密文件/涉密数据 · 严禁使用任何AI工具 · 绝对禁止 AI使用规范检查清单： - 文件上传前：是否已脱敏处理？ - 数据输入前：是否不含个人隐私信息？ - 生成内容后：是否经过人工逐条审核？ - 公开发布前：是否走完审批流程？ 学员跟练与总结（3分钟）&quot;动手试试（选择你的岗位场景）： 如果是办公室/综合科室： '起草一份开展[主题]工作的通知，含分工会/时间节点/信息报送表' 如果是业务科室： '拖入你科室上月工作数据，生成一份月度工作简报' 如果是基层站所： '帮我生成一份面向群众的[政策名称]简易解读材料' 如果是窗口服务： '帮我整理最近收到的群众意见，做分类汇总和改进建议'&quot; 学员收获：掌握政务场景WorkBuddy四大核心应用（通知撰写/数据汇总/政策解读/群众回复），理解政务AI安全使用三原则和分级规范。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -2610,9 +2604,9 @@
       </div>
 
     </div><div class="category-card" data-ch="17">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🔬</div>
-        <div><div class="card-title">科研/学术类</div><div class="card-sub">第17章 · 共6集</div></div>
+        <div><div class="card-title">科研/学术类</div><div class="card-sub">第17章 · 共6集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list"><li class="ep-item" data-ch="17" data-ep="1" data-search="科研学术场景基础应用  科研人的时间都去哪了（1.5分钟）设计意图：用量化的科研时间分配数据说明AI可释放的学术生产力。 科研工作分解 · 时间占比 · AI辅助潜力 · 解放后做什么 |-------------|:------:|:------:|-------------| 实验/数据采集 · 40% · 低（AI辅助实验设计） · 更聚焦实验本身 数据处理与分析 · 20% · 高 · 深度思考和假设检验 文献阅读与管理 · 15% · 高 · 跨学科创新联想 论文/报告撰写 · 15% · 高 · 打磨学术贡献和创新点 行政/杂务 · 10% · 中高 · 核心科研活动 核心理念：AI不是替你做科研，而是把你从&quot;数据搬运工&quot;的角色中解放出来，让你有更多时间做&quot;科学发现者&quot;。 WorkBuddy科研学术能力全景（3分钟）能力模块 · 具体功能 · 科研场景示例 |----------|----------|-------------| 文献管理 · 文献检索/摘要/分类/引用 · 批量阅读文献/生成文献综述框架 数据处理 · 统计分析/可视化/异常检测 · 实验数据清洗/统计检验/图表生成 学术写作 · 论文润色/结构化/格式化 · 英文论文润色/中文论文规范检查 基金申请 · 申报书/预算/简历 · 基金本子撰写/预算编制/成果梳理 成果展示 · PPT/海报/口头报告 · 学术会议PPT/海报/答辩材料 编程辅助 · 脚本/分析工具/自动化 · 数据分析脚本/实验自动化/爬虫 三大核心场景演示（4分钟）&quot;演示科研学术中最常用的三个AI场景： 演示一：文献速读与信息提取（1.5min） '拖入PDF文献（或提供DOI），帮我： - 生成300字论文核心信息摘要 - 提取：研究问题/方法/主要发现/局限性/可引用的观点 - 这篇文献与我们课题的关联分析 - 输出：文献阅读卡片格式' 演示二：实验数据快速分析（1.5min） '拖入实验数据表格（Excel/CSV），帮我： - 数据清洗（缺失值/异常值/格式） - 描述性统计（均值/标准差/最大/最小/分布） - 组间比较和显著性检验 - 生成核心图表（折线图/柱状图/箱线图）的描述脚本 - 初步结论和下一步分析建议' 演示三：论文段落润色（1min） '帮我润色这段论文草稿（中或英）： - 提升学术表达的专业性和严谨性 - 逻辑结构优化（主题 学术伦理与AI使用边界（2分钟）知识内容：科研AI使用红线 场景 · 允许 · 不允许 |------|------|--------| 文献阅读 · AI辅助提取文献要点 · 让AI&quot;假装读过&quot;未读的文献 数据生成 · AI辅助分析真实数据 · 让AI编造/伪造实验数据 论文写作 · AI辅助润色和格式检查 · AI代写全文并声明为原创 引用文献 · AI辅助检查引用格式 · 让AI生成不存在的引用 图表制作 · AI辅助生成图表脚本 · AI修改实验数据使图表更&quot;好看&quot; 投稿 · AI辅助检查格式要求 · AI代写审稿回复 AI使用声明建议： 学员跟练——我的科研AI第一课（2分钟）&quot;动手试试（选择你的学科领域）： 如果你做实验科学（生物/化学/材料等）： '拖入一组实验数据，帮我做描述性统计和初步分析' 如果你做计算/数据科学（CS/AI/统计等）： '帮我写一个Python脚本：读取数据/清洗/统计检验/生成图表' 如果你做社会科学（经济/管理/心理等）： '帮我设计一份问卷，并给出数据分析框架' 如果你做人文学科（文学/历史/哲学等）： '帮我整理这一专题的文献脉络，生成研究框架图' 如果你是研究生/博士生： '帮我规划下一阶段的论文工作：列出需要完成的任务和优先级'&quot; 总结与课后任务（1.5分钟）学员收获：掌握科研AI三大基础场景（文献速读/数据分析/论文润色），理解学术AI使用伦理边界，建立个人科研AI工作流框架。">
           <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
@@ -2699,14 +2693,15 @@
           </div>
 
         </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
     </div>
 </div>
 
 
     </div><div class="category-card" data-ch="18">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🔧</div>
-        <div><div class="card-title">🔧 Skills开发教学</div><div class="card-sub">第18章 · 共6集</div></div>
+        <div><div class="card-title">🔧 Skills开发教学</div><div class="card-sub">第18章 · 共6集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list">
 <li class="ep-item" data-ch="18" data-ep="1" data-search="Skills开发基础——从零创建第一个Skill 教学环节一：为什么需要自定义Skill（1.5分钟） 设计意图：用&quot;同一个任务做了20遍&quot;的痛点触发学员对Skill自动化的渴望。 知识内容： - 重复性Prompt的浪费：每次手工输入相同的上下文说明和指令流程，效率低下 - 团队知识传递困境：优秀的Prompt使用经验难以标准化分享 - WorkBuddy Skill的价值：将&quot;经验&quot;封装为&quot;工具&quot;，一次创建，反复使用，团队共享 典型痛点场景： | 场景 | 手工做法 | Skill做法 | 效果差异 | |------|----------|-----------|----------| | 每日代码审查 | 每次粘贴审查标准+代码 | 一句 /code-review | 节省3分钟/次 × 20次/月 = 60分钟 | | 周报生成 | 重新描述格式要求 | 生成周报 自动调用 | 格式100%一致 | | 合同条款审查 | 每次输入审查清单 | /contract-check | 零遗漏 | 核心理念：Skill = 你的专业经验 × AI执行能力。把你的&quot;独门秘籍&quot;变成AI的&quot;标准动作&quot;。  教学环节二：Skill的本质与组成结构（3分钟） 知识内容：Skill的五大核心组件 | 组件 | 作用 | 必填/可选 | 示例 | |------|------|-----------|------| | name | Skill的唯一标识 | 必填 | code-review | | description | 触发条件描述，帮助AI判断何时调用 | 必填 | &quot;当用户需要进行代码审查时使用&quot; | | prompt | 核心指令，定义Skill的行为逻辑 | 必填 | 包含角色、流程、输出格式的完整Prompt | | tools | 可调用的外部工具和脚本 | 可选 | [&quot;bash&quot;, &quot;python&quot;] | | examples | 使用示例和测试用例 | 可选 | 输入/输出配对示例 | Skill文件结构： ``` my-skill/ ├── SKILL.md          # Skill定义文件（必须） │   ├── ---           # YAML前置元数据 │   ├── name: xxx │   ├── description: xxx │   ├── --- │   └── Prompt内容     # Markdown格式的核心指令 ├── scripts/          # 辅助脚本（可选） ├── data/             # 知识库数据（可选） └── README.md         # 使用说明（推荐） ``` 教学手法：打开一个已有Skill的SKILL.md文件展示真实结构，逐段讲解每个部分的作用。  教学环节三：创建第一个Skill——&quot;周报生成器&quot;（5分钟） 实操指令序列： ``` &quot;第1步：创建Skill目录结构   &#x27;帮我在 ~/.workbuddy/skills/ 下创建一个新的Skill项目：   - Skill名称：weekly-report   - 功能：根据本周工作记录自动生成标准化周报   - 创建标准的SKILL.md模板文件&#x27; 第2步：编写SKILL.md核心内容   &#x27;帮我完善 weekly-report/SKILL.md：   name: weekly-report   description: |     当用户需要生成本周工作周报时使用此Skill。     支持从工作日志/任务清单/Jira等数据源自动提取并格式化输出。   # 周报生成器   ## 角色定位   你是一位专业的周报撰写助手，擅长将碎片化的工作记录   整合为结构清晰、重点突出的周报。   ## 输入获取   1. 获取当前日期，计算本周起止日期   2. 读取用户指定的工作记录来源（文件/粘贴内容/Jira等）   3. 如果无数据源，询问用户手动输入本周工作内容   ## 处理流程   1. 按项目/任务归类本周完成的工作   2. 标注每项工作的完成状态和关键产出   3. 识别本周遇到的阻塞项和风险   4. 提取可量化的成果数据   5. 整理下周计划   ## 输出格式   严格使用以下Markdown格式：   # 周报 | {姓名} | {起止日期}   ## 📊 本周摘要   - 完成XX项任务，进行中XX项   - 关键里程碑：XXX   ## ✅ 本周完成   | 项目 | 任务 | 进度 | 关键产出 |   |------|------|:----:|----------|   | ... | ... | 100% | ... |   ## ⚠️ 风险与阻塞   - 风险项1：描述 + 影响 + 建议   ## 📅 下周计划   - 优先级1：XXX（预估耗时：Xh）   ## 💡 思考与建议   - ...   ## 质量标准   - 所有日期使用YYYY-MM-DD格式   - 任务完成率精确到百分比   - 风险项必须有具体的建议方案   - 字数控制在800-1500字之间&#x27; 第3步：测试Skill   &#x27;使用 weekly-report Skill，帮我生成本周工作周报。   本周工作记录如下：   - 周一：完成用户登录模块开发（8h），单元测试通过率95%   - 周二：修复3个线上Bug（4h），参加需求评审会（2h）   - 周三：完成支付接口对接（6h），编写API文档（2h）   - 周四：代码审查PR #234-238（3h），数据库优化（4h）   - 周五：发布v2.3.0版本，暂无阻塞问题&#x27;&quot; ```  教学环节四：Skill调试与迭代优化（3分钟） 知识内容：Skill调试四步法 | 步骤 | 操作 | 检查点 | |------|------|--------| | 第一步：格式检查 | 确认YAML头语法正确，Markdown格式规范 | 缩进、引号、分隔符 | | 第二步：功能测试 | 用典型输入验证Skill是否按预期运行 | 输出格式、内容质量、异常处理 | | 第三步：边界测试 | 用异常输入（空数据/超长/特殊字符）测试鲁棒性 | 是否优雅降级 | | 第四步：迭代优化 | 根据测试结果调整Prompt，添加约束条件 | 版本记录、变更日志 | 实操指令： ``` &quot;1. Skill自检脚本：    &#x27;帮我生成 weekly-report Skill的测试用例：    - 正常输入：完整的一周工作记录    - 边界输入1：只有1天的工作记录    - 边界输入2：超长工作记录（20+条任务）    - 异常输入：空输入/纯英文/格式混乱    - 对每种输入验证输出质量&#x27; 2. 根据测试反馈优化Skill：    &#x27;测试发现以下问题，帮我优化SKILL.md：    - 问题1：日期格式有时不一致 → 添加强制格式校验    - 问题2：长任务列表导致输出超长 → 添加任务聚合规则    - 问题3：缺少对&quot;本周无产出&quot;场景的处理 → 添加空状态模板&#x27; 3. 版本管理：    &#x27;帮我建立Skill的版本管理机制：    - 在SKILL.md顶部添加版本号和更新日志    - 每次修改记录：版本号/日期/变更内容/原因    - 保留旧版本备份&#x27;&quot; ```  教学环节五：总结与课后任务（1.5分钟） 学员收获：理解Skill的本质价值（经验封装与复用）、掌握Skill的五大核心组件和文件结构、完成第一个Skill的创建、测试与迭代优化全流程、建立&quot;测试驱动开发&quot;的Skill开发思维。 课后任务： &gt; 1. 识别你日常工作中重复最多的3个AI任务 &gt; 2. 为其中至少1个任务创建WorkBuddy Skill &gt; 3. 在实际工作中使用该Skill 5次以上，根据体验迭代优化 ">
@@ -2800,11 +2795,12 @@
 
         </li>
         </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
     </div>
     </div><div class="category-card" data-ch="19">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🧠</div>
-        <div><div class="card-title">🧠 高阶Prompt Engineering</div><div class="card-sub">第19章 · 共6集</div></div>
+        <div><div class="card-title">🧠 高阶Prompt Engineering</div><div class="card-sub">第19章 · 共6集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list">
 <li class="ep-item" data-ch="19" data-ep="1" data-search="Prompt工程底层原理——Transformer注意力机制 教学环节一：为什么Prompt工程师需要懂原理（1.5分钟） 设计意图：用&quot;玄学调参&quot;vs&quot;科学优化&quot;的对比，说明理解底层原理对Prompt质量的根本性影响。 知识内容： | 问题 | 不懂原理的做法 | 懂原理的做法 | |------|-------------|-------------| | Prompt效果不好 | 随机修改、碰运气 | 从注意力分配角度分析问题 | | 输出不稳定 | &quot;AI今天心情不好&quot; | 检查温度参数和Prompt位置效应 | | 长Prompt效率低 | 不断堆砌指令 | 优化Token使用，利用注意力衰减规律 | | 跨模型迁移 | 完全重写 | 识别模型差异点，针对性调整 | 核心理念：Prompt Engineering不是&quot;写作文&quot;而是&quot;设计注意力引导&quot;。你写的每一个词都在影响模型的注意力分配。  教学环节二：Token——AI眼中的世界（3分钟） 知识内容：Token是模型理解的最小单位 | 概念 | 中文示例 | 英文示例 | 关键规律 | |------|----------|----------|----------| | 1个汉字 | &quot;中&quot; → 1 token | &quot;a&quot; → 1 token | 中文1字≈1-2 token，英文1词≈1-2 token | | 1个词语 | &quot;中国&quot; → 2 tokens | &quot;hello&quot; → 1 token | 高频词可能合并为一个token | | 特殊字符 | &quot;！&quot; → 1 token | &quot;!!!&quot; → 3 tokens | 每个标点都是一个或多个token | | 代码 | print() → 3 tokens | def func(): → 4 tokens | 代码token越多推理越贵 | Token预算意识： ``` 典型模型上下文窗口 = 128K tokens ≈ 96000个汉字 ≈ 50页文档 你的Prompt占用了多少？ - 系统Prompt：2000 tokens（固定开销） - Skill Prompt：3000 tokens - 知识库注入：4000 tokens - 用户输入：500 tokens - 可用输出空间：128000 - 9500 = 118500 tokens 实际可用空间远比你想象的大，但&quot;注意力稀释&quot;比&quot;空间不够&quot;更常见！ ``` 实操指令： ``` &quot;1. Token计数演示：    &#x27;帮我分析以下Prompt的Token使用情况：    Prompt：    \&quot;你是一位资深的Python代码审查专家。请帮我审查以下代码...(代码200行)\&quot;    分析输出：    - 总Token数：约3500    - 角色描述占比：8%    - 指令占比：15%      - 待审查代码占比：72%    - 格式要求占比：5%    - 优化建议：角色描述可以精简50%，释放更多token给代码&#x27; 2. Token优化技巧：    - 用英文关键词替代中文描述（减少token消耗）    - 用缩写（先定义一次全称）    - 删除冗余礼貌用语    - 表格比段落更省token    - 代码块比自然语言描述更精确&quot; ```  教学环节三：注意力机制——为什么Prompt的位置和顺序重要（4分钟） 知识内容：Transformer的注意力机制核心原理 | 特性 | 对Prompt设计的影响 | 实操建议 | |------|-------------------|----------| | 首尾效应 | 模型更关注Prompt的开头和结尾 | 关键指令放开头或结尾，不要埋中间 | | 距离衰减 | 距离当前生成位置越远，影响力越小 | 长Prompt中重点内容靠近输出区 | | 注意力竞争 | 多个约束互相稀释注意力 | 一次Prompt聚焦1-2个核心任务 | | 重复强化 | 重复关键指令能增强注意力权重 | 重要约束在首尾各出现一次 | | 负注意力 | &quot;不要做X&quot;反而让模型更关注X | 用正向指令替代否定指令 | 实操演示： ``` &quot;注意力实验——同一个任务，四种Prompt位置： 任务：根据数据生成分析报告，要求用中文、含图表、字数1000-1500。 [版本A - 约束在中间，效果差]  &#x27;帮我分析这份数据。   要求：用中文、含图表、字数1000-1500字。   数据如下：...(大量数据)...   请开始分析。&#x27; [版本B - 约束放在最后，效果好]  &#x27;帮我分析以下数据：...(大量数据)...   重要约束（请严格遵循）：   1. 语言：中文   2. 格式：必须包含至少2张图表   3. 字数：1000-1500字   请开始分析。&#x27; [实操验证]  &#x27;用以上两种Prompt分别生成报告，对比：  - 版本A：图表遗漏率40%，字数偏差率35%  - 版本B：图表遗漏率5%，字数偏差率8%   结论：关键约束放在靠近输出的位置，遵循率大幅提升&#x27;&quot; ```  教学环节四：从原理到Prompt优化——五大黄金法则（3.5分钟） 知识内容： | 法则 | 原理依据 | 具体做法 | 反面示例 | |------|----------|----------|----------| | 前置锚定 | 首因效应 | 在开头明确角色和任务目标 | &quot;顺便帮我做下分析&quot; | | 尾置突显 | 近因效应 | 关键约束放在Prompt末尾 | 约束埋在中间段落 | | 聚焦单一 | 注意力竞争 | 一次只下达一个核心任务 | &quot;同时做5件事&quot; | | 正向描述 | 负注意力陷阱 | &quot;请使用专业术语&quot; | &quot;不要用口语&quot; | | 样例引导 | 模式匹配 | 提供1-2个输入输出示例 | &quot;你自己看着办&quot; | 实操指令： ``` &quot;Prompt自查清单（每次写Prompt前检查）： □ 开头：是否在3句话内说清了角色和任务？    ✗ 差：&#x27;帮我做数据分析。&#x27;    ✓ 好：&#x27;你是数据分析师。分析这份销售数据，找出TOP3增长品类和增长原因。&#x27; □ 约束：关键要求是否放在了Prompt末尾？    ✗ 差：约束在中间段落    ✓ 好：末尾有明确的格式/字数/禁止项清单 □ 聚焦：这个Prompt的核心任务是否只有一个？    ✗ 差：&#x27;分析数据+写报告+做PPT+发邮件&#x27;    ✓ 好：&#x27;先完成数据分析，分析完毕后再进行下一步&#x27; □ 正向：是否都用了&#x27;要做什么&#x27;而非&#x27;不要做什么&#x27;？    ✗ 差：&#x27;不要用口语化表达、不要太啰嗦、不要遗漏数据&#x27;    ✓ 好：&#x27;使用正式专业表达，每点控制在3-5句，覆盖全部数据维度&#x27; □ 示例：有没有提供至少1个好的输出示例？    ✗ 差：无示例    ✓ 好：&#x27;参考以下格式：...[具体示例]...&#x27;&quot; ```  教学环节五：实战验证——用原理指导优化（2分钟） 实操指令： ``` &quot;Prompt优化前后对比实战： 场景：代码审查Prompt优化 【优化前】（混乱版）： &#x27;帮我review一下这段代码，主要是看看有没有bug， 还有性能问题也要看，代码风格也帮忙检查下， 对了还要看有没有安全问题，不要写太长。&#x27; 测试结果：审查遗漏率45%，输出结构混乱，字数超标300%。 【优化后】（黄金法则版）： &#x27;角色：你是资深安全工程师+性能优化专家（10年经验）。 任务：审查以下Python代码。 审查维度（按优先级排序）： 1. 🔴 安全漏洞（OWASP Top 10） 2. 🟡 性能瓶颈（时间复杂度/IO操作/内存使用） 3. 🟢 代码规范（PEP8/可读性/可维护性） 输出格式： | 严重度 | 位置 | 问题 | 风险 | 修复建议 | |--------|------|------|------|----------| 重要约束： - 每条建议不超过80字 - 修复建议必须是可直接使用的代码 - 如果代码安全无问题，在开头注明&quot;安全审查通过&quot;&#x27; 测试结果：审查遗漏率8%，输出结构完整，字数控制精准。 效率提升：问题发现率+82%，格式符合率+95%&quot; ```  教学环节六：总结与课后任务（1分钟） 学员收获：理解Token的本质和Token预算管理方法、掌握注意力机制的五大特性和对应Prompt设计策略、学会使用五大黄金法则编写高质量Prompt、能够用原理指导Prompt的优化而非凭感觉调参。 课后任务： &gt; 1. 用Token分析工具检查你最近5个Prompt的Token使用效率 &gt; 2. 用注意力黄金法则重新设计你的3个最常用Prompt &gt; 3. 对比优化前后AI输出质量的差异，量化改善幅度 ">
@@ -2898,11 +2894,12 @@
 
         </li>
         </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
     </div>
     </div><div class="category-card" data-ch="20">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🤖</div>
-        <div><div class="card-title">🤖 AI工作流自动化</div><div class="card-sub">第20章 · 共6集</div></div>
+        <div><div class="card-title">🤖 AI工作流自动化</div><div class="card-sub">第20章 · 共6集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list">
 <li class="ep-item" data-ch="20" data-ep="1" data-search="工作流自动化基础——触发、动作、条件 教学环节一：为什么你的工作流需要自动化（1.5分钟） 设计意图：用&quot;手动操作的隐藏成本&quot;计算说明自动化的ROI，打破&quot;自动化门槛高&quot;的认知。 知识内容： | 每日重复任务 | 手动耗时/次 | 日频次 | 月耗时 | 自动化后 | 月节省 | |-------------|:------:|:----:|:-----:|:------:|:-----:| | 数据采集与汇总 | 20min | 3次 | 22h | 2min×3 | 19.8h | | 日报生成与发送 | 30min | 1次 | 11h | 1min | 10.9h | | 文件格式转换 | 5min | 5次 | 9.2h | 30s×5 | 9.1h | | 多平台数据同步 | 15min | 2次 | 11h | 1min×2 | 10.9h | | 监控告警检查 | 10min | 4次 | 14.7h | 0min(自动推送) | 14.7h | 核心理念：自动化不是&quot;省去手动操作&quot;，而是&quot;释放你的注意力&quot;。最有价值的时间不是操作时间，而是你被重复任务打断的&quot;注意力切换成本&quot;。  教学环节二：三大核心概念——触发、动作、条件（4分钟） 知识内容：工作流 = 触发器 + 条件判断 + 动作执行 | 组件 | 说明 | 类型 | 示例 | |------|------|------|------| | 触发器(Trigger) | &quot;什么时候开始？&quot; | 定时/事件/手动/文件变化 | 每天9:00 / 收到邮件 / 用户说&quot;日报&quot; / 文件更新 | | 条件(Condition) | &quot;什么情况下执行？&quot; | 数据校验/状态判断/时间范围 | 数据不为空 / 金额&gt;1000 / 工作日 | | 动作(Action) | &quot;具体做什么？&quot; | 数据处理/内容生成/通知/文件操作 | 生成报告/发送邮件/写入数据库 | 工作流设计画布（文字版）： ``` [触发器]                     [条件]                    [动作]   ↓                           ↓                         ↓ 每天9:00  ──→  检查是否有新数据  ──→  是 ──→  生成报表  ──→  发送邮件                   ↓                      ↓                  否                     记录日志                   ↓               &quot;今日无新数据，跳过&quot; ``` 实操指令： ``` &quot;设计你的第一个自动化工作流： 需求：&#x27;每天早上自动检测昨天的销售数据，如果有异常就通知我&#x27; 工作流设计： 1. 触发器：每天早上8:30 2. 条件：昨日的销售额 低于 前7日平均的70% OR 高于200% 3. 动作A（异常时）：生成异常分析报告 → 发送企业微信通知 4. 动作B（正常时）：生成简要摘要 → 静默存档 WorkBuddy实现方法： &#x27; 创建定时任务 automation： 名称：销售数据异常检测 调度：0 8 30   1-5（工作日8:30） 触发条件表达式：   昨日销售额 &lt; 前7日均值0.7 OR 昨日销售额 &gt; 前7日均值2.0 执行动作： 1. [读取] data/daily_sales.csv 最新数据 2. [分析] 计算关键指标和偏差原因 3. [生成] 异常分析报告（含图表） 4. [通知] 通过消息通道发送异常摘要 5. [归档] 保存报告到 reports/anomaly/{date}/ &#x27;&quot; ```  教学环节三：搭建你的第一个自动化工作流（4.5分钟） 知识内容：从简单到复杂的渐进工作流设计 ``` Level 1: 单步自动化   时间到 → 执行一个动作   例：每天9:00 → 生成天气提醒 Level 2: 条件自动化     时间到 → 检查条件 → 执行/跳过   例：每小时 → 检查服务器负载 → &gt;80%则告警 Level 3: 串联自动化   时间到 → 动作1 → 动作2 → 动作3   例：每天8:00 → 采集数据 → 清洗数据 → 生成报告 Level 4: 分支自动化   时间到 → 多条件判断 → 不同分支动作   例：每天9:00 → 根据数据类型 → 走不同的处理流程 ``` 实操指令： ``` &quot;创建三个渐进式自动化工作流： [工作流1：Level 1 - 每日天气+日程提醒] &#x27; automation:   name: 每日晨间助手   schedule: &quot;0 8 00   1-5&quot;  # 工作日8:00   steps:     1. 获取今日天气(所在地：{{user_city}})     2. 读取今日日历(来源：Outlook/企业微信)     3. 生成晨间简报：        - 📅 今日日期和日程概览(共X个会议)        - 🌤️ 天气概况和建议(带伞/加衣等)        - 📌 今日最重要的3件事        - ⏰ 第一个会议提醒(时间/地点/参会人)     4. 以通知形式推送 &#x27; [工作流2：Level 2 - 条件触发的代码审查提醒] &#x27; automation:   name: 代码审查质量监控   schedule: &quot;0 /2  * 1-5&quot;  # 工作日每2小时   steps:     1. 检查Git仓库最新PR     2. 条件判断：        条件A: PR超过4小时未被Review          → 动作：@相关Reviewer发送提醒        条件B: PR有新的评论/修改          → 动作：通知PR作者查看        条件C: PR合并后CI流水线失败          → 动作：紧急通知+回滚建议        条件D: 无新PR需要关注          → 动作：记录&quot;无待处理&quot;，不发送通知 &#x27; [工作流3：Level 3 - 串联数据处理流水线] &#x27; automation:   name: 每日数据ETL流水线   schedule: &quot;0 7 00   *&quot;  # 每天7:00   steps:     步骤1（采集）：       - 从3个数据源拉取原始数据       - API1: 销售系统 → sales_raw.csv       - API2: 库存系统 → inventory_raw.csv       - API3: 客户系统 → customers_raw.csv     步骤2（清洗）：       - 统一日期格式为YYYY-MM-DD       - 删除重复行和空行       - 数据校验：销售额&gt;0，库存&gt;=0       - 输出：data/clean/{date}/     步骤3（分析）：       - 销售趋势分析（同比/环比）       - 库存预警（低于安全库存的商品）       - 客户分层更新       - 输出：data/analysis/{date}/     步骤4（报告）：       - 生成日报(含图表)       - 生成异常清单(如有)       - 输出：reports/daily/{date}/     步骤5（分发）：       - 发送日报邮件给管理层       - 异常清单推送给运营团队       - 归档所有文件到存档目录 &#x27;&quot; ```  教学环节四：工作流调试与优化（3分钟） 知识内容：工作流调试的三类常见问题 | 问题类型 | 典型症状 | 排查方法 | 解决方案 | |----------|----------|----------|----------| | 触发器失效 | 到时间不执行 | 检查调度表达式 | 修正cron表达式 | | 条件判断错误 | 该执行的没执行 | 手动测试条件逻辑 | 修正条件表达式/数据类型 | | 动作执行失败 | 中间步骤报错 | 查看执行日志 | 添加错误处理/重试 | 实操指令： ``` &quot;工作流调试工具箱： 1. 调试模式：    &#x27;    在automation配置中添加：    debug: true  # 开启调试模式    调试模式下：    - 每步执行后输出详细日志    - 条件判断结果显式展示    - 执行时间统计    - 遇到错误不中断，继续执行后续步骤    &#x27; 2. 日志记录：    &#x27;    标准日志格式：    [2026-06-19 08:30:01] [daily-report] [TRIGGER] 定时触发    [2026-06-19 08:30:02] [daily-report] [CONDITION] 数据检查: OK (235行)    [2026-06-19 08:30:03] [daily-report] [ACTION:1/4] 数据清洗: 开始    [2026-06-19 08:30:05] [daily-report] [ACTION:1/4] 数据清洗: 完成 (耗时2.1s)    [2026-06-19 08:30:05] [daily-report] [ACTION:2/4] 数据分析: 开始    [2026-06-19 08:30:10] [daily-report] [ACTION:2/4] 数据分析: 完成 (耗时4.8s)    [2026-06-19 08:30:12] [daily-report] [ACTION:3/4] 报告生成: 完成 (耗时1.5s)    [2026-06-19 08:30:14] [daily-report] [ACTION:4/4] 邮件发送: 完成 (耗时1.6s)    [2026-06-19 08:30:14] [daily-report] [SUMMARY] 总耗时: 13s | 状态: SUCCESS    &#x27; 3. 告警配置：    &#x27;    工作流异常时自动通知：    - 连续3次执行失败 → 发送紧急通知    - 执行时间超过预期的2倍 → 发送性能告警    - 输出文件大小为0 → 发送数据异常告警    - 工作流超过24小时未执行 → 发送心跳丢失告警    &#x27;&quot; ```  教学环节五：总结与课后任务（2分钟） 学员收获：理解工作流自动化的三大核心组件（触发器/条件/动作）及其四种复杂度层次、掌握从Level 1(单步)到Level 4(分支)的渐进式工作流设计方法、学会工作流的调试日志和异常告警配置。 课后任务： &gt; 1. 列出你每日/每周重复执行的所有任务（至少10个），按自动化优先级排序 &gt; 2. 选择优先级最高的3个任务，设计对应的工作流（包含触发/条件/动作） &gt; 3. 实现其中一个Level 2+（含条件判断）的工作流并运行一周 ">
@@ -2996,11 +2993,12 @@
 
         </li>
         </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
     </div>
     </div><div class="category-card" data-ch="21">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">📈</div>
-        <div><div class="card-title">📈 数据分析进阶</div><div class="card-sub">第21章 · 共6集</div></div>
+        <div><div class="card-title">📈 数据分析进阶</div><div class="card-sub">第21章 · 共6集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list">
 <li class="ep-item" data-ch="21" data-ep="1" data-search="数据清洗进阶——缺失值、异常值、格式统一 教学环节一：脏数据的真实代价（1.5分钟） 设计意图：用数据团队的真实痛点——&quot;80%的时间花在清洗数据上&quot;引发共鸣。 知识内容： ``` 数据分析师时间分配： ┌──────────────────────────────────────────────┐ │ ████████████████ 数据清洗 60%                   │ │ ██████ 数据探索分析 20%                         │ │ ████ 建模 15%                                  │ │ ██ 报告/沟通 5%                                 │ └──────────────────────────────────────────────┘ 清洗不好 → 分析白做 → 决策错误 → 损失巨大 ``` 核心问题： | 问题类型 | 影响 | 典型表现 | |----------|------|----------| | 缺失值 | 分析偏差/样本不足 | 空单元格/NaN/空字符串 | | 异常值 | 扭曲统计量/误导模型 | 极端数据/录入错误/单位错误 | | 格式不统一 | 无法合并/聚合错误 | 日期格式混乱/大小写/编码问题 |  教学环节二：缺失值处理——从识别到填补（4分钟） 知识内容：缺失值处理的五层决策框架 | 决策层 | 问题 | 处理方法 | 适用条件 | |:----:|------|----------|----------| | L1 | 缺失比例多少？ | &gt;50%删列，&lt;5%删行 | 极端情况 | | L2 | 缺失是否随机？ | MCAR/MAR/MNAR诊断 | 决定填补策略 | | L3 | 数据类型是什么？ | 数值→中位数/众数→KNN/回归 | 分类型处理 | | L4 | 有业务含义吗？ | 赋予业务默认值 | 有业务规则时 | | L5 | 能否从其他列推断？ | 交叉推导填补 | 有相关列时 | 实操指令： ``` &quot;缺失值处理完整流程： [Step1：缺失值扫描] &#x27; 拖入数据文件，帮我做缺失值全面扫描： 1. 缺失统计报告：    | 列名 | 数据类型 | 总行数 | 缺失数 | 缺失率 | 建议处理 |    |------|:------:|:----:|:----:|:----:|----------|    | age  | int    | 1000 | 45   | 4.5% | 中位数填充 |    | phone| str    | 1000 | 120  | 12%  | 标记+不填充 |    | email| str    | 1000 | 380  | 38%  | 考虑删除该列 | 2. 缺失模式分析：    - 哪些列通常同时缺失？（相关性缺失）    - 缺失是否随时间变化？（时效性问题）    - 缺失与目标变量有关吗？（非随机缺失） 3. 生成缺失值可视化：    - 缺失矩阵图（每行数据的缺失模式）    - 缺失相关性热力图 &#x27; [Step2：智能填补策略] &#x27; 根据缺失分析结果，制定填补方案： 1. 数值型变量填补：    - 正态分布 → 均值填充    - 偏态分布 → 中位数填充      - 有相关变量 → KNN/K-近邻填充    - 时间序列 → 前向/后向/插值填充    - 模型预测 → 随机森林回归填充 2. 分类型变量填补：    - 无顺序 → 众数填充    - 有顺序 → 中位数填充    - 有依赖变量 → 多重插补(MICE)    - 重要特征 → 新增&quot;缺失&quot;类别 3. 特殊场景：    - 客户年龄缺失 → 可用&quot;年龄段&quot;(如25-35)替代    - 产品评分缺失 → 标记为&quot;未评分&quot;而非填充    - 交易金额缺失 → 标记异常(可能为0元交易或数据错误) 4. 填补后验证：    - 对比填补前后的分布（不能显著改变分布）    - 检查填补后的统计量是否合理 &#x27; [Step3：WorkBuddy一键清洗指令] &#x27; 读取数据后使用此Prompt： &quot;分析以下数据集的缺失值情况，并自动推荐合适的处理方案： 数据集：{拖入文件} 请： 1. 生成完整的缺失值分析报告 2. 对每个含缺失值的列，推荐1-2种处理方法并说明原因 3. 标注需要人工决策的特殊情况（如：缺失率在临界值附近） 4. 生成可直接运行的清洗代码（Python/pandas） 5. 输出清洗前后的数据质量对比表 规则： - 缺失率&gt;50%的列建议删除 - 核心业务字段的缺失做特殊标注 - 所有建议都附带&#x27;为什么&#x27;和&#x27;替代方案&#x27;&quot; &#x27; ```  教学环节三：异常值检测与智能处理（3.5分钟） 知识内容：异常值检测的四种方法 | 方法 | 原理 | 适用数据 | 灵敏度 | 误报率 | |------|------|----------|:----:|:----:| | Z-Score | 偏离均值多少个标准差 | 正态分布 | 中 | 低 | | IQR | 超出Q1-1.5×IQR和Q3+1.5×IQR | 任意分布 | 中 | 低-中 | | Isolation Forest | 孤立森林算法 | 多维/高维数据 | 高 | 中 | | DBSCAN | 基于密度的聚类 | 空间/密度数据 | 高 | 中-高 | 实操指令： ``` &quot;异常值处理完整流程： [Step1：多维异常检测] &#x27; &quot;分析以下数据的异常值： 数据集：{拖入文件} 请执行多维异常检测： 1. 单变量异常（每个数值列单独检测）    - Z-Score方法（|Z|&gt;3标记为异常）    - IQR方法（标注离群点） 2. 多变量异常（多列组合关系异常）    - 如：&#x27;年龄25岁+收入100万&#x27;可能正常    - 如：&#x27;年龄25岁+收入5000万&#x27;可能异常    - 使用Isolation Forest检测 3. 业务规则异常    - 销售额&lt;0（不可能）    - 库存&lt;0（不可能）      - 转化率&gt;100%（不可能）    - 日期&gt;今天（未来数据） 输出格式： | 行号 | 列名 | 原值 | 异常类型 | 检测方法 | 可能原因 | 建议处理 | |------|------|------|----------|----------|----------|----------| &quot; [Step2：异常值处理决策树] &#x27; 对于检测到的每个异常值，按以下逻辑处理： 1. 是否为确定的数据错误？    YES → 修复（如有正确值）或删除    例：年龄=350 → 可能是35或3.50 → 手动确认 2. 是否为真实但极端的数据？    YES → 保留并标注    例：VIP客户单笔消费100万 → 真实数据，保留 3. 是否为分析方法产生的高杠杆点？    YES → 敏感性分析（含/不含该点各做一次） 4. 是否对业务决策有重大影响？    YES → 专项分析（而非简单删除）    例：大客户流失 → 需要深入分析原因 处理原则： - ✅ 对于确定错误的：修正或删除 - ✅ 对于真实极端值：保留+标注 - ✅ 对于不确定的：保留+标注+敏感性分析 - ❌ 不要不问原因就删除异常值 &#x27; [Step3：自动清洗脚本] &#x27; 异常值自动处理脚本设计： import pandas as pd import numpy as np from scipy import stats def detectandhandle_outliers(df, method=&#x27;iqr&#x27;, threshold=1.5):     outlier_report = []     for col in df.select_dtypes(include=[np.number]).columns:         if method == &#x27;iqr&#x27;:             Q1 = df[col].quantile(0.25)             Q3 = df[col].quantile(0.75)             IQR = Q3 - Q1             lower = Q1 - threshold * IQR             upper = Q3 + threshold * IQR             outliers = df[(df[col] &lt; lower) | (df[col] &gt; upper)]             for idx in outliers.index:                 outlier_report.append({                     &#x27;row&#x27;: idx,                     &#x27;column&#x27;: col,                     &#x27;value&#x27;: df.loc[idx, col],                     &#x27;method&#x27;: &#x27;IQR&#x27;,                     &#x27;rule&#x27;: f&#x27;超出[{lower:.2f}, {upper:.2f}]&#x27;,                     &#x27;action&#x27;: &#x27;标记异常-待人工确认&#x27;                 })     return pd.DataFrame(outlier_report) &#x27;&quot; ```  教学环节四：格式标准化与数据质量评分（3分钟） 知识内容：六大格式标准化规则 | 标准化维度 | 常见问题 | 标准化规则 | 示例 | |-----------|----------|-----------|------| | 日期时间 | 多种格式混用 | YYYY-MM-DD HH:MM:SS统一 | &quot;6/19/26&quot;→&quot;2026-06-19&quot; | | 金额货币 | 单位不一致 | 统一为基准货币/单位 | &quot;1.5万&quot;→&quot;15000&quot; | | 文本编码 | 大小写/全半角混用 | 统一大小写+半角 | &quot;Abc１２３&quot;→&quot;abc123&quot; | | 分类编码 | 同义不同名 | 建立标准化映射表 | &quot;BJ&quot;/&quot;北京&quot;/&quot;北京市&quot;→&quot;北京市&quot; | | 数字格式 | 千分位/百分号混用 | 纯数字+元数据标注 | &quot;35.6%&quot;→0.356 | | 空值表示 | 多种空值符号 | 统一为NaN | &quot;N/A&quot;/&quot;-&quot;/&quot;&quot;→NaN | 实操指令： ``` &quot;数据标准化与质量评分： 1. 一键标准化Prompt：    &#x27;    &quot;标准化以下数据集的格式：    日期列：统一为 YYYY-MM-DD 格式    金额列：统一为数字(float)，单位为&#x27;元&#x27;    文本列：统一转小写、去首尾空格、全角转半角    百分比列：转为小数（如35% → 0.35）    分类列：基于映射表统一（提供 map_dict）    输出：标准化后的数据集 + 标准化日志    标准化日志格式：    | 列名 | 修改行数 | 修改类型 | 示例(改前→改后) |    &quot;&#x27; 2. 数据质量评分卡：    &#x27;    对清洗后的数据集进行质量评分：    | 质量维度 | 满分 | 得分 | 扣分原因 |    |----------|:--:|:--:|----------|    | 完整性 | 20 |  | 缺失率X% |    | 准确性 | 20 |  | 异常值X个 |    | 一致性 | 20 |  | 格式问题X列 |    | 时效性 | 20 |  | 数据最新日期 |    | 唯一性 | 20 |  | 重复行X行 |    | 总分 | 100 |  | 等级：[A/B/C/D] |    等级标准：    A(90-100): 可直接分析    B(80-89): 建议处理少数问题后分析    C(60-79): 需较多处理，部分分析受限    D(&lt;60): 数据质量严重影响分析，建议重新采集    &#x27; ```  教学环节五：数据清洗流程自动化（2分钟） 实操指令： ``` &quot;创建数据清洗自动化Skill： &#x27; Skill名称：DataClean Pro 功能：一键完成完整的数据清洗流程 自动化清洗流水线： 1. 数据加载 → 自动识别文件格式和编码 2. 初始扫描 → 生成数据结构概述 3. 缺失处理 → 自动推荐+一键执行 4. 异常检测 → 多方法检测+标记 5. 格式统一 → 日期/金额/文本/分类标准化 6. 质量评分 → 生成数据质量报告卡 7. 输出 → 清洗后数据 + 清洗日志 + 质量报告 使用方式： - 拖入文件：自动识别格式并启动清洗 - 说&quot;清洗数据&quot;：使用默认规则清洗 - 说&quot;自定义清洗&quot;：逐步确认每项清洗操作 - 说&quot;仅检测&quot;：只生成清洗建议，不执行修改 &#x27;&quot; ```  教学环节六：总结与课后任务（1分钟） 学员收获：掌握缺失值处理的五层决策框架和智能填补方法、学会四种异常值检测方法及其选择标准、能够标准化六大常见格式问题并进行数据质量评分。 课后任务： &gt; 1. 对你手头最&quot;脏&quot;的一份数据集执行完整清洗流程 &gt; 2. 建立你所在团队的数据质量标准卡（5个维度评分） &gt; 3. 创建一个DataClean Skill，自动化你最常用的清洗操作 ">
@@ -3094,11 +3092,12 @@
 
         </li>
         </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
     </div>
     </div><div class="category-card" data-ch="22">
-      <div class="card-header">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">🔒</div>
-        <div><div class="card-title">🔒 AI安全与合规</div><div class="card-sub">第22章 · 共4集</div></div>
+        <div><div class="card-title">🔒 AI安全与合规</div><div class="card-sub">第22章 · 共4集<span class="card-toggle">-</span></div></div>
       </div>
       <ul class="ep-list">
 <li class="ep-item" data-ch="22" data-ep="1" data-search="AI使用安全基础——数据隐私与权限管理 教学环节一：AI时代的&quot;裸奔&quot;风险（1.5分钟） 设计意图：用真实的AI数据泄露案例（三星员工粘贴源码到ChatGPT导致商业机密泄露等）敲响安全警钟。 知识内容：AI使用中的六大安全风险 | 风险类型 | 场景示例 | 潜在后果 | 发生概率 | |----------|----------|----------|:------:| | 敏感数据泄露 | 员工将客户名单粘贴到公共AI中 | 客户隐私泄露/法律诉讼 | 高 | | 商业机密外泄 | 将未公开的源码/商业计划交给AI分析 | 竞争优势丧失/股东诉讼 | 高 | | 模型幻觉误导 | AI给出看似权威但完全错误的&quot;事实&quot; | 错误决策/声誉损失 | 中高 | | 过度依赖AI | 不经审核直接使用AI输出 | 错误传播/合规风险 | 中 | | Prompt注入攻击 | 恶意输入诱导AI绕过安全限制 | 信息泄露/违规操作 | 低中 | | 供应链风险 | 第三方AI服务的安全漏洞 | 数据被第三方获取 | 低 | 核心理念：AI安全不是&quot;不用AI&quot;，而是&quot;安全地用AI&quot;。就像你不会因为汽车可能出事故就不开车，你只会系好安全带、遵守交规。  教学环节二：数据分类与分级保护（4分钟） 知识内容：企业数据四级分类标准 | 级别 | 标签 | 定义 | 典型数据 | AI使用规则 | |:--:|------|------|----------|-----------| | L4 | 绝密 | 泄露将造成特别严重损害 | 核心算法/未公开并购计划 | ❌ 绝对不上传AI | | L3 | 机密 | 泄露将造成严重损害 | 客户名单/合同金额/员工薪资 | ⚠️ 脱敏后才能使用AI | | L2 | 内部 | 泄露将造成一般损害 | 内部流程/项目文档/会议纪要 | ⚠️ 需确认无敏感信息 | | L1 | 公开 | 泄露不造成损害 | 已发布的产品文档/新闻稿 | ✅ 可直接使用 | 实操指令： ``` &quot;1. 数据分类工具——自动识别敏感数据：    &#x27;    &quot;帮我创建一个数据分类检查规则：    自动扫描文本/文件中是否包含以下敏感信息：    PII(个人身份信息)检测：    - 身份证号：18位数字(含末位X)    - 手机号：1[3-9]XXXXXXXXX    - 邮箱：[xxx@xxx.xxx] 模式    - 银行卡号：16-19位数字    - 家庭住址：XX省XX市XX区...    企业敏感信息检测：    - 合同金额：&#x27;¥&#x27;/&#x27;元&#x27;后跟7位以上数字    - 客户名单：连续出现3个以上公司名+金额    - 薪资信息：&#x27;薪资&#x27;/&#x27;工资&#x27;/&#x27;薪酬&#x27;关键词    - 未公开项目代号    输出格式：    | 位置 | 敏感类型 | 内容摘要 | 风险等级 | 处理建议 |    处理建议：    - L4绝对禁止 → 立即停止，不发送给AI    - L3需要脱敏 → 替换为[客户A]/[某员工]/¥XXXX    - L2需要确认 → 提醒用户确认是否可分享    - L1安全 → 正常使用    &quot; 2. 脱敏处理模板：    &#x27;    &quot;对以下文本进行脱敏处理：    脱敏规则：    - 人名：替换为[姓名X]    - 手机号：保留前3后4，中间脱敏(1381234)    - 身份证号：保留前6后4，中间脱敏    - 银行卡号：只保留后4位    - 金额：替换为[金额区间]如¥500-1000万    - 公司名：替换为[公司A]/[客户B]    - 地址：保留到区/县级    输出：    脱敏后文本 + 脱敏映射表(方便后续还原)    &quot; 3. WorkBuddy数据安全配置：    &#x27;    # 在WorkBuddy设置中配置数据安全    文件访问控制：    - 限制AI可访问的目录范围(白名单模式)    - 设置敏感目录黑名单(/finance/, /hr/等)    - 敏感文件类型限制(.docx/.xlsx可读但不自动上传)    对话安全设置：    - 启用敏感信息自动检测提醒    - 当粘贴内容过大时警告(&gt;1000字可能是批量数据)    - 记录AI使用日志(便于事后审计)    &#x27; ```  教学环节三：权限管理模型（4分钟） 知识内容：AI使用的最小权限原则 ``` 权限管理三要素： 1. Who：谁能使用AI？ 2. What：能用AI做什么？ 3. Which：能访问哪些数据？ ``` | 权限策略 | 说明 | 配置示例 | 适用场景 | |----------|------|----------|----------| | 按角色授权 | 不同角色的AI能力不同 | 普通员工：只读模式 / 管理者：读写模式 | 一般企业 | | 按数据授权 | 不同数据级别的AI访问不同 | L1公开数据：全部模型 / L2内部数据：企业版模型 | 数据敏感企业 | | 按场景授权 | 不同任务场景的不同权限 | 代码审查：可读代码 / 数据处理：只读汇总数据 | 专业团队 | | 按模型授权 | 不同模型处理不同级别数据 | 公开模型：公开数据 / 私有部署模型：内部数据 | 高安全需求 | 实操指令： ``` &quot;企业AI权限管理方案设计： &#x27; ## 组织AI使用权限矩阵 | 角色 | 可使用的AI能力 | 可访问的数据级别 | 可操作的Scope | 额外限制 | |------|-------------|:--------------:|:-----------:|----------| | 实习生 | Ask模式 | L1公开 | 读取自己的文件 | 不能修改文件 | | 正式员工 | Ask+Craft | L1+L2内部 | 读/写团队文件 | 修改文件需确认 | | 团队Leader | 全部模式 | L1+L2+L3(脱敏) | 读/写部门文件 | 使用前确认数据级别 | | 部门总监 | 全部模式+管理 | L1+L2+L3 | 全部文件 | L4需特殊审批 | | IT管理员 | 全部模式+配置 | 全部(不含L4内容) | 全部+日志审计 | 双人复核 | ## 权限管控技术实现 1. WorkBuddy Skill权限声明：    &#x27;    # 在SKILL.md中声明所需权限    permissions:      file_read:        scope: /project/shared/     # 只读共享目录        exclude: [/finance/, /hr/]  # 排除敏感目录      file_write:        scope: /project/output/     # 只写到输出目录      network:        allowed_domains: [api.company.com]  # 只访问公司API        blocked_domains: [*.public-ai.com]  # 禁止公共AI服务      data_processing:        maxfilesize: 100MB        # 限制处理文件大小        allow_pii: false            # 禁止处理个人身份信息    &#x27; 2. 数据访问审计日志：    &#x27;    记录每次AI操作的日志：    {      &quot;timestamp&quot;: &quot;2026-06-19T09:15:00&quot;,      &quot;user&quot;: &quot;zhangsan&quot;,      &quot;action&quot;: &quot;file_read&quot;,      &quot;target&quot;: &quot;/project/reports/sales_q3.xlsx&quot;,      &quot;data_level&quot;: &quot;L2&quot;,      &quot;data_volume&quot;: &quot;1500 rows&quot;,      &quot;model_used&quot;: &quot;deepseek-v4&quot;,      &quot;result&quot;: &quot;success&quot;,      &quot;pii_detected&quot;: false    }    &#x27; ```  教学环节四：审计追溯与安全监控（3分钟） 知识内容：AI使用的三道安全防线 ``` 使用前 → 使用中 → 使用后 [预防]    [检测]    [追溯] ``` | 防线 | 阶段 | 关键机制 | 工具/方法 | |------|:--:|----------|----------| | 预防 | 使用前 | 数据分类/权限控制/脱敏检查 | 敏感信息扫描/访问控制列表 | | 检测 | 使用中 | 实时敏感信息拦截/异常行为告警 | 关键词拦截/使用模式分析 | | 追溯 | 使用后 | 完整审计日志/定期安全审查 | 日志分析/异常回溯 | 实操指令： ``` &quot;AI使用安全监控系统： 1. 实时防护——敏感信息拦截：    &#x27;    在WorkBuddy中集成敏感信息拦截器：    拦截场景：    - 用户粘贴内容含身份证号 → 弹窗警告+建议脱敏    - 用户粘贴超过5000字 → &quot;确认不是批量上传数据？&quot;    - 用户提到&#x27;密码&#x27;/&#x27;密钥&#x27;/&#x27;Token&#x27; → 自动遮罩    - 用户试图读取L4级文件 → 拒绝+记录+通知管理员    &#x27; 2. 审计日志分析：    &#x27;    每月自动审计报告内容：    ## AI使用安全月报    ### 使用统计    - 总使用次数：12,450次    - 活跃用户：87人    - 平均日使用：415次    ### 安全事件    - 敏感信息拦截：23次（全部拦截成功）    - 异常使用模式：3次（某用户凌晨大量使用→调查发现项目赶工）    - 越权访问尝试：1次（已处理）    ### 数据流向    - 上传文件统计：按数据级别分布图    - 对外发送：0次（安全）    ### 风险趋势    - 建议优化的安全策略（3条）    &#x27; 3. 异常检测规则：    &#x27;    自动检测以下异常模式：    - 短时间内大量读取文件（&gt;50个文件/分钟）    - 非工作时间大量使用（凌晨&gt;20次）    - 频繁访问不同部门的敏感文件    - 使用从未用过的数据源    - 输出文件大小远超输入（可能注入了额外数据）    - 同一用户短时间内登录多个IP    &#x27; ```  教学环节五：日常安全规范速查（2分钟） 实操指令： ``` &quot;AI使用安全10条军规： &#x27; 1. 【数据分级】上传任何数据前，先判断数据级别(L1-L4)    → L4绝不碰 / L3先脱敏 / L2需确认 / L1随便用 2. 【脱敏优先】含个人信息/商业数据的内容，先用脱敏工具处理    → 人/钱/号/码，四大必脱敏 3. 【最小数据】只给AI完成任务所需的最少数据    → 不是越多越好，是多一分数据多一分风险 4. 【输出审核】AI输出的数据结论，必须验证后再使用    → 尤其是数字/日期/人名/法规条款 5. 【不信任默认安全】每次使用不同AI服务时重新检查安全设置    → 不要假设&quot;之前安全现在仍然安全&quot; 6. 【本地优先】优先使用本地/私有化部署的AI能力    → 敏感数据不出内网 7. 【记录保留】保留AI使用的完整日志    → 需要时能追溯&quot;谁/何时/做了什么&quot; 8. 【最小授权】只给自己开启真正需要的AI能力和权限    → 权限越少，风险越小 9. 【定期检查】每月检查一次AI使用安全和权限    → 权限需要&quot;年检&quot; 10.【安全上报】发现任何安全疑虑立即上报     → 宁可误报，不可漏报 &#x27;&quot; ```  教学环节六：总结与课后任务（0.5分钟） 学员收获：理解AI使用中的六大安全风险和数据四级分类标准、掌握敏感信息自动检测和脱敏处理方法、能够设计基于最小权限原则的AI权限管理方案、建立使用前-使用中-使用后的三道安全防线。 课后任务： &gt; 1. 对你日常使用AI的数据做一次&quot;安全体检&quot;——识别你最近上传的数据中的敏感信息 &gt; 2. 为你所在团队建立数据分类标准和AI使用权限矩阵 &gt; 3. 设置至少一条自动化敏感信息拦截规则 ">
@@ -3176,6 +3175,577 @@
 
 
 
+<div class="category-card" data-ch="24">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
+      <div class="card-emoji">通用AI</div>
+      <div><div class="card-title">通用AI办公合集</div><div class="card-sub">专项板块 | 共6集<span class="card-toggle">-</span></div></div>
+    </div>
+    <ul class="ep-list">
+<li class="ep-item" data-ch="24" data-ep="1" data-search="全工具通用4W1H万能提示词公式 通用提示词 教学环节1：情境导入——换了AI工具就不会用了？不存在的（1.5分钟）
+设计意图：揭示所有AI工具提示词设计的底层共通逻辑，无论切换到豆包/飞书AI/WPS AI/Copilot都能快速适应。
+核心理念：掌握4W1H，等于掌握了所有AI工具的通用语言。
+
+教学环节2：4W1H公式深度拆解（4分钟）
+知识内容：What(做什么/定义任务边界/明确产出形式)、Who(角色设定/专业背景/语气风格)、Why(目的说明/质量标准/成功定义)、How(步骤约束/格式要求/限制条件)、With(使用什么/工具选择/数据来源/参考素材)。
+实操指令：用4W1H公式分别在豆包、飞书AI、WPS AI中执行同一个任务，对比产出差异和优化方向。
+
+教学环节3：跨平台实操对比（4分钟）
+实操指令：用同一套4W1H提示词，分别在以下工具执行【生成月度销售分析报告】任务：ChatGPT/豆包/飞书AI/WPS AI/Copilot，对比输出质量并记录各工具的最佳参数配置。
+
+教学环节4：学员跟练（3分钟）
+实操指令：选择你常用的2个AI工具，用4W1H公式分别编写提示词完成【竞品分析报告】，对比并优化。
+
+教学环节5：总结与课后工单（1.5分钟）
+学员收获：掌握4W1H万能提示词公式、能够在不同AI工具间自由切换、建立个人提示词质量评估标准。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-1</span>
+            <div class="ep-info"><div class="ep-title">全工具通用4W1H万能提示词公式</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——换了AI工具就不会用了？不存在的（1.5分钟）</div><div class="sc">设计意图：揭示所有AI工具提示词设计的底层共通逻辑，无论切换到豆包/飞书AI/WPS AI/Copilot都能快速适应。
+核心理念：掌握4W1H，等于掌握了所有AI工具的通用语言。</div></div><div class="seg"><div class="sn">教学环节2：4W1H公式深度拆解（4分钟）</div><div class="sc">知识内容：What(做什么/定义任务边界/明确产出形式)、Who(角色设定/专业背景/语气风格)、Why(目的说明/质量标准/成功定义)、How(步骤约束/格式要求/限制条件)、With(使用什么/工具选择/数据来源/参考素材)。
+实操指令：用4W1H公式分别在豆包、飞书AI、WPS AI中执行同一个任务，对比产出差异和优化方向。</div></div><div class="seg"><div class="sn">教学环节3：跨平台实操对比（4分钟）</div><div class="sc">实操指令：用同一套4W1H提示词，分别在以下工具执行【生成月度销售分析报告】任务：ChatGPT/豆包/飞书AI/WPS AI/Copilot，对比输出质量并记录各工具的最佳参数配置。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：选择你常用的2个AI工具，用4W1H公式分别编写提示词完成【竞品分析报告】，对比并优化。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（1.5分钟）</div><div class="sc">学员收获：掌握4W1H万能提示词公式、能够在不同AI工具间自由切换、建立个人提示词质量评估标准。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="2" data-search="跨AI平台文档协同标准化流程 跨平台协同 教学环节1：情境导入——各部门用不同AI工具，协同像巴别塔（1分钟）
+设计意图：展示企业中多AI工具并存的现实状况和标准化协同方案。
+
+教学环节2：标准化协同框架（3.5分钟）
+知识内容：文档标准中间格式(Markdown→任意格式)、命名规范与版本管理、协同工作流(创作→审核→发布→归档)、跨平台格式兼容性矩阵。
+
+教学环节3：协同流程实操（4.5分钟）
+实操指令：建立团队AI文档协同标准：统一使用Markdown作为中间格式→定义文件命名规则(日期-项目-类型-版本)→设定审核流程(草案→评审→定稿)。演示一个完整的跨平台协同流程：用WPS AI生成初稿→转Markdown→用飞书AI补充数据分析→用豆包润色→输出最终版。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为你所在的团队设计一份AI文档协同标准流程，包含格式规范、命名规则、审核节点。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握跨平台文档协同的标准化流程、能够设计团队级AI协同规范、理解标准化在企业AI落地中的关键作用。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-2</span>
+            <div class="ep-info"><div class="ep-title">跨AI平台文档协同标准化流程</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——各部门用不同AI工具，协同像巴别塔（1分钟）</div><div class="sc">设计意图：展示企业中多AI工具并存的现实状况和标准化协同方案。</div></div><div class="seg"><div class="sn">教学环节2：标准化协同框架（3.5分钟）</div><div class="sc">知识内容：文档标准中间格式(Markdown→任意格式)、命名规范与版本管理、协同工作流(创作→审核→发布→归档)、跨平台格式兼容性矩阵。</div></div><div class="seg"><div class="sn">教学环节3：协同流程实操（4.5分钟）</div><div class="sc">实操指令：建立团队AI文档协同标准：统一使用Markdown作为中间格式→定义文件命名规则(日期-项目-类型-版本)→设定审核流程(草案→评审→定稿)。演示一个完整的跨平台协同流程：用WPS AI生成初稿→转Markdown→用飞书AI补充数据分析→用豆包润色→输出最终版。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为你所在的团队设计一份AI文档协同标准流程，包含格式规范、命名规则、审核节点。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握跨平台文档协同的标准化流程、能够设计团队级AI协同规范、理解标准化在企业AI落地中的关键作用。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="3" data-search="多工具之间数据互通实操教程 多工具数据互通 教学环节1：情境导入——在5个AI工具之间复制粘贴数据，你应该不陌生（1分钟）
+设计意图：展示工具孤岛导致的数据割裂问题和解决方案。
+
+教学环节2：数据互通技术方案（3.5分钟）
+知识内容：文件级互通(CSV/Excel/Markdown作为数据载体)、API级互通(OAuth认证/REST API/Webhook)、中间件级互通(Zapier/n8n/腾讯云函数)、数据安全与脱敏注意事项。
+
+教学环节3：互通实操（4.5分钟）
+实操指令：实现飞书表格+WPS AI的数据互通：飞书数据导出CSV→WPS AI读取分析→结果写回飞书文档。用Make(原Integromat)搭建豆包+飞书+企微的自动化通知链：豆包生成日报→飞书文档存储→企微群推送。
+
+教学环节4：学员跟练（3分钟）
+实操指令：选择你常用的2个平台，用CSV作为中间格式完成一次数据互通操作。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握多工具数据互通的三种技术方案、能够设计并实施跨平台数据流、理解数据安全在互通场景中的重要性。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-3</span>
+            <div class="ep-info"><div class="ep-title">多工具之间数据互通实操教程</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——在5个AI工具之间复制粘贴数据，你应该不陌生（1分钟）</div><div class="sc">设计意图：展示工具孤岛导致的数据割裂问题和解决方案。</div></div><div class="seg"><div class="sn">教学环节2：数据互通技术方案（3.5分钟）</div><div class="sc">知识内容：文件级互通(CSV/Excel/Markdown作为数据载体)、API级互通(OAuth认证/REST API/Webhook)、中间件级互通(Zapier/n8n/腾讯云函数)、数据安全与脱敏注意事项。</div></div><div class="seg"><div class="sn">教学环节3：互通实操（4.5分钟）</div><div class="sc">实操指令：实现飞书表格+WPS AI的数据互通：飞书数据导出CSV→WPS AI读取分析→结果写回飞书文档。用Make(原Integromat)搭建豆包+飞书+企微的自动化通知链：豆包生成日报→飞书文档存储→企微群推送。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：选择你常用的2个平台，用CSV作为中间格式完成一次数据互通操作。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握多工具数据互通的三种技术方案、能够设计并实施跨平台数据流、理解数据安全在互通场景中的重要性。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="4" data-search="全行业统一AI内容合规模板教学 内容合规 教学环节1：情境导入——AI生成的内容，你敢直接发给客户吗（1分钟）
+设计意图：展示AI内容不经审核直接使用的风险和合规审查的必要性。
+
+教学环节2：全行业合规检查框架（3.5分钟）
+知识内容：五维合规检查法(事实准确性/数据隐私/行业禁忌/法律责任/品牌一致性)、不同行业的合规重点(金融/医疗/法律/教育等)、AI输出审核清单模板。
+
+教学环节3：合规模板实操（4.5分钟）
+实操指令：创建通用的AI内容合规检查清单模板，适用于6大行业(金融/医疗/法律/教育/电商/政府)。写一个AI内容自动审核脚本：检查敏感词→验证数据引用→检测不恰当表述→标记需要人工审核的段落。为你的行业创建专属的内容合规模板：包含必须检查项+建议检查项+红线清单。
+
+教学环节4：学员跟练（3分钟）
+实操指令：用AI生成一段你的行业相关内容，然后用合规检查清单逐项审核，标注所有风险点。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握五维合规检查法、能够为不同行业定制合规模板、理解AI内容合规在企业中的法务价值。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-4</span>
+            <div class="ep-info"><div class="ep-title">全行业统一AI内容合规模板教学</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——AI生成的内容，你敢直接发给客户吗（1分钟）</div><div class="sc">设计意图：展示AI内容不经审核直接使用的风险和合规审查的必要性。</div></div><div class="seg"><div class="sn">教学环节2：全行业合规检查框架（3.5分钟）</div><div class="sc">知识内容：五维合规检查法(事实准确性/数据隐私/行业禁忌/法律责任/品牌一致性)、不同行业的合规重点(金融/医疗/法律/教育等)、AI输出审核清单模板。</div></div><div class="seg"><div class="sn">教学环节3：合规模板实操（4.5分钟）</div><div class="sc">实操指令：创建通用的AI内容合规检查清单模板，适用于6大行业(金融/医疗/法律/教育/电商/政府)。写一个AI内容自动审核脚本：检查敏感词→验证数据引用→检测不恰当表述→标记需要人工审核的段落。为你的行业创建专属的内容合规模板：包含必须检查项+建议检查项+红线清单。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：用AI生成一段你的行业相关内容，然后用合规检查清单逐项审核，标注所有风险点。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握五维合规检查法、能够为不同行业定制合规模板、理解AI内容合规在企业中的法务价值。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="5" data-search="低成本切换AI工具工作流适配方案 工具切换 教学环节1：情境导入——公司突然换AI工具了，你的工作流还跑得通吗（1分钟）
+设计意图：展示AI工具更换的常见场景和低成本适配方法。
+
+教学环节2：工具适配的核心方法论（3.5分钟）
+知识内容：功能映射表(找出新旧工具的等效功能)、提示词适配策略(调整格式/补全约束/添加上下文)、工作流重构三步法(分析→映射→测试)、成本效益分析(切换成本vs长期收益)。
+
+教学环节3：切换实操（4.5分钟）
+实操指令：模拟从ChatGPT切换到豆包的全流程：整理现有提示词库→建立功能映射→逐条适配测试→建立新工具的提示词模板库。编写一个自动化脚本：批量将ChatGPT格式的提示词转换为豆包/WPS AI/Copilot三种格式。
+
+教学环节4：学员跟练（3分钟）
+实操指令：梳理你目前使用的AI工具清单，为每个关键工作流设计切换到另一个工具的适配方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握AI工具切换的系统方法论、能够低成本完成工具的迁移、理解工具无关性的架构设计思想。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-5</span>
+            <div class="ep-info"><div class="ep-title">低成本切换AI工具工作流适配方案</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——公司突然换AI工具了，你的工作流还跑得通吗（1分钟）</div><div class="sc">设计意图：展示AI工具更换的常见场景和低成本适配方法。</div></div><div class="seg"><div class="sn">教学环节2：工具适配的核心方法论（3.5分钟）</div><div class="sc">知识内容：功能映射表(找出新旧工具的等效功能)、提示词适配策略(调整格式/补全约束/添加上下文)、工作流重构三步法(分析→映射→测试)、成本效益分析(切换成本vs长期收益)。</div></div><div class="seg"><div class="sn">教学环节3：切换实操（4.5分钟）</div><div class="sc">实操指令：模拟从ChatGPT切换到豆包的全流程：整理现有提示词库→建立功能映射→逐条适配测试→建立新工具的提示词模板库。编写一个自动化脚本：批量将ChatGPT格式的提示词转换为豆包/WPS AI/Copilot三种格式。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：梳理你目前使用的AI工具清单，为每个关键工作流设计切换到另一个工具的适配方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握AI工具切换的系统方法论、能够低成本完成工具的迁移、理解工具无关性的架构设计思想。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="6" data-search="全行业通用接单交付模板包实操 接单交付 教学环节1：情境导入——学了这么多，怎么把能力变现（1.5分钟）
+设计意图：将课程学习成果转化为可以直接交付给客户的标准产物。
+
+教学环节2：接单交付标准体系（3.5分钟）
+知识内容：交付物四件套(方案文档/执行脚本/操作手册/效果报告)、不同行业定制模板(设计/财务/运营/开发等)、客户沟通话术模板、定价策略和报价单模板。
+
+教学环节3：模板包实操（5分钟）
+实操指令：建立你的【AI办公能力接单交付模板包】，包含：1)需求确认单模板 2)方案设计模板 3)交付报告模板 4)客户验收单模板。写一个案例展示文档：你最近用AI完成的一个任务→结构化展示为接单案例。设计你的个人接单服务菜单：列出5-8个可交付的服务项目及对应价格。
+
+教学环节4：学员跟练（3分钟）
+实操指令：完成你的第一个【虚拟交付】：选择一个课程中练习过的任务，用标准模板包装成可交付的成果。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握接单交付的标准流程和模板体系、能够将学习成果转化为商业价值、建立个人AI办公服务的品牌雏形。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-6</span>
+            <div class="ep-info"><div class="ep-title">全行业通用接单交付模板包实操</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——学了这么多，怎么把能力变现（1.5分钟）</div><div class="sc">设计意图：将课程学习成果转化为可以直接交付给客户的标准产物。</div></div><div class="seg"><div class="sn">教学环节2：接单交付标准体系（3.5分钟）</div><div class="sc">知识内容：交付物四件套(方案文档/执行脚本/操作手册/效果报告)、不同行业定制模板(设计/财务/运营/开发等)、客户沟通话术模板、定价策略和报价单模板。</div></div><div class="seg"><div class="sn">教学环节3：模板包实操（5分钟）</div><div class="sc">实操指令：建立你的【AI办公能力接单交付模板包】，包含：1)需求确认单模板 2)方案设计模板 3)交付报告模板 4)客户验收单模板。写一个案例展示文档：你最近用AI完成的一个任务→结构化展示为接单案例。设计你的个人接单服务菜单：列出5-8个可交付的服务项目及对应价格。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：完成你的第一个【虚拟交付】：选择一个课程中练习过的任务，用标准模板包装成可交付的成果。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握接单交付的标准流程和模板体系、能够将学习成果转化为商业价值、建立个人AI办公服务的品牌雏形。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+      </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+
+  </div>
+<div class="category-card" data-ch="23">
+      <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
+        <div class="card-emoji">Art</div>
+        <div><div class="card-title">艺术设计行业</div><div class="card-sub">第23章 . 共12集<span class="card-toggle">-</span></div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="23" data-ep="1" data-search="AI插画、海报批量标准化生成工作流 插画海报 教学环节1：情境导入——设计师的时间都去哪了（1.5分钟）
+设计意图：展示一个设计工作室的典型工作场景——70%的时间在做重复性素材生成。
+核心理念：AI不会取代设计师，但会用AI的设计师会取代不会用的。
+
+教学环节2：AI图像生成工具对比（3分钟）
+知识内容：主流AI绘图工具能力对比(Midjourney/DALL-E/Stable Diffusion/文心一格/通义万相)、Prompt编写核心技巧(主体描述+风格指定+构图+技术参数)、提示词模板库建设方法。
+
+教学环节3：批量生产工作流（4.5分钟）
+实操指令：建立AI插画批量生成工作流：需求分析→风格定义→Prompt模板→批量生成→初筛→人工精选→最终交付。用WorkBuddy辅助管理设计项目：客户需求录入→自动生成Prompt→批量调用AI工具→成果归档→客户交付。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个虚拟客户(某茶饮品牌)设计一套AI插画批量生成流程，至少包含3个不同场景的海报方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握AI辅助插画和海报批量生成的标准工作流、能够为不同客户建立Prompt模板库。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-1</span>
+            <div class="ep-info"><div class="ep-title">AI插画、海报批量标准化生成工作流</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——设计师的时间都去哪了（1.5分钟）</div><div class="sc">设计意图：展示一个设计工作室的典型工作场景——70%的时间在做重复性素材生成。
+核心理念：AI不会取代设计师，但会用AI的设计师会取代不会用的。</div></div><div class="seg"><div class="sn">教学环节2：AI图像生成工具对比（3分钟）</div><div class="sc">知识内容：主流AI绘图工具能力对比(Midjourney/DALL-E/Stable Diffusion/文心一格/通义万相)、Prompt编写核心技巧(主体描述+风格指定+构图+技术参数)、提示词模板库建设方法。</div></div><div class="seg"><div class="sn">教学环节3：批量生产工作流（4.5分钟）</div><div class="sc">实操指令：建立AI插画批量生成工作流：需求分析→风格定义→Prompt模板→批量生成→初筛→人工精选→最终交付。用WorkBuddy辅助管理设计项目：客户需求录入→自动生成Prompt→批量调用AI工具→成果归档→客户交付。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个虚拟客户(某茶饮品牌)设计一套AI插画批量生成流程，至少包含3个不同场景的海报方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握AI辅助插画和海报批量生成的标准工作流、能够为不同客户建立Prompt模板库。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="2" data-search="电商商品视觉图一键批量产出 电商视觉 教学环节1：情境导入——一个电商店铺需要多少张图（1分钟）
+设计意图：量化电商视觉需求——一个50款产品的店铺需要200+张不同尺寸和场景的商品图。
+
+教学环节2：电商视觉标准规范（3分钟）
+知识内容：各平台图片尺寸标准(淘宝/京东/拼多多/抖音)、白底图/场景图/详情页图/主图视频规格、品牌视觉一致性管理(色调/字体/Logo/风格)。
+
+教学环节3：批量产出实操（5分钟）
+实操指令：建立电商商品图自动化工作流：产品照片→AI去背景→AI场景合成→多尺寸适配→一键上传各平台。用AI生成商品文案搭配图：产品卖点→AI生成文案→AI配图→生成详情页模板。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为5款不同品类的商品(服装/食品/电子/家居/美妆)，分别设计AI辅助视觉图的生成方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握电商视觉图的批量生成方法、理解各平台的差异化视觉要求。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-2</span>
+            <div class="ep-info"><div class="ep-title">电商商品视觉图一键批量产出</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——一个电商店铺需要多少张图（1分钟）</div><div class="sc">设计意图：量化电商视觉需求——一个50款产品的店铺需要200+张不同尺寸和场景的商品图。</div></div><div class="seg"><div class="sn">教学环节2：电商视觉标准规范（3分钟）</div><div class="sc">知识内容：各平台图片尺寸标准(淘宝/京东/拼多多/抖音)、白底图/场景图/详情页图/主图视频规格、品牌视觉一致性管理(色调/字体/Logo/风格)。</div></div><div class="seg"><div class="sn">教学环节3：批量产出实操（5分钟）</div><div class="sc">实操指令：建立电商商品图自动化工作流：产品照片→AI去背景→AI场景合成→多尺寸适配→一键上传各平台。用AI生成商品文案搭配图：产品卖点→AI生成文案→AI配图→生成详情页模板。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为5款不同品类的商品(服装/食品/电子/家居/美妆)，分别设计AI辅助视觉图的生成方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握电商视觉图的批量生成方法、理解各平台的差异化视觉要求。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="3" data-search="短视频脚本+AI分镜配套制作流程 短视频制作 教学环节1：情境导入——一条爆款短视频背后有多少准备工作（1.5分钟）
+设计意图：展示短视频制作从创意到成片的完整工序。
+
+教学环节2：AI短视频制作全流程（4分钟）
+知识内容：爆款脚本公式(3秒钩子+痛点共鸣+解决方案+行动号召)、AI分镜生成(文案→分镜描述→AI生成关键帧→初剪)、各平台差异化要求(抖音/快手/B站/视频号)。
+
+教学环节3：配套制作实操（4分钟）
+实操指令：用AI生成一条60秒短视频的完整制作包：脚本(含口播文案+画面描述)→分镜表(10-15个镜头)→AI生成关键帧参考图→BGM建议→封面图设计。为同一产品生成3个不同风格的短视频方案(剧情类/口播类/展示类)。
+
+教学环节4：学员跟练（3分钟）
+实操指令：选择一个产品或主题，用AI完成一个完整的短视频制作方案包。
+
+教学环节5：总结与课后工单（1.5分钟）
+学员收获：掌握短视频脚本和分镜的AI辅助生成、能够为不同平台定制内容。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-3</span>
+            <div class="ep-info"><div class="ep-title">短视频脚本+AI分镜配套制作流程</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——一条爆款短视频背后有多少准备工作（1.5分钟）</div><div class="sc">设计意图：展示短视频制作从创意到成片的完整工序。</div></div><div class="seg"><div class="sn">教学环节2：AI短视频制作全流程（4分钟）</div><div class="sc">知识内容：爆款脚本公式(3秒钩子+痛点共鸣+解决方案+行动号召)、AI分镜生成(文案→分镜描述→AI生成关键帧→初剪)、各平台差异化要求(抖音/快手/B站/视频号)。</div></div><div class="seg"><div class="sn">教学环节3：配套制作实操（4分钟）</div><div class="sc">实操指令：用AI生成一条60秒短视频的完整制作包：脚本(含口播文案+画面描述)→分镜表(10-15个镜头)→AI生成关键帧参考图→BGM建议→封面图设计。为同一产品生成3个不同风格的短视频方案(剧情类/口播类/展示类)。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：选择一个产品或主题，用AI完成一个完整的短视频制作方案包。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（1.5分钟）</div><div class="sc">学员收获：掌握短视频脚本和分镜的AI辅助生成、能够为不同平台定制内容。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="4" data-search="品牌版式、字体自动排版工具实操 自动排版 教学环节1：情境导入——设计师在排版上花了多少无谓的时间（1分钟）
+设计意图：展示自动化排版工具如何将排版时间从2小时压缩到10分钟。
+
+教学环节2：排版自动化技术（3分钟）
+知识内容：网格系统自动化(列宽/行高/间距的黄金比例计算)、字体配对推荐(AI根据品牌调性推荐中英文字体组合)、色彩方案自动生成(基于主色调的智能配色)。
+
+教学环节3：实操指令（4分钟）
+实操指令：用AI辅助完成一套品牌版式设计：Logo→主色调→辅助色→字体系统→版式网格→输出品牌使用规范文档。建立一个自动化排版模板：输入文字和图片→自动应用版式规则→输出多尺寸适配版本。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个虚拟品牌设计完整的版式规范，包含排版参数、字体搭配、色彩方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握AI辅助排版的核心技术、能够为品牌建立自动化版式系统。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-4</span>
+            <div class="ep-info"><div class="ep-title">品牌版式、字体自动排版工具实操</div><div class="ep-meta">13min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——设计师在排版上花了多少无谓的时间（1分钟）</div><div class="sc">设计意图：展示自动化排版工具如何将排版时间从2小时压缩到10分钟。</div></div><div class="seg"><div class="sn">教学环节2：排版自动化技术（3分钟）</div><div class="sc">知识内容：网格系统自动化(列宽/行高/间距的黄金比例计算)、字体配对推荐(AI根据品牌调性推荐中英文字体组合)、色彩方案自动生成(基于主色调的智能配色)。</div></div><div class="seg"><div class="sn">教学环节3：实操指令（4分钟）</div><div class="sc">实操指令：用AI辅助完成一套品牌版式设计：Logo→主色调→辅助色→字体系统→版式网格→输出品牌使用规范文档。建立一个自动化排版模板：输入文字和图片→自动应用版式规则→输出多尺寸适配版本。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个虚拟品牌设计完整的版式规范，包含排版参数、字体搭配、色彩方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握AI辅助排版的核心技术、能够为品牌建立自动化版式系统。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="5" data-search="全套品牌VI素材批量生成 VI素材 教学环节1：情境导入——一个品牌需要多少VI物料（1.5分钟）
+设计意图：展示全套VI物料清单(Logo/名片/信纸/信封/文件夹/PPT模板/工牌/门头/宣传册等20+项)。
+
+教学环节2：VI标准化体系（3分钟）
+知识内容：VI设计三大系统(基础系统含Logo/色彩/字体、应用系统含办公/环境/宣传、数字系统含网站/社媒/App)。
+
+教学环节3：批量生成实操（5分钟）
+实操指令：用AI辅助完成一套完整VI：Logo设计(提供3个方向)→基础系统生成(色彩/字体/辅助图形)→应用系统批量生成(名片/信纸/PPT模板/社媒头像/宣传册封面)。建立VI物料批量生成工作流：主视觉确定→衍生物料模板→批量替换内容→一键输出全套VI。
+
+教学环节4：学员跟练（3.5分钟）
+实操指令：为一个虚拟品牌生成全套VI物料清单和设计方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握VI全套物料的AI辅助生成方法、能够承接品牌全案设计项目。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-5</span>
+            <div class="ep-info"><div class="ep-title">全套品牌VI素材批量生成</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——一个品牌需要多少VI物料（1.5分钟）</div><div class="sc">设计意图：展示全套VI物料清单(Logo/名片/信纸/信封/文件夹/PPT模板/工牌/门头/宣传册等20+项)。</div></div><div class="seg"><div class="sn">教学环节2：VI标准化体系（3分钟）</div><div class="sc">知识内容：VI设计三大系统(基础系统含Logo/色彩/字体、应用系统含办公/环境/宣传、数字系统含网站/社媒/App)。</div></div><div class="seg"><div class="sn">教学环节3：批量生成实操（5分钟）</div><div class="sc">实操指令：用AI辅助完成一套完整VI：Logo设计(提供3个方向)→基础系统生成(色彩/字体/辅助图形)→应用系统批量生成(名片/信纸/PPT模板/社媒头像/宣传册封面)。建立VI物料批量生成工作流：主视觉确定→衍生物料模板→批量替换内容→一键输出全套VI。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3.5分钟）</div><div class="sc">实操指令：为一个虚拟品牌生成全套VI物料清单和设计方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握VI全套物料的AI辅助生成方法、能够承接品牌全案设计项目。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="6" data-search="商业摄影AI批量后期修图流程 摄影后期 教学环节1：情境导入——一个电商摄影师的日常（1分钟）
+设计意图：展示商业摄影后期的重复性工作量——300张照片需要逐一调色、去瑕疵、统一风格。
+
+教学环节2：AI修图技术栈（3分钟）
+知识内容：批量调色(AI自动白平衡/曝光/对比度)、智能去瑕疵(皮肤/背景/产品瑕疵)、风格统一(批量套用预设/AI风格迁移)、背景替换和合成。
+
+教学环节3：批量修图实操（5分钟）
+实操指令：建立商业摄影AI后期工作流：原始照片导入→AI批量调色→AI去瑕疵→AI背景处理→风格统一→多尺寸导出→自动归档。演示用AI将同一组产品照适配3种不同风格的电商场景(简约白底/INS风格/中国风)。
+
+教学环节4：学员跟练（3分钟）
+实操指令：设计一套针对电商产品照的AI后期批量处理方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握商业摄影AI后期批量处理的完整流程、能够大幅提升摄影后期效率。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-6</span>
+            <div class="ep-info"><div class="ep-title">商业摄影AI批量后期修图流程</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——一个电商摄影师的日常（1分钟）</div><div class="sc">设计意图：展示商业摄影后期的重复性工作量——300张照片需要逐一调色、去瑕疵、统一风格。</div></div><div class="seg"><div class="sn">教学环节2：AI修图技术栈（3分钟）</div><div class="sc">知识内容：批量调色(AI自动白平衡/曝光/对比度)、智能去瑕疵(皮肤/背景/产品瑕疵)、风格统一(批量套用预设/AI风格迁移)、背景替换和合成。</div></div><div class="seg"><div class="sn">教学环节3：批量修图实操（5分钟）</div><div class="sc">实操指令：建立商业摄影AI后期工作流：原始照片导入→AI批量调色→AI去瑕疵→AI背景处理→风格统一→多尺寸导出→自动归档。演示用AI将同一组产品照适配3种不同风格的电商场景(简约白底/INS风格/中国风)。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：设计一套针对电商产品照的AI后期批量处理方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握商业摄影AI后期批量处理的完整流程、能够大幅提升摄影后期效率。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="7" data-search="展会、线下宣传物料快速制作 展会物料 教学环节1：情境导入——下周开展，宣传物料还没做（1分钟）
+设计意图：展示展会物料的紧迫性和AI快速制作的效率优势。
+
+教学环节2：展会物料清单与规范（3分钟）
+知识内容：标准展会物料清单(展板/易拉宝/宣传册/名片/邀请函/手提袋/海报/横幅)、印刷规范(出血/CMYK/分辨率/材质选择)。
+
+教学环节3：快速制作实操（5分钟）
+实操指令：用AI在2小时内完成一套展会物料：主KV设计→展板画面→易拉宝→宣传册→邀请函→名片→产品手册→全部导出印刷文件。建立展会物料快速制作模板库：不同尺寸和风格的展板模板/宣传册模板/海报模板。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个虚拟展会设计全套物料的快速制作方案，标注时间节点。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握展会物料的AI快速制作方法、能够承接展会和活动物料的设计项目。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-7</span>
+            <div class="ep-info"><div class="ep-title">展会、线下宣传物料快速制作</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——下周开展，宣传物料还没做（1分钟）</div><div class="sc">设计意图：展示展会物料的紧迫性和AI快速制作的效率优势。</div></div><div class="seg"><div class="sn">教学环节2：展会物料清单与规范（3分钟）</div><div class="sc">知识内容：标准展会物料清单(展板/易拉宝/宣传册/名片/邀请函/手提袋/海报/横幅)、印刷规范(出血/CMYK/分辨率/材质选择)。</div></div><div class="seg"><div class="sn">教学环节3：快速制作实操（5分钟）</div><div class="sc">实操指令：用AI在2小时内完成一套展会物料：主KV设计→展板画面→易拉宝→宣传册→邀请函→名片→产品手册→全部导出印刷文件。建立展会物料快速制作模板库：不同尺寸和风格的展板模板/宣传册模板/海报模板。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个虚拟展会设计全套物料的快速制作方案，标注时间节点。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握展会物料的AI快速制作方法、能够承接展会和活动物料的设计项目。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="8" data-search="设计师作品集AI自动整理优化 作品集 教学环节1：情境导入——设计师的作品集多久更新一次（1分钟）
+设计意图：展示作品集整理的痛点——设计师忙于做项目，没时间整理自己的作品。
+
+教学环节2：作品集AI优化方法论（3分钟）
+知识内容：作品筛选标准(商业价值/视觉冲击力/技术难度)、叙事结构(项目背景→设计思路→过程展示→最终成果→商业效果)、多平台适配(站酷/Behance/Dribbble/LinkedIn)。
+
+教学环节3：AI辅助整理实操（4分钟）
+实操指令：用AI帮你整理作品集：拖入项目文件夹→AI自动分类和标注→AI生成项目说明文案→AI优化图片排版→生成多平台适配版本。为作品集生成配套的AI优化元素：封面设计→个人介绍→能力标签→联系方式页。
+
+教学环节4：学员跟练（3分钟）
+实操指令：梳理你的作品集清单，用AI生成每一件作品的说明文案和展示方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握AI辅助作品集整理和优化的完整方法、能够快速生成多平台适配的作品集。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-8</span>
+            <div class="ep-info"><div class="ep-title">设计师作品集AI自动整理优化</div><div class="ep-meta">13min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——设计师的作品集多久更新一次（1分钟）</div><div class="sc">设计意图：展示作品集整理的痛点——设计师忙于做项目，没时间整理自己的作品。</div></div><div class="seg"><div class="sn">教学环节2：作品集AI优化方法论（3分钟）</div><div class="sc">知识内容：作品筛选标准(商业价值/视觉冲击力/技术难度)、叙事结构(项目背景→设计思路→过程展示→最终成果→商业效果)、多平台适配(站酷/Behance/Dribbble/LinkedIn)。</div></div><div class="seg"><div class="sn">教学环节3：AI辅助整理实操（4分钟）</div><div class="sc">实操指令：用AI帮你整理作品集：拖入项目文件夹→AI自动分类和标注→AI生成项目说明文案→AI优化图片排版→生成多平台适配版本。为作品集生成配套的AI优化元素：封面设计→个人介绍→能力标签→联系方式页。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：梳理你的作品集清单，用AI生成每一件作品的说明文案和展示方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握AI辅助作品集整理和优化的完整方法、能够快速生成多平台适配的作品集。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="9" data-search="设计方案、报价单AI自动撰写 方案报价 教学环节1：情境导入——写了3小时方案，客户只看3分钟（1.5分钟）
+设计意图：展示设计方案撰写的时间成本和AI加速方案。
+
+教学环节2：设计方案结构标准化（3分钟）
+知识内容：设计方案的黄金结构(项目理解→设计策略→创意方向→执行方案→时间规划→团队配置→预算报价)、报价单标准模板(服务项目/单价/数量/合计/付款方式/版权说明)。
+
+教学环节3：AI自动撰写实操（4.5分钟）
+实操指令：建立设计方案AI生成工作流：客户需求录入→AI分析需求→AI生成方案框架→AI填充内容→人工审核优化→输出客户版。写一个报价单自动生成脚本：选择服务项目→填入数量和周期→自动计算价格→生成专业报价单PDF。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个虚拟设计项目(某品牌VI设计)，用AI生成完整的设计方案和报价单。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握设计方案和报价单的AI自动撰写方法、能够大幅提升接单效率和专业度。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-9</span>
+            <div class="ep-info"><div class="ep-title">设计方案、报价单AI自动撰写</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——写了3小时方案，客户只看3分钟（1.5分钟）</div><div class="sc">设计意图：展示设计方案撰写的时间成本和AI加速方案。</div></div><div class="seg"><div class="sn">教学环节2：设计方案结构标准化（3分钟）</div><div class="sc">知识内容：设计方案的黄金结构(项目理解→设计策略→创意方向→执行方案→时间规划→团队配置→预算报价)、报价单标准模板(服务项目/单价/数量/合计/付款方式/版权说明)。</div></div><div class="seg"><div class="sn">教学环节3：AI自动撰写实操（4.5分钟）</div><div class="sc">实操指令：建立设计方案AI生成工作流：客户需求录入→AI分析需求→AI生成方案框架→AI填充内容→人工审核优化→输出客户版。写一个报价单自动生成脚本：选择服务项目→填入数量和周期→自动计算价格→生成专业报价单PDF。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个虚拟设计项目(某品牌VI设计)，用AI生成完整的设计方案和报价单。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握设计方案和报价单的AI自动撰写方法、能够大幅提升接单效率和专业度。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="10" data-search="客户改稿标准化AI处理流程 改稿流程 教学环节1：情境导入——你是不是也有过第17版的设计文件（1分钟）
+设计意图：展示反复改稿对设计效率和心情的消耗，以及标准化流程的解决方案。
+
+教学环节2：改稿标准化方法论（3.5分钟）
+知识内容：改稿分级制度(免费修改范围/收费修改标准/重大变更定义)、改稿沟通模板(客户反馈→需求确认→影响评估→修改方案→时间报价→确认执行)、版本管理规范(v1.0→v1.1→v2.0命名规则)。
+
+教学环节3：AI辅助改稿实操（4.5分钟）
+实操指令：建立AI辅助改稿流程：客户反馈文本→AI分析修改类型和范围→AI评估工时和成本→AI生成修改方案→设计师确认→AI辅助执行→AI生成修改报告。写一个改稿管理脚本：追踪每次修改需求→记录工时→生成改稿汇总报告→月末统计改稿成本。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个频繁改稿的设计项目设计标准化改稿流程，包含分级标准、沟通模板和版本管理。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握客户改稿的标准化管理方法、能够建立设计项目的版本和变更管理体系。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-10</span>
+            <div class="ep-info"><div class="ep-title">客户改稿标准化AI处理流程</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——你是不是也有过第17版的设计文件（1分钟）</div><div class="sc">设计意图：展示反复改稿对设计效率和心情的消耗，以及标准化流程的解决方案。</div></div><div class="seg"><div class="sn">教学环节2：改稿标准化方法论（3.5分钟）</div><div class="sc">知识内容：改稿分级制度(免费修改范围/收费修改标准/重大变更定义)、改稿沟通模板(客户反馈→需求确认→影响评估→修改方案→时间报价→确认执行)、版本管理规范(v1.0→v1.1→v2.0命名规则)。</div></div><div class="seg"><div class="sn">教学环节3：AI辅助改稿实操（4.5分钟）</div><div class="sc">实操指令：建立AI辅助改稿流程：客户反馈文本→AI分析修改类型和范围→AI评估工时和成本→AI生成修改方案→设计师确认→AI辅助执行→AI生成修改报告。写一个改稿管理脚本：追踪每次修改需求→记录工时→生成改稿汇总报告→月末统计改稿成本。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个频繁改稿的设计项目设计标准化改稿流程，包含分级标准、沟通模板和版本管理。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握客户改稿的标准化管理方法、能够建立设计项目的版本和变更管理体系。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="11" data-search="海量设计文件自动分类归档 文件归档 教学环节1：情境导入——设计师电脑里的文件有多乱（1分钟）
+设计意图：展示设计文件管理的混乱现状和AI自动归档的解决方案。
+
+教学环节2：文件归档方法论（3分钟）
+知识内容：设计文件分类体系(按客户/项目/类型/日期多维度分类)、命名规范(客户-项目-类型-版本-日期)、元数据管理(自动提取文件信息并建立索引)、云存储同步策略。
+
+教学环节3：AI自动归档实操（4分钟）
+实操指令：编写文件自动归档脚本：扫描指定文件夹→识别文件类型(PNG/PSD/AI/Sketch/PDF)→读取元数据→按规则自动分类→重命名→移动到对应文件夹→生成文件索引表。建立一个设计资源库管理系统：海量素材→AI自动打标签→智能搜索→版本追踪→去重。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为你的设计文件现状设计一套AI驱动的自动分类归档方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握设计文件的AI自动分类归档方法、能够建立个人或团队的知识资产管理系统。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-11</span>
+            <div class="ep-info"><div class="ep-title">海量设计文件自动分类归档</div><div class="ep-meta">13min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——设计师电脑里的文件有多乱（1分钟）</div><div class="sc">设计意图：展示设计文件管理的混乱现状和AI自动归档的解决方案。</div></div><div class="seg"><div class="sn">教学环节2：文件归档方法论（3分钟）</div><div class="sc">知识内容：设计文件分类体系(按客户/项目/类型/日期多维度分类)、命名规范(客户-项目-类型-版本-日期)、元数据管理(自动提取文件信息并建立索引)、云存储同步策略。</div></div><div class="seg"><div class="sn">教学环节3：AI自动归档实操（4分钟）</div><div class="sc">实操指令：编写文件自动归档脚本：扫描指定文件夹→识别文件类型(PNG/PSD/AI/Sketch/PDF)→读取元数据→按规则自动分类→重命名→移动到对应文件夹→生成文件索引表。建立一个设计资源库管理系统：海量素材→AI自动打标签→智能搜索→版本追踪→去重。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为你的设计文件现状设计一套AI驱动的自动分类归档方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握设计文件的AI自动分类归档方法、能够建立个人或团队的知识资产管理系统。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="12" data-search="综合实战：设计工作室完整接单全流程 综合实战 教学环节1：综合项目概述（2分钟）
+设计意图：用一家虚拟设计工作室从接单到交付的完整流程串联第1-11集所有技能。
+全流程：客户咨询→需求沟通→方案报价→创意设计→客户审核→修改优化→最终交付→售后跟进→客户维护。
+
+教学环节2：Stage1——客户获取与需求沟通（3分钟）
+实操指令：用AI完成客户接洽全流程：生成客户需求问卷→AI分析需求并匹配服务方案→自动生成报价单→AI撰写项目提案→发送客户确认。
+
+教学环节3：Stage2——创意设计与制作（3.5分钟）
+实操指令：用AI辅助完成全套设计创作：品牌分析→创意方向→素材生成→版式设计→VI物料批量产出→质量检查→准备交付物。
+
+教学环节4：Stage3——客户审核与修改（3分钟）
+实操指令：AI辅助客户沟通：生成客户审核指南→收集反馈意见→AI评估修改范围→自动生成修改建议→快速执行修改→输出修订版和对比报告。
+
+教学环节5：Stage4——交付与售后服务（3分钟）
+实操指令：AI辅助交付全流程：生成交付清单→整理交付物→自动生成使用指南→发送客户→定时跟进→收集评价→生成案例展示。
+
+教学环节6：总结与课后工单（1.5分钟）
+学员收获：具备独立承接设计项目的完整能力、掌握从获客到交付的全链条AI辅助工作流。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-12</span>
+            <div class="ep-info"><div class="ep-title">综合实战：设计工作室完整接单全流程</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：综合项目概述（2分钟）</div><div class="sc">设计意图：用一家虚拟设计工作室从接单到交付的完整流程串联第1-11集所有技能。
+全流程：客户咨询→需求沟通→方案报价→创意设计→客户审核→修改优化→最终交付→售后跟进→客户维护。</div></div><div class="seg"><div class="sn">教学环节2：Stage1——客户获取与需求沟通（3分钟）</div><div class="sc">实操指令：用AI完成客户接洽全流程：生成客户需求问卷→AI分析需求并匹配服务方案→自动生成报价单→AI撰写项目提案→发送客户确认。</div></div><div class="seg"><div class="sn">教学环节3：Stage2——创意设计与制作（3.5分钟）</div><div class="sc">实操指令：用AI辅助完成全套设计创作：品牌分析→创意方向→素材生成→版式设计→VI物料批量产出→质量检查→准备交付物。</div></div><div class="seg"><div class="sn">教学环节4：Stage3——客户审核与修改（3分钟）</div><div class="sc">实操指令：AI辅助客户沟通：生成客户审核指南→收集反馈意见→AI评估修改范围→自动生成修改建议→快速执行修改→输出修订版和对比报告。</div></div><div class="seg"><div class="sn">教学环节5：Stage4——交付与售后服务（3分钟）</div><div class="sc">实操指令：AI辅助交付全流程：生成交付清单→整理交付物→自动生成使用指南→发送客户→定时跟进→收集评价→生成案例展示。</div></div><div class="seg"><div class="sn">教学环节6：总结与课后工单（1.5分钟）</div><div class="sc">学员收获：具备独立承接设计项目的完整能力、掌握从获客到交付的全链条AI辅助工作流。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+        </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+
+    </div>
 </div>
 <div class="footer-enhanced">
   <div class="footer-path">学习AI场景课程 到 完成行业能力测验 到 线上远程接单/同城就近线下接单 到 长期行业职场协作生态</div>
@@ -3292,7 +3862,13 @@ document.getElementById('chFilter').addEventListener('change', function() {
 (function(){
  var p=new URLSearchParams(window.location.search);
  var q=p.get("q");if(q){document.getElementById("q").value=q;applyFilters();}
- var c=p.get("ch");if(c){switchChapter(parseInt(c));}
+ var c=p.get("ch");if(c){
+   var chNum=parseInt(c);
+   switchChapter(chNum);
+   // Expand the target chapter
+   var card=document.querySelector(".category-card[data-ch='"+chNum+"']");
+   if(card){card.classList.remove("collapsed");card.scrollIntoView();}
+ }
 })();
 
 </script>

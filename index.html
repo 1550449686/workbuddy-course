@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI办公学院 | WorkBuddy+Codex双板块</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+
+</style>
 </head>
 <body>
 <div class="top-nav">
@@ -13,7 +16,7 @@
     <div class="nav-links">
       <a href="index.html">首页</a>
       <a href="workbuddy.html" class="accent">WorkBuddy专区</a>
-      <a href="codex.html">Codex行业编程办公专区</a>
+      <a href="codex.html">Codex编程办公专区</a>
       <a href="ai-universal.html">通用AI办公合集</a>
       <div class="dropdown">
         <button class="dropbtn">全行业课程库 ▼</button>
@@ -45,9 +48,9 @@
 <div class="container">
 <div class="header" id="home">
   <h1>AI场景化办公全栈教学 | 普通人抹平重复工作差距，学完即可线上/就近接单</h1>
-  <p>WorkBuddy + Codex + 全主流AI办公工具 | 覆盖职场/艺术/传统手艺24大行业</p>
+  <p>WorkBuddy + Codex双引擎 | 同一行业两种AI办公方式 | 覆盖职场/艺术/传统手艺24大行业</p>
   <div class="stats">
-    <div class="stat"><div class="num">246</div><div class="label">总集数（WorkBuddy+Codex+通用AI）</div></div>
+    <div class="stat"><div class="num">246</div><div class="label">总集数（含Codex22行业）</div></div>
     <div class="stat"><div class="num">26</div><div class="label">教学模块</div></div>
     <div class="stat"><div class="num">24</div><div class="label">覆盖行业</div></div>
     <div class="stat"><div class="num">900+</div><div class="label">教学环节</div></div>
@@ -79,8 +82,6 @@
 
 
 
-
-<div class="search-bar" style="margin-bottom:10px;"><input type="text" id="q" placeholder="搜索全部课程关键词..." oninput="var v=this.value.trim();if(v){window.location.href='workbuddy.html?q='+encodeURIComponent(v)}"></div>
 <div class="tag-bar" style="margin-top:12px;">
   <span class="tag-item active" onclick="tagFilter('all',this)">全部</span>
   <span class="tag-item" onclick="tagFilter('wb',this)">WorkBuddy课程</span>
@@ -91,46 +92,31 @@
 
 
 
-<div style="text-align:center;padding:30px 0;">
 <div style="background:var(--card);border-radius:14px;padding:24px;margin:20px 0;text-align:center;border:1px solid var(--border);">
 <h3 style="font-size:1.1rem;margin-bottom:16px;">课程定价</h3>
 <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-<div style="background:#f8faff;border:2px solid #4f46e5;border-radius:12px;padding:16px;width:180px;">
-<div style="font-size:1.6rem;font-weight:800;color:#4f46e5;">99元</div>
-<div style="font-size:0.82rem;color:var(--sub);">单课购买</div>
-<div style="font-size:0.7rem;color:var(--sub);margin-top:4px;">按需选购永久回看</div>
-</div>
-<div style="background:#fef3c7;border:2px solid #f59e0b;border-radius:12px;padding:16px;width:200px;">
-<div style="font-size:0.7rem;color:#b45309;font-weight:700;">推荐</div>
-<div style="font-size:1.6rem;font-weight:800;color:#b45309;">299元</div>
-<div style="font-size:0.82rem;color:#92400e;font-weight:600;">全行业年会员</div>
-<div style="font-size:0.7rem;color:#92400e;margin-top:4px;">236集+接单资质</div>
-</div>
-<div style="background:#f0fdf4;border:2px solid #10b981;border-radius:12px;padding:16px;width:180px;">
-<div style="font-size:1.6rem;font-weight:800;color:#065f46;">面议</div>
-<div style="font-size:0.82rem;color:var(--sub);">企业定制内训包</div>
-<div style="font-size:0.7rem;color:var(--sub);margin-top:4px;">定制课程+智能体</div>
+<div style="background:#f8faff;border:2px solid #4f46e5;border-radius:12px;padding:16px;width:180px;"><div style="font-size:1.6rem;font-weight:800;color:#4f46e5;">99元</div><div style="font-size:0.82rem;color:var(--sub);">单课购买</div></div>
+<div style="background:#fef3c7;border:2px solid #f59e0b;border-radius:12px;padding:16px;width:200px;"><div style="font-size:0.7rem;color:#b45309;font-weight:700;">推荐</div><div style="font-size:1.6rem;font-weight:800;color:#b45309;">299元</div><div style="font-size:0.82rem;color:#92400e;font-weight:600;">全行业年会员</div></div>
+<div style="background:#f0fdf4;border:2px solid #10b981;border-radius:12px;padding:16px;width:180px;"><div style="font-size:1.6rem;font-weight:800;color:#065f46;">面议</div><div style="font-size:0.82rem;color:var(--sub);">企业定制内训包</div></div>
 </div>
 </div>
+<div class="cta-row">
+<a href="workbuddy.html" class="cta-btn cta-free">免费试看2集</a>
+<a href="enterprise.html#pricing" class="cta-btn cta-vip">开通全行业会员 299元/年</a>
+<a href="enterprise.html" class="cta-btn cta-enterprise">企业自主入驻</a>
+<a href="order-center.html" class="cta-btn cta-group">学员接单预备群</a>
 </div>
-
+<div class="search-bar" style="margin:16px 0;"><input type="text" id="q" placeholder="搜索全部课程关键词..." oninput="var v=this.value.trim();if(v)window.location.href='workbuddy.html?q='+encodeURIComponent(v)"></div>
+<div style="text-align:center;padding:30px 0;">
 <h2 style="font-size:1.3rem;margin-bottom:20px;">两大教学板块</h2>
 <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-<a href="workbuddy.html" style="flex:1;min-width:280px;max-width:450px;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:white;border-radius:16px;padding:30px;text-decoration:none;">
-<div style="font-size:2rem;margin-bottom:8px;">WorkBuddy</div>
-<div style="font-size:1.1rem;font-weight:700;">WorkBuddy全行业AI办公专区</div>
-<div style="font-size:0.82rem;opacity:0.85;">196集细化教案 | 22大行业 | 知识沟通管理</div>
-</a>
-<a href="codex.html" style="flex:1;min-width:280px;max-width:450px;background:linear-gradient(135deg,#059669,#10b981);color:white;border-radius:16px;padding:30px;text-decoration:none;">
-<div style="font-size:2rem;margin-bottom:8px;">Codex</div>
-<div style="font-size:1.1rem;font-weight:700;">Codex行业编程办公专区</div>
-<div style="font-size:0.82rem;opacity:0.85;">基础2集 + 6大行业实战 | 脚本自动化</div>
-</a>
+<a href="workbuddy.html" style="flex:1;min-width:280px;max-width:450px;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:white;border-radius:16px;padding:30px;text-decoration:none;"><div style="font-size:2rem;margin-bottom:8px;">WorkBuddy</div><div style="font-size:1.1rem;font-weight:700;">WorkBuddy全行业AI办公专区</div><div style="font-size:0.82rem;opacity:0.85;">216集细化教案 | 24大行业 | 知识沟通管理</div></a>
+<a href="codex.html" style="flex:1;min-width:280px;max-width:450px;background:linear-gradient(135deg,#059669,#10b981);color:white;border-radius:16px;padding:30px;text-decoration:none;"><div style="font-size:2rem;margin-bottom:8px;">Codex</div><div style="font-size:1.1rem;font-weight:700;">Codex行业编程办公专区</div><div style="font-size:0.82rem;opacity:0.85;">通用基础 + 行业实战 | 脚本自动化</div></a>
 </div>
 <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px;">
 <a href="ai-universal.html" style="background:var(--card);border:2px solid var(--accent);border-radius:16px;padding:16px 28px;text-decoration:none;color:var(--accent);font-weight:700;">通用AI办公合集</a>
-<a href="art-design.html" style="background:var(--card);border:2px solid #ec4899;border-radius:16px;padding:16px 28px;text-decoration:none;color:#ec4899;font-weight:700;">艺术设计行业</a>
-<a href="craft-tradition.html" style="background:var(--card);border:2px solid #f59e0b;border-radius:16px;padding:16px 28px;text-decoration:none;color:#b45309;font-weight:700;">传统手艺/非遗</a>
+<a href="workbuddy.html?ch=23" style="background:var(--card);border:2px solid #ec4899;border-radius:16px;padding:16px 28px;text-decoration:none;color:#ec4899;font-weight:700;">艺术设计行业</a>
+<a href="workbuddy.html?ch=24" style="background:var(--card);border:2px solid #f59e0b;border-radius:16px;padding:16px 28px;text-decoration:none;color:#b45309;font-weight:700;">传统手艺/非遗</a>
 </div>
 <div style="margin-top:24px;">
 <a href="enterprise.html" style="display:inline-block;background:linear-gradient(135deg,#1e1b4b,#312e81);color:white;border-radius:16px;padding:16px 32px;text-decoration:none;font-weight:700;">企业入驻 & 能力测验</a>
@@ -144,6 +130,8 @@
   <p style="margin-top:6px;font-size:0.72rem;">2026 AI办公学院 - 学完即可接单 - 企业入驻合作：1550449686@qq.com</p>
 </div>
 <a href="enterprise.html" class="float-btn">接单咨询/企业合作</a>
+<script>
 
+</script>
 </body>
 </html>
