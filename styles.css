@@ -153,7 +153,11 @@ body {
   border-radius: 6px;
   padding: 20px;
   text-align: left;
+  text-decoration: none;
+  display: block;
+  transition: border-color 0.15s;
 }
+a.banner-card:hover { border-color: var(--accent); }
 .banner-card .bc-icon { font-size: 1.2rem; margin-bottom: 6px; color: var(--accent); font-weight: 700; }
 .banner-card .bc-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 6px; color: var(--text); }
 .banner-card .bc-desc { font-size: 0.78rem; color: var(--sub); line-height: 1.6; }
