@@ -1,3 +1,59 @@
+
+/* V6.1: Hover and cursor fixes */
+a, button, .card-header, .ep-head, .ch-tabs button, .tag-item, .cta-btn,
+.dropbtn, .at-btn, .wo-btn, .float-btn, .nav-links a {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+a:hover, .nav-links a:hover, .dropdown-content a:hover {
+  color: #4f46e5 !important;
+}
+.card-header:hover {
+  background: #f0f4ff;
+  border-radius: 12px;
+}
+.ep-head:hover {
+  background: #f8faff;
+  border-radius: 8px;
+}
+.ch-tabs button:hover {
+  background: #eef2ff;
+  color: #4f46e5;
+  transform: translateY(-1px);
+}
+.tag-item:hover {
+  background: #eef2ff;
+  border-color: #4f46e5;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  opacity: 0.9;
+}
+.at-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+.wo-btn:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+}
+.float-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79,70,229,0.5);
+}
+.card-toggle {
+  transition: transform 0.3s ease;
+}
+.category-card.collapsed .card-toggle {
+  transform: rotate(-90deg);
+}
+.category-card .ep-list,
+.category-card .order-hint,
+.category-card .ability-test-block {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
 :root { --bg:#f8f9fa; --card:#ffffff; --text:#1a1a2e; --sub:#6c757d; --border:#e9ecef; --accent:#4f46e5; --alight:#eef2ff; --green:#10b981; --gold:#f59e0b; --glight:#fef3c7; }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
