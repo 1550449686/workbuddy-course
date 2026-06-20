@@ -7,198 +7,71 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 
-
-
-  #intro-svg { max-width: 95%; }
-}
-
-
-
-  #intro-svg { max-width: 100%; }
-}
-
-
-
-
-
-@media(max-width:768px){}
-
-
-#sketch-intro{position:fixed;top:0;left:0;width:100%;height:100%;min-height:100vh;background:#0a0a1a;z-index:99999;display:flex;align-items:center;justify-content:center;transition:opacity 0.8s ease;}
-#sketch-intro.hidden{opacity:0;pointer-events:none;}
-#intro-svg{width:100%;height:100%;max-width:100vw;max-height:100vh;}
-@media(max-width:768px){#intro-svg{width:100%;height:auto;}}
-
 </style>
 </head>
 <body>
-<div id="sketch-intro">
-  <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" id="intro-svg">
-    <defs>
-      <radialGradient id="sky" cx="50%" cy="30%">
-        <stop offset="0%" stop-color="#1a1a3e"/>
-        <stop offset="60%" stop-color="#16213e"/>
-        <stop offset="100%" stop-color="#0a0a1a"/>
-      </radialGradient>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="2.5"/>
-        <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-      <filter id="softGlow">
-        <feGaussianBlur stdDeviation="6"/>
-        <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
-
-    <!-- Sky -->
-    <rect width="1200" height="800" fill="url(#sky)"/>
-
-    <!-- Stars - twinkling -->
-    <g filter="url(#glow)">
-      <circle cx="100" cy="60" r="1.8" fill="white"><animate attributeName="opacity" values="0;1;0.3;1;0" dur="3s" repeatCount="indefinite"/></circle>
-      <circle cx="280" cy="40" r="1.2" fill="white"><animate attributeName="opacity" values="0;0;1;0.5;0" dur="2.5s" repeatCount="indefinite" begin="0.5s"/></circle>
-      <circle cx="500" cy="90" r="2" fill="white"><animate attributeName="opacity" values="0;0.8;0.2;0.9;0" dur="3.5s" repeatCount="indefinite" begin="0.3s"/></circle>
-      <circle cx="700" cy="30" r="1.5" fill="white"><animate attributeName="opacity" values="0;0;1;0.3;0" dur="2.8s" repeatCount="indefinite" begin="0.8s"/></circle>
-      <circle cx="880" cy="70" r="1.8" fill="white"><animate attributeName="opacity" values="0;1;0.4;0.8;0" dur="3.2s" repeatCount="indefinite" begin="0.2s"/></circle>
-      <circle cx="1050" cy="50" r="1.3" fill="white"><animate attributeName="opacity" values="0;0;0.8;0.2;0" dur="2.6s" repeatCount="indefinite" begin="1s"/></circle>
-      <circle cx="1150" cy="100" r="1.6" fill="white"><animate attributeName="opacity" values="0;0.6;0;1;0" dur="3s" repeatCount="indefinite" begin="0.6s"/></circle>
-      <circle cx="180" cy="130" r="1.2" fill="white"><animate attributeName="opacity" values="0;0;0.7;0;0" dur="2.2s" repeatCount="indefinite" begin="0.4s"/></circle>
-      <circle cx="650" cy="110" r="1.7" fill="white"><animate attributeName="opacity" values="0;0.5;0;0.9;0" dur="3.3s" repeatCount="indefinite" begin="0.7s"/></circle>
-      <circle cx="950" cy="35" r="1.2" fill="white"><animate attributeName="opacity" values="0;0;1;0;0" dur="2s" repeatCount="indefinite" begin="0.9s"/></circle>
-      <circle cx="400" cy="150" r="1.5" fill="white"><animate attributeName="opacity" values="0;1;0;0.6;0" dur="3.1s" repeatCount="indefinite" begin="0.15s"/></circle>
-      <circle cx="800" cy="140" r="1" fill="white"><animate attributeName="opacity" values="0;0;0.9;0.2;0" dur="2.7s" repeatCount="indefinite" begin="0.55s"/></circle>
-    </g>
-
-    <!-- Moon -->
-    <g filter="url(#softGlow)">
-      <circle cx="900" cy="180" r="70" fill="#fffde7" fill-opacity="0.15"/>
-      <circle cx="900" cy="180" r="40" fill="#fffde7" fill-opacity="0.92"/>
-      <circle cx="887" cy="168" r="7" fill="#f0ebc0" fill-opacity="0.5"/>
-      <circle cx="915" cy="190" r="4" fill="#f0ebc0" fill-opacity="0.4"/>
-      <circle cx="895" cy="198" r="5" fill="#f0ebc0" fill-opacity="0.35"/>
-    </g>
-
-    <!-- Planet -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0.8" dur="1.5s" fill="freeze" begin="0.5s"/>
-      <ellipse cx="250" cy="160" rx="60" ry="16" fill="none" stroke="#a29bfe" stroke-width="1.5" transform="rotate(-18,250,160)"/>
-      <ellipse cx="250" cy="160" rx="60" ry="16" fill="none" stroke="#a29bfe" stroke-width="1" transform="rotate(-18,250,160)" stroke-dasharray="6,4" opacity="0.5"/>
-      <circle cx="250" cy="160" r="30" fill="none" stroke="#6c5ce7" stroke-width="1.8"/>
-      <circle cx="250" cy="160" r="24" fill="#6c5ce7" fill-opacity="0.06"/>
-      <circle cx="242" cy="150" r="6" fill="#6c5ce7" fill-opacity="0.12"/>
-      <circle cx="260" cy="168" r="4" fill="#6c5ce7" fill-opacity="0.1"/>
-    </g>
-
-    <!-- === BOY === -->
-    <g transform="translate(600,430)" opacity="0">
-      <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.4;0.7" dur="2.5s" fill="freeze"/>
-
-      <!-- Shadow under boy -->
-      <ellipse cx="0" cy="65" rx="45" ry="8" fill="#0a0a1a" fill-opacity="0.4"/>
-
-      <!-- Legs (sitting position, bent) -->
-      <path d="M-15,35 Q-25,55 -45,65 Q-55,68 -65,60" fill="none" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round"/>
-      <path d="M15,35 Q25,55 45,65 Q55,68 65,60" fill="none" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round"/>
-      <!-- Shoes -->
-      <ellipse cx="-67" cy="61" rx="10" ry="5" fill="#111"/>
-      <ellipse cx="67" cy="61" rx="10" ry="5" fill="#111"/>
-
-      <!-- Body - blazer -->
-      <path d="M-22,10 Q-25,-20 -15,-45 Q-8,-60 0,-65 Q8,-60 15,-45 Q25,-20 22,10" fill="#2d3436" stroke="#1a1a1a" stroke-width="1.5"/>
-      <!-- White shirt -->
-      <path d="M-8,-25 L0,-18 L8,-25" fill="none" stroke="white" stroke-width="1"/>
-      <path d="M-8,-25 L-12,-32 M8,-25 L12,-32" fill="none" stroke="white" stroke-width="0.8"/>
-      <!-- Necktie -->
-      <path d="M-3,-18 L0,-10 L3,-18" fill="#6c5ce7"/>
-      <rect x="-2.5" y="-10" width="5" height="18" fill="#6c5ce7" rx="1"/>
-
-      <!-- Arms crossed -->
-      <path d="M-20,-15 Q-35,-5 -40,15 Q-38,20 -32,15 Q-22,5 -15,0" fill="none" stroke="#2d3436" stroke-width="5.5" stroke-linecap="round"/>
-      <path d="M20,-15 Q35,-5 40,15 Q38,20 32,15 Q22,5 15,0" fill="none" stroke="#2d3436" stroke-width="5.5" stroke-linecap="round"/>
-
-      <!-- Head -->
-      <circle cx="0" cy="-85" r="20" fill="#fdcb6e" stroke="#1a1a1a" stroke-width="1.5"/>
-      <!-- Messy hair -->
-      <path d="M-20,-90 Q-18,-105 -12,-108 Q-4,-112 4,-108 Q12,-105 18,-98 Q20,-90 19,-85" fill="#2d3436"/>
-      <path d="M-18,-95 Q-14,-100 -8,-98" fill="none" stroke="#1a1a1a" stroke-width="0.6"/>
-
-      <!-- Eyes: melancholic -->
-      <ellipse cx="-8" cy="-82" rx="3" ry="2.5" fill="white" stroke="#1a1a1a" stroke-width="0.7"/>
-      <ellipse cx="8" cy="-82" rx="3" ry="2.5" fill="white" stroke="#1a1a1a" stroke-width="0.7"/>
-      <circle cx="-7" cy="-81.5" r="1.5" fill="#1a1a1a"/>
-      <circle cx="9" cy="-81.5" r="1.5" fill="#1a1a1a"/>
-      <!-- Sad eyebrows -->
-      <line x1="-12" y1="-88" x2="-4" y2="-86.5" stroke="#1a1a1a" stroke-width="0.9"/>
-      <line x1="12" y1="-88" x2="4" y2="-86.5" stroke="#1a1a1a" stroke-width="0.9"/>
-      <!-- Small downturned mouth -->
-      <path d="M-4,-74 Q0,-72 4,-74" fill="none" stroke="#1a1a1a" stroke-width="0.7"/>
-
-      <!-- Round glasses -->
-      <circle cx="-8" cy="-82" r="6.5" fill="none" stroke="#636e72" stroke-width="1"/>
-      <circle cx="8" cy="-82" r="6.5" fill="none" stroke="#636e72" stroke-width="1"/>
-      <line x1="-1.5" y1="-82" x2="1.5" y2="-82" stroke="#636e72" stroke-width="0.7"/>
-      <line x1="-14.5" y1="-83" x2="-18" y2="-86" stroke="#636e72" stroke-width="0.7"/>
-      <line x1="14.5" y1="-83" x2="18" y2="-86" stroke="#636e72" stroke-width="0.7"/>
-    </g>
-
-    <!-- Grass -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.3;0.6" dur="2.5s" fill="freeze"/>
-      <path d="M0,520 Q200,500 400,510 Q600,495 800,520 Q1000,505 1200,525 L1200,800 L0,800 Z" fill="#1a3a0f"/>
-      <path d="M0,540 Q250,525 500,535 Q700,520 900,540 Q1050,530 1200,545 L1200,800 L0,800 Z" fill="#234a15"/>
-      <path d="M0,565 Q300,550 600,560 Q800,545 1200,570 L1200,800 L0,800 Z" fill="#2d6120"/>
-      <!-- Grass blades -->
-      <line x1="80" y1="525" x2="87" y2="502" stroke="#3a7a28" stroke-width="2" stroke-linecap="round"/>
-      <line x1="200" y1="518" x2="208" y2="495" stroke="#3a7a28" stroke-width="1.8" stroke-linecap="round"/>
-      <line x1="350" y1="515" x2="345" y2="490" stroke="#3a7a28" stroke-width="2" stroke-linecap="round"/>
-      <line x1="520" y1="512" x2="525" y2="488" stroke="#4a8a38" stroke-width="1.8" stroke-linecap="round"/>
-      <line x1="700" y1="518" x2="695" y2="494" stroke="#3a7a28" stroke-width="2" stroke-linecap="round"/>
-      <line x1="850" y1="520" x2="858" y2="497" stroke="#4a8a38" stroke-width="1.8" stroke-linecap="round"/>
-      <line x1="1000" y1="522" x2="995" y2="498" stroke="#3a7a28" stroke-width="2" stroke-linecap="round"/>
-      <line x1="1150" y1="527" x2="1158" y2="503" stroke="#4a8a38" stroke-width="1.8" stroke-linecap="round"/>
-    </g>
-
-    <!-- Fireflies -->
-    <g filter="url(#glow)">
-      <circle cx="300" cy="460" r="4" fill="#ffeaa7"><animate attributeName="opacity" values="0;0.8;0.3;0.9;0.2" dur="4s" repeatCount="indefinite" begin="1s"/><animate attributeName="cy" values="460;440;450;430;460" dur="6s" repeatCount="indefinite"/></circle>
-      <circle cx="450" cy="480" r="3.5" fill="#ffeaa7"><animate attributeName="opacity" values="0;0;0.7;0.3;0" dur="3.5s" repeatCount="indefinite" begin="1.5s"/><animate attributeName="cy" values="480;460;470;450;480" dur="5s" repeatCount="indefinite"/></circle>
-      <circle cx="750" cy="470" r="4" fill="#ffeaa7"><animate attributeName="opacity" values="0;0.6;0.2;0.8;0" dur="4.5s" repeatCount="indefinite" begin="0.8s"/><animate attributeName="cy" values="470;450;460;440;470" dur="7s" repeatCount="indefinite"/></circle>
-      <circle cx="850" cy="490" r="3" fill="#ffeaa7"><animate attributeName="opacity" values="0;0;0.9;0.3;0" dur="3s" repeatCount="indefinite" begin="2s"/><animate attributeName="cy" values="490;470;480;460;490" dur="5.5s" repeatCount="indefinite"/></circle>
-      <circle cx="250" cy="500" r="3" fill="#ffeaa7"><animate attributeName="opacity" values="0;0.5;0;0.8;0.1" dur="3.8s" repeatCount="indefinite" begin="1.2s"/></circle>
-      <circle cx="650" cy="450" r="3.5" fill="#ffeaa7"><animate attributeName="opacity" values="0;0;0.6;0.1;0" dur="4s" repeatCount="indefinite" begin="0.5s"/></circle>
-    </g>
-
-    <!-- Butterflies -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;0.7" keyTimes="0;0.5;0.65" dur="5s" fill="freeze"/>
-      <path d="M0,0 Q-7,-14 -4,-22 Q5,-14 0,0 M0,0 Q7,-14 4,-22 Q-5,-14 0,0" fill="#a29bfe" fill-opacity="0.5" stroke="#a29bfe" stroke-width="0.8">
-        <animateTransform attributeName="transform" type="scale" values="1,1;0.4,1.3;1,1" dur="0.3s" repeatCount="indefinite"/>
-        <animateMotion dur="8s" repeatCount="indefinite" path="M150,350 Q300,280 450,320 Q600,360 750,300 Q900,240 1050,320 Q900,400 750,360 Q600,320 450,350 Q300,380 150,350"/>
-      </path>
-    </g>
-
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;0.6" keyTimes="0;0.55;0.7" dur="5s" fill="freeze"/>
-      <path d="M0,0 Q-6,-12 -3,-19 Q4,-12 0,0 M0,0 Q6,-12 3,-19 Q-4,-12 0,0" fill="#00b894" fill-opacity="0.5" stroke="#00b894" stroke-width="0.7">
-        <animateTransform attributeName="transform" type="scale" values="1,1;0.5,1.15;1,1" dur="0.25s" repeatCount="indefinite"/>
-        <animateMotion dur="9s" repeatCount="indefinite" path="M1050,400 Q900,320 750,360 Q600,400 450,340 Q300,280 150,360 Q300,440 450,400 Q600,360 750,400 Q900,440 1050,400"/>
-      </path>
-    </g>
-
-    <!-- "AI学院" title -->
-    <text x="600" y="650" text-anchor="middle" font-size="52" font-family="KaiTi,STKaiti,serif" fill="#a29bfe" fill-opacity="0" letter-spacing="12">
-      <animate attributeName="fill-opacity" values="0;0;0;0;0.85" keyTimes="0;0.55;0.68;0.78;0.88" dur="5s" fill="freeze"/>
-      AI学院
-    </text>
-
-    <!-- Subtitle -->
-    <text x="600" y="695" text-anchor="middle" font-size="15" fill="#636e72" opacity="0" font-family="sans-serif" letter-spacing="8">
-      <animate attributeName="opacity" values="0;0;0;0;0.65" keyTimes="0;0.7;0.8;0.88;0.95" dur="5s" fill="freeze"/>
-      AI全行业岗位办公课程体系
-    </text>
-  </svg>
+<div class="top-nav">
+  <div class="top-nav-inner">
+    <a href="index.html" class="logo">AI办公学院</a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="workbuddy.html" class="accent">WorkBuddy专区</a>
+      <a href="codex.html">Codex编程办公专区</a>
+      <a href="ai-universal.html">通用AI办公合集</a>
+      <div class="dropdown">
+        <button class="dropbtn">全行业课程库 ▼</button>
+        <div class="dropdown-content">
+          <a href="workbuddy.html?ch=0">通用基础入门</a><a href="workbuddy.html?ch=1">教育/培训</a>
+          <a href="workbuddy.html?ch=2">电商/零售</a><a href="workbuddy.html?ch=3">制造业/供应链</a>
+          <a href="workbuddy.html?ch=4">商务/企业服务</a><a href="workbuddy.html?ch=5">IT/科技</a>
+          <a href="workbuddy.html?ch=6">金融/财会</a><a href="workbuddy.html?ch=7">创意/营销</a>
+          <a href="workbuddy.html?ch=8">医疗/卫生</a><a href="workbuddy.html?ch=9">法律/咨询</a>
+          <a href="workbuddy.html?ch=10">新媒体/内容创作</a><a href="workbuddy.html?ch=11">餐饮/酒店</a>
+          <a href="workbuddy.html?ch=12">房地产/建筑</a><a href="workbuddy.html?ch=13">物流/运输</a>
+          <a href="workbuddy.html?ch=14">游戏/娱乐</a><a href="workbuddy.html?ch=15">农业/食品</a>
+          <a href="workbuddy.html?ch=16">政府/公共服务</a><a href="workbuddy.html?ch=17">科研/学术</a>
+          <a href="workbuddy.html?ch=18">Skills开发</a><a href="workbuddy.html?ch=19">Prompt Engineering</a>
+          <a href="workbuddy.html?ch=20">AI工作流自动化</a><a href="workbuddy.html?ch=21">数据分析进阶</a>
+          <a href="workbuddy.html?ch=22">AI安全与合规</a>
+          <a href="workbuddy.html?ch=23">艺术设计行业</a><a href="workbuddy.html?ch=24">传统手艺/非遗</a>
+        </div>
+      </div>
+      <a href="enterprise.html">企业入驻&amp;能力测验</a>
+      <a href="order-center.html">学员接单中心</a>
+      <a href="enterprise.html#pricing">会员/单课购买</a>
+    </div>
+    <div class="nav-search">
+      <input type="text" id="navSearch" placeholder="全局搜索课程..." oninput="applyFilters()">
+    </div>
+  </div>
 </div>
-
+<div class="container">
+<div class="header" id="home">
+  <h1>AI场景化办公全栈教学 | 普通人抹平重复工作差距，学完即可线上/就近接单</h1>
+  <p>WorkBuddy + Codex + 全主流AI办公工具 | 覆盖职场/艺术/传统手艺24大行业</p>
+  <div class="stats">
+    <div class="stat"><div class="num">236+</div><div class="label">总集数</div></div>
+    <div class="stat"><div class="num">26</div><div class="label">教学模块</div></div>
+    <div class="stat"><div class="num">24</div><div class="label">覆盖行业</div></div>
+    <div class="stat"><div class="num">900+</div><div class="label">教学环节</div></div>
+  </div>
+  <div class="banner-cards">
+    <div class="banner-card">
+      <div class="bc-icon">WorkBuddy</div>
+      <div class="bc-title">WorkBuddy完整196集全行业课程</div>
+      <div class="bc-desc">覆盖教育、电商、制造、金融、法律等22大行业，每集含情境导入到概念拆解到分步实操到跟练到课后工单，学完即可上岗接单。</div>
+    </div>
+    <div class="banner-card">
+      <div class="bc-icon">Codex</div>
+      <div class="bc-title">Codex编程办公专区</div>
+      <div class="bc-desc">三大单元24节课：基础自动化 + 行业定制脚本 + WorkBuddy联动实战。聚焦企业批量数据处理、工单自动化，搭配WorkBuddy形成完整AI办公组合。</div>
+    </div>
+    <div class="banner-card">
+      <div class="bc-icon">通用AI</div>
+      <div class="bc-title">通用AI办公合集</div>
+      <div class="bc-desc">基础6节 + 高阶6节共12节课。全品牌AI工具通用落地教程，无工具绑定，通用适配各类办公软件，覆盖跨平台协同与标准化流程。</div>
+    </div>
+  </div>
   <div class="cta-row">
     <a href="index.html" class="cta-btn cta-free">免费试看2集</a>
     <a href="index.html" class="cta-btn cta-vip">开通全行业会员 <span class="price-tag price-299">299元/年</span></a>
@@ -289,22 +162,8 @@
   <p style="margin-top:6px;font-size:0.72rem;">2026 AI办公学院 - 学完即可接单 - 企业入驻合作：1550449686@qq.com</p>
 </div>
 <a href="enterprise.html" class="float-btn">接单咨询/企业合作</a>
-
-
-
 <script>
-(function(){
-  if(sessionStorage.getItem('intro_v3')){
-    var el=document.getElementById('sketch-intro');
-    if(el)el.remove();
-    return;
-  }
-  sessionStorage.setItem('intro_v3','1');
-  setTimeout(function(){
-    var intro=document.getElementById('sketch-intro');
-    if(intro){intro.classList.add('hidden');setTimeout(function(){intro.remove();},800);}
-  },5300);
-})();
+
 </script>
 </body>
 </html>
