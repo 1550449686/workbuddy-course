@@ -300,10 +300,23 @@
   <p style="margin-top:6px;font-size:0.72rem;">2026 AI办公学院 - 学完即可接单 - 企业入驻合作：1550449686@qq.com</p>
 </div>
 <a href="enterprise.html" class="float-btn">接单咨询/企业合作</a>
-<script>
 
-</script>
+
 <script>
+// V8.3: Boy on grass scene intro
+(function(){
+  if(sessionStorage.getItem('intro_played')){
+    var el=document.getElementById('sketch-intro');
+    if(el)el.remove();
+    return;
+  }
+  sessionStorage.setItem('intro_played','1');
+  setTimeout(function(){
+    var intro=document.getElementById('sketch-intro');
+    if(intro){intro.classList.add('hidden');setTimeout(function(){intro.remove();},800);}
+  },5500);
+})();
+
 </script>
 </body>
 </html>
