@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>企业入驻 | AI办公学院</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="top-nav-inner">
+    <a href="index.html" class="logo">AI办公学院</a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="workbuddy.html" class="accent">WorkBuddy专区</a>
+      <a href="codex.html">Codex行业编程办公专区</a>
+      <a href="ai-universal.html">通用AI办公合集</a>
+      <div class="dropdown">
+        <button class="dropbtn">全行业课程库 ▼</button>
+        <div class="dropdown-content">
+          <a href="workbuddy.html?ch=0">通用基础入门</a><a href="workbuddy.html?ch=1">教育/培训</a>
+          <a href="workbuddy.html?ch=2">电商/零售</a><a href="workbuddy.html?ch=3">制造业/供应链</a>
+          <a href="workbuddy.html?ch=4">商务/企业服务</a><a href="workbuddy.html?ch=5">IT/科技</a>
+          <a href="workbuddy.html?ch=6">金融/财会</a><a href="workbuddy.html?ch=7">创意/营销</a>
+          <a href="workbuddy.html?ch=8">医疗/卫生</a><a href="workbuddy.html?ch=9">法律/咨询</a>
+          <a href="workbuddy.html?ch=10">新媒体/内容创作</a><a href="workbuddy.html?ch=11">餐饮/酒店</a>
+          <a href="workbuddy.html?ch=12">房地产/建筑</a><a href="workbuddy.html?ch=13">物流/运输</a>
+          <a href="workbuddy.html?ch=14">游戏/娱乐</a><a href="workbuddy.html?ch=15">农业/食品</a>
+          <a href="workbuddy.html?ch=16">政府/公共服务</a><a href="workbuddy.html?ch=17">科研/学术</a>
+          <a href="workbuddy.html?ch=18">Skills开发</a><a href="workbuddy.html?ch=19">Prompt Engineering</a>
+          <a href="workbuddy.html?ch=20">AI工作流自动化</a><a href="workbuddy.html?ch=21">数据分析进阶</a>
+          <a href="workbuddy.html?ch=22">AI安全与合规</a>
+          <a href="workbuddy.html?ch=23">艺术设计行业</a><a href="workbuddy.html?ch=24">传统手艺/非遗</a>
+        </div>
+      </div>
+      <a href="enterprise.html">企业入驻&amp;能力测验</a>
+      <a href="order-center.html">学员接单中心</a>
+      <a href="enterprise.html#pricing" style="color:#f59e0b;font-weight:700;">会员/单课购买</a>
+    </div>
+    <div class="nav-search">
+      <input type="text" id="navSearch" placeholder="全局搜索课程..." oninput="applyFilters()">
+    </div>
+  </div>
+</div>
+<div class="container">
+<div class="enterprise-section" id="enterprise">
+  <h2>企业入驻 &amp; 能力测验</h2>
+  <div class="enterprise-grid">
+    <div class="enterprise-card">
+      <h4>企业自主上传</h4>
+      <p>企业可自主上传岗位SOP文档、内部教学课程、培训资料，平台自动结构化处理。</p>
+      <ul><li>支持 PDF/Word/PPT/视频 多格式上传</li><li>AI自动提取知识点并生成试题</li><li>自定义企业内部课程体系</li></ul>
+    </div>
+    <div class="enterprise-card">
+      <h4>自定义岗位能力题库</h4>
+      <p>企业可根据岗位需求自定义能力测评题库，筛选合格的学员。</p>
+      <ul><li>多维度能力标签体系</li><li>自定义测评难度和通过标准</li><li>自动评分和报告生成</li></ul>
+    </div>
+    <div class="enterprise-card">
+      <h4>两种发包模式</h4>
+      <p><strong>远程线上工单</strong>：全国范围匹配学员，在线完成工单交付。</p>
+      <p><strong>同城就近线下工单</strong>：按地理位置匹配本地学员，适合需要现场操作的行业（设计/手工艺/餐饮等）。</p>
+    </div>
+    <div class="enterprise-card">
+      <h4>合作套餐报价</h4>
+      <ul>
+        <li><strong>单行业授权包</strong>：9,800元/行业/年 - 含课程+题库+50个工单名额</li>
+        <li><strong>全平台年度会员包</strong>：29,800元/年 - 全部24行业课程+无限题库+200工单名额</li>
+        <li><strong>企业定制内训包</strong>：面议 - 定制课程+专属智能体+驻场培训</li>
+      </ul>
+    </div>
+    <div class="enterprise-card">
+      <h4>合作案例展示</h4>
+      <p style="color:#a5b4fc;">[ 案例展示区域预留 ]</p>
+      <p>成功合作企业案例将在此展示：企业名称 / 合作内容 / 学员承接工单数 / 满意度评价</p>
+    </div>
+    <div class="enterprise-card" id="order-center">
+      <h4>学员接单中心</h4>
+      <p>完成课程学习和能力测验后，学员可在此浏览和承接企业发布的工单。</p>
+      <ul><li>按行业/区域/难度筛选工单</li><li>在线提交接单申请和交付物</li><li>积累接单评分和信用等级</li></ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div style="background:var(--card); border-radius:14px; padding:30px; margin:30px 0; text-align:center; border:1px solid var(--border);" id="pricing">
+  <h3 style="font-size:1.3rem; margin-bottom:20px;">课程定价</h3>
+  <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+    <div style="background:#f8faff; border:2px solid #4f46e5; border-radius:14px; padding:20px; width:200px;">
+      <div style="font-size:1.8rem; font-weight:800; color:#4f46e5;">99元</div>
+      <div style="font-size:0.85rem; color:var(--sub);">单课购买</div>
+      <div style="font-size:0.72rem; color:var(--sub); margin-top:6px;">按需选购，永久回看</div>
+    </div>
+    <div style="background:linear-gradient(135deg,#fef3c7,#fffbeb); border:2px solid #f59e0b; border-radius:14px; padding:20px; width:220px; transform:scale(1.05);">
+      <div style="font-size:0.7rem; color:#b45309; font-weight:700;">推荐</div>
+      <div style="font-size:1.8rem; font-weight:800; color:#b45309;">299元</div>
+      <div style="font-size:0.85rem; color:#92400e; font-weight:600;">全行业年会员</div>
+      <div style="font-size:0.72rem; color:#92400e; margin-top:6px;">236集任意学+接单资质</div>
+    </div>
+    <div style="background:#f0fdf4; border:2px solid #10b981; border-radius:14px; padding:20px; width:200px;">
+      <div style="font-size:1.8rem; font-weight:800; color:#065f46;">面议</div>
+      <div style="font-size:0.85rem; color:var(--sub);">企业定制内训包</div>
+      <div style="font-size:0.72rem; color:var(--sub); margin-top:6px;">定制课程+智能体</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="footer-enhanced">
+  <div class="footer-path">学习AI场景课程 到 完成行业能力测验 到 线上远程接单/同城就近线下接单 到 长期行业职场协作生态</div>
+  <p style="margin-top:10px;">WorkBuddy 精细化教案 V5.1 | 236集+ | WorkBuddy 24行业 + Codex 22行业 | Codex + 通用AI工具合集</p>
+  <p style="margin-top:6px;font-size:0.72rem;">2026 AI办公学院 - 学完即可接单 - 企业入驻合作：1550449686@qq.com</p>
+</div>
+<a href="enterprise.html" class="float-btn">接单咨询/企业合作</a>
+
+</body>
+</html>
