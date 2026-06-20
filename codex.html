@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex专区 | AI办公学院</title>
+<style>
+
+  :root { --bg:#f8f9fa; --card:#ffffff; --text:#1a1a2e; --sub:#6c757d; --border:#e9ecef; --accent:#4f46e5; --alight:#eef2ff; --green:#10b981; --gold:#f59e0b; --glight:#fef3c7; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  .container { max-width:1200px; margin:0 auto; padding:30px 20px; }
+  .header { text-align:center; padding:50px 20px; background:linear-gradient(135deg,#4f46e5,#7c3aed,#a855f7); color:white; border-radius:20px; margin-bottom:30px; }
+  .header h1 { font-size:2.2rem; font-weight:800; margin-bottom:8px; }
+  .header p { opacity:0.9; }
+  .header .stats { display:flex; justify-content:center; gap:36px; margin-top:20px; flex-wrap:wrap; }
+  .header .stat { text-align:center; }
+  .header .stat .num { font-size:1.8rem; font-weight:800; }
+  .header .stat .label { font-size:0.85rem; opacity:0.8; }
+
+  .search-bar { display:flex; gap:10px; margin-bottom:24px; flex-wrap:wrap; }
+  .search-bar input { flex:1; min-width:200px; padding:12px 16px; border:2px solid var(--border); border-radius:12px; font-size:0.95rem; outline:none; }
+  .search-bar input:focus { border-color:var(--accent); }
+  .search-bar select { padding:12px 16px; border:2px solid var(--border); border-radius:12px; font-size:0.95rem; background:white; }
+
+  .ch-tabs { display:flex; gap:5px; margin-bottom:24px; flex-wrap:wrap; }
+  .ch-tabs button { padding:7px 12px; border:none; border-radius:20px; cursor:pointer; font-size:0.8rem; background:#f1f5f9; color:var(--sub); white-space:nowrap; }
+  .ch-tabs button:hover { background:var(--alight); color:var(--accent); }
+  .ch-tabs button.active { background:var(--accent); color:white; }
+
+  .toc { background:var(--card); border-radius:14px; padding:24px; border:1px solid var(--border); margin-bottom:30px; overflow-x:auto; }
+  .toc h3 { font-size:1.2rem; margin-bottom:14px; }
+  .toc table { width:100%; border-collapse:collapse; }
+  .toc th { text-align:left; padding:8px 10px; border-bottom:2px solid var(--border); font-size:0.82rem; color:var(--sub); }
+  .toc td { padding:8px 10px; border-bottom:1px solid var(--border); font-size:0.88rem; }
+
+  .category-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(480px,1fr)); gap:16px; }
+  .category-card { background:var(--card); border-radius:14px; padding:20px; border:1px solid var(--border); }
+  .category-card.hidden { display:none; }
+  .card-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .card-emoji { font-size:1.8rem; }
+  .card-title { font-size:1.15rem; font-weight:700; }
+  .card-sub { font-size:0.82rem; color:var(--sub); }
+
+  .ep-list { list-style:none; }
+  .ep-item { border-radius:8px; margin-bottom:6px; border:1px solid var(--border); }
+  .ep-item.hidden { display:none; }
+  .ep-head { display:flex; align-items:center; gap:8px; padding:10px 12px; cursor:pointer; user-select:none; border-radius:8px; }
+  .ep-head:hover { background:#f8faff; }
+  .ep-num { font-weight:700; font-size:0.82rem; color:var(--accent); min-width:42px; }
+  .ep-info { flex:1; min-width:0; }
+  .ep-title { font-weight:600; font-size:0.9rem; }
+  .ep-meta { font-size:0.75rem; color:var(--sub); }
+  .ep-arr { font-size:0.7rem; color:var(--sub); transition:transform 0.2s; }
+  .ep-item.open .ep-arr { transform:rotate(180deg); }
+  .ep-body { display:none; padding:0 12px 12px; }
+  .ep-item.open .ep-body { display:block; }
+  .ep-body .seg { margin-top:8px; }
+  .ep-body .sn { font-weight:600; font-size:0.82rem; color:#5b21b6; }
+  .ep-body .sc { font-size:0.8rem; color:var(--sub); line-height:1.55; margin-top:2px; }
+
+  .info { font-size:0.85rem; color:var(--sub); margin-bottom:16px; }
+  .footer { text-align:center; padding:30px; color:var(--sub); font-size:0.82rem; }
+  @media(max-width:768px){ .header h1{font-size:1.4rem;} .category-grid{grid-template-columns:1fr;} }
+
+  .top-nav { background:#1a1a2e; color:white; position:sticky; top:0; z-index:1000; box-shadow:0 2px 12px rgba(0,0,0,0.15); }
+  .top-nav-inner { max-width:1300px; margin:0 auto; display:flex; align-items:center; padding:0 20px; height:56px; gap:6px; }
+  .top-nav .logo { font-weight:800; font-size:1.1rem; white-space:nowrap; color:#a5b4fc; margin-right:8px; text-decoration:none; }
+  .top-nav .nav-links { display:flex; align-items:center; gap:2px; flex-wrap:wrap; flex:1; }
+  .top-nav .nav-links a, .top-nav .dropbtn { color:#e0e0e0; text-decoration:none; font-size:0.78rem; padding:8px 8px; border-radius:6px; white-space:nowrap; transition:all 0.2s; cursor:pointer; border:none; background:none; font-family:inherit; }
+  .top-nav .nav-links a:hover, .top-nav .dropbtn:hover { background:#2d2d4a; color:white; }
+  .top-nav .nav-links a.accent { background:#4f46e5; color:white; font-weight:600; }
+  .top-nav .nav-search { margin-left:auto; }
+  .top-nav .nav-search input { padding:6px 12px; border-radius:16px; border:none; font-size:0.8rem; width:150px; background:#2d2d4a; color:white; outline:none; }
+  .top-nav .nav-search input::placeholder { color:#888; }
+  .dropdown { position:relative; display:inline-block; }
+  .dropdown-content { display:none; position:absolute; top:100%; left:0; background:#252540; min-width:320px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.3); z-index:1001; padding:10px 0; columns:2; }
+  .dropdown:hover .dropdown-content { display:block; }
+  .dropdown-content a { display:block; padding:7px 16px; font-size:0.76rem; color:#ccc; text-decoration:none; break-inside:avoid; }
+  .dropdown-content a:hover { background:#3d3d5c; color:white; }
+  @media(max-width:768px){ .top-nav-inner{flex-wrap:wrap;height:auto;padding:8px 10px;} }
+  .banner-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
+  .banner-card { background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:left; backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.18); }
+  .banner-card .bc-icon { font-size:1.6rem; margin-bottom:4px; }
+  .banner-card .bc-title { font-weight:700; font-size:0.95rem; margin-bottom:4px; }
+  .banner-card .bc-desc { font-size:0.78rem; opacity:0.85; line-height:1.5; }
+  @media(max-width:768px){ .banner-cards{grid-template-columns:1fr;} }
+  .cta-row { display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; justify-content:center; }
+  .cta-btn { display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:22px; font-weight:700; font-size:0.85rem; text-decoration:none; transition:all 0.2s; border:none; cursor:pointer; }
+  .cta-free { background:white; color:#4f46e5; }
+  .cta-vip { background:#f59e0b; color:white; }
+  .cta-enterprise { background:#10b981; color:white; }
+  .cta-group { background:#ec4899; color:white; }
+  .cta-btn:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.2); }
+  .section-divider { text-align:center; padding:40px 0 20px; }
+  .section-divider h2 { font-size:1.6rem; color:var(--accent); }
+  .section-divider p { font-size:0.88rem; color:var(--sub); margin-top:6px; }
+  .work-order-block { background:linear-gradient(135deg,#fef3c7,#fef9e7); border:2px dashed #f59e0b; border-radius:12px; padding:16px; margin-top:12px; }
+  .work-order-block .wo-title { font-weight:700; color:#b45309; font-size:0.88rem; margin-bottom:6px; }
+  .work-order-block .wo-desc { font-size:0.78rem; color:#92400e; line-height:1.5; }
+  .work-order-block .wo-btn { display:inline-block; margin-top:8px; padding:6px 14px; background:#f59e0b; color:white; border-radius:14px; font-size:0.78rem; font-weight:600; text-decoration:none; }
+  .ability-test-block { background:linear-gradient(135deg,#eef2ff,#f5f3ff); border:2px solid #4f46e5; border-radius:12px; padding:16px; margin-top:16px; }
+  .ability-test-block .at-title { font-weight:700; color:#3730a3; font-size:0.9rem; margin-bottom:6px; }
+  .ability-test-block .at-desc { font-size:0.78rem; color:#4338ca; line-height:1.5; }
+  .ability-test-block .at-btns { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+  .at-btn { padding:7px 16px; border-radius:18px; font-size:0.8rem; font-weight:600; text-decoration:none; border:none; cursor:pointer; }
+  .at-btn-free { background:#4f46e5; color:white; }
+  .at-btn-pro { background:#7c3aed; color:white; }
+  .price-tag { display:inline-block; padding:3px 10px; border-radius:10px; font-size:0.72rem; font-weight:700; }
+  .price-299 { background:#fef3c7; color:#b45309; }
+  .tag-bar { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+  .tag-item { padding:6px 14px; border-radius:16px; font-size:0.78rem; cursor:pointer; border:1px solid var(--border); background:white; }
+  .tag-item.active { background:var(--accent); color:white; border-color:var(--accent); }
+  .tag-local { background:#10b981; color:white; border-color:#10b981; font-weight:600; }
+  .order-hint { font-size:0.7rem; color:#059669; margin-top:4px; font-style:italic; }
+  .float-btn { position:fixed; right:16px; bottom:24px; background:linear-gradient(135deg,#4f46e5,#7c3aed); color:white; padding:12px 18px; border-radius:24px; font-size:0.82rem; font-weight:700; box-shadow:0 4px 16px rgba(79,70,229,0.4); cursor:pointer; z-index:999; text-decoration:none; white-space:nowrap; transition:transform 0.2s; }
+  .float-btn:hover { transform:translateY(-2px); }
+  .enterprise-section { background:linear-gradient(135deg,#1e1b4b,#312e81,#3730a3); color:white; border-radius:20px; padding:40px; margin:30px 0; }
+  .enterprise-section h2 { font-size:1.5rem; margin-bottom:20px; }
+  .enterprise-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
+  .enterprise-card { background:rgba(255,255,255,0.08); border-radius:12px; padding:20px; border:1px solid rgba(255,255,255,0.12); }
+  .enterprise-card h4 { font-size:1rem; margin-bottom:8px; }
+  .enterprise-card p, .enterprise-card li { font-size:0.82rem; opacity:0.85; line-height:1.6; }
+  .enterprise-card ul { padding-left:16px; }
+  .footer-enhanced { background:#1a1a2e; color:#aaa; text-align:center; padding:36px 20px; margin-top:30px; border-radius:14px; font-size:0.82rem; line-height:1.8; }
+  .footer-enhanced .footer-path { color:#a5b4fc; font-weight:600; font-size:0.9rem; margin:10px 0; }
+
+
+
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="top-nav-inner">
+    <a href="index.html" class="logo">AI办公学院</a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="workbuddy.html" class="accent">WorkBuddy专区</a>
+      <a href="codex.html">Codex行业编程办公专区</a>
+      <a href="general-ai.html">通用AI办公合集</a>
+      <div class="dropdown">
+        <button class="dropbtn">全行业课程库 ▼</button>
+        <div class="dropdown-content">
+          <a href="workbuddy.html?ch=0">通用基础入门</a><a href="workbuddy.html?ch=1">教育/培训</a>
+          <a href="workbuddy.html?ch=2">电商/零售</a><a href="workbuddy.html?ch=3">制造业/供应链</a>
+          <a href="workbuddy.html?ch=4">商务/企业服务</a><a href="workbuddy.html?ch=5">IT/科技</a>
+          <a href="workbuddy.html?ch=6">金融/财会</a><a href="workbuddy.html?ch=7">创意/营销</a>
+          <a href="workbuddy.html?ch=8">医疗/卫生</a><a href="workbuddy.html?ch=9">法律/咨询</a>
+          <a href="workbuddy.html?ch=10">新媒体/内容创作</a><a href="workbuddy.html?ch=11">餐饮/酒店</a>
+          <a href="workbuddy.html?ch=12">房地产/建筑</a><a href="workbuddy.html?ch=13">物流/运输</a>
+          <a href="workbuddy.html?ch=14">游戏/娱乐</a><a href="workbuddy.html?ch=15">农业/食品</a>
+          <a href="workbuddy.html?ch=16">政府/公共服务</a><a href="workbuddy.html?ch=17">科研/学术</a>
+          <a href="workbuddy.html?ch=18">Skills开发</a><a href="workbuddy.html?ch=19">Prompt Engineering</a>
+          <a href="workbuddy.html?ch=20">AI工作流自动化</a><a href="workbuddy.html?ch=21">数据分析进阶</a>
+          <a href="workbuddy.html?ch=22">AI安全与合规</a>
+          <a href="workbuddy.html?ch=23">艺术设计行业</a><a href="workbuddy.html?ch=24">传统手艺/非遗</a>
+        </div>
+      </div>
+<div class="container">
+<div style="padding:20px 0;"><div class="section-divider" id="codex-section">
+  <h2>Codex编程办公专区</h2>
+  <p style="font-size:0.9rem;color:var(--sub);">同一行业，不同工具——Codex用脚本和自动化解决WorkBuddy不擅长的批量处理/数据运算/系统对接场景</p>
+  <p style="font-size:0.78rem;color:var(--sub);margin-top:4px;">已上线：通用基础2集 + 6大核心行业实战 | 更多行业持续开发中</p>
+</div>
+<div class="category-grid">
+    <div class="category-card" data-ch="27">
+      <div class="card-header">
+        <div class="card-emoji">Codex</div>
+        <div><div class="card-title">Codex通用基础</div><div class="card-sub">Codex核心能力 . 共2集</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="27" data-ep="1" data-search="Codex核心指令与Python自动化基础 Codex通用基础 教学环节1：情境导入——学一个工具打通所有行业自动化（1.5分钟）
+设计意图：展示Codex区别于WorkBuddy的核心价值——不是对话式AI，而是编程执行引擎。
+核心理念：WorkBuddy帮你「聊」，Codex帮你「做」。聊可以产生方案，做可以直接交付结果。
+
+教学环节2：Codex核心能力体系（4分钟）
+知识内容：文件读写(Read/Write/Edit)可处理txt/csv/json/xlsx/pdf/md、Bash命令执行(pip/npm/git/系统操作)、Python脚本引擎(pandas/matplotlib/requests)、网络API调用(WebFetch/WebSearch)。
+实操指令：用Codex读取桌面任意Excel文件→显示前10行→计算每列统计摘要→保存为新CSV。
+
+教学环节3：Python自动化入门实战（5分钟）
+实操指令：写一个脚本读取data.csv→按部门分组→计算平均工资→输出reports/部门薪酬分析.xlsx。创建自动化脚本模板库：数据清洗模板/格式转换模板/报表生成模板。
+
+教学环节4：学员跟练（2.5分钟）
+实操指令：在Codex中完成以下任务：创建项目文件夹结构→写Python脚本读取示例数据→处理并输出结果→用Bash验证输出文件。
+
+教学环节5：总结与课后工单（1分钟）
+学员收获：掌握Codex四大核心能力、能够独立完成Python自动化脚本编写、建立个人代码模板库。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">27-1</span>
+            <div class="ep-info"><div class="ep-title">Codex核心指令与Python自动化基础</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——学一个工具打通所有行业自动化（1.5分钟）</div><div class="sc">设计意图：展示Codex区别于WorkBuddy的核心价值——不是对话式AI，而是编程执行引擎。
+核心理念：WorkBuddy帮你「聊」，Codex帮你「做」。聊可以产生方案，做可以直接交付结果。</div></div><div class="seg"><div class="sn">教学环节2：Codex核心能力体系（4分钟）</div><div class="sc">知识内容：文件读写(Read/Write/Edit)可处理txt/csv/json/xlsx/pdf/md、Bash命令执行(pip/npm/git/系统操作)、Python脚本引擎(pandas/matplotlib/requests)、网络API调用(WebFetch/WebSearch)。
+实操指令：用Codex读取桌面任意Excel文件→显示前10行→计算每列统计摘要→保存为新CSV。</div></div><div class="seg"><div class="sn">教学环节3：Python自动化入门实战（5分钟）</div><div class="sc">实操指令：写一个脚本读取data.csv→按部门分组→计算平均工资→输出reports/部门薪酬分析.xlsx。创建自动化脚本模板库：数据清洗模板/格式转换模板/报表生成模板。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（2.5分钟）</div><div class="sc">实操指令：在Codex中完成以下任务：创建项目文件夹结构→写Python脚本读取示例数据→处理并输出结果→用Bash验证输出文件。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（1分钟）</div><div class="sc">学员收获：掌握Codex四大核心能力、能够独立完成Python自动化脚本编写、建立个人代码模板库。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+<li class="ep-item" data-ch="27" data-ep="2" data-search="Codex行业脚本库搭建与复用方法论 Codex通用基础 教学环节1：情境导入——每个行业都需要自动化，但脚本不用从零写（1分钟）
+设计意图：建立「行业脚本资产」概念——每个行业有标准化的数据处理模式，提前建立脚本库可以快速复用。
+
+教学环节2：行业通用脚本模式（3.5分钟）
+知识内容：数据清洗脚本(去重/填空/格式标准化)、报表生成脚本(数据→图表→文档)、数据同步脚本(多平台/多格式互转)、监控预警脚本(阈值检测→通知推送)。
+实操指令：建立一个脚本模板文件夹codex_scripts/，包含上述四类模板的骨架代码。
+
+教学环节3：脚本参数化与配置驱动（4分钟）
+实操指令：将上一集的通用脚本改造为参数化：读取config.json→根据行业参数自动选择处理逻辑→输出定制化结果。
+
+教学环节4：学员跟练（3.5分钟）
+实操指令：为你的行业创建专用脚本库：分析日常工作→识别可自动化环节→编写脚本模板→建立参数配置文件。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握行业脚本库的搭建方法、理解参数化配置驱动的设计模式、能够为任意行业快速搭建自动化工具集。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">27-2</span>
+            <div class="ep-info"><div class="ep-title">Codex行业脚本库搭建与复用方法论</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——每个行业都需要自动化，但脚本不用从零写（1分钟）</div><div class="sc">设计意图：建立「行业脚本资产」概念——每个行业有标准化的数据处理模式，提前建立脚本库可以快速复用。</div></div><div class="seg"><div class="sn">教学环节2：行业通用脚本模式（3.5分钟）</div><div class="sc">知识内容：数据清洗脚本(去重/填空/格式标准化)、报表生成脚本(数据→图表→文档)、数据同步脚本(多平台/多格式互转)、监控预警脚本(阈值检测→通知推送)。
+实操指令：建立一个脚本模板文件夹codex_scripts/，包含上述四类模板的骨架代码。</div></div><div class="seg"><div class="sn">教学环节3：脚本参数化与配置驱动（4分钟）</div><div class="sc">实操指令：将上一集的通用脚本改造为参数化：读取config.json→根据行业参数自动选择处理逻辑→输出定制化结果。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3.5分钟）</div><div class="sc">实操指令：为你的行业创建专用脚本库：分析日常工作→识别可自动化环节→编写脚本模板→建立参数配置文件。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握行业脚本库的搭建方法、理解参数化配置驱动的设计模式、能够为任意行业快速搭建自动化工具集。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+    </div>
+    <div class="category-card" data-ch="28">
+      <div class="card-header">
+        <div class="card-emoji">教育</div>
+        <div><div class="card-title">教育行业Codex实战：学生成绩批量分析与教务报表自动化</div><div class="card-sub">Codex行业实战 . 共1集</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="28" data-ep="1" data-search="教育行业Codex实战：学生成绩批量分析与教务报表自动化 教育Codex 教学环节1：情境导入——一位教师每学期末要处理多少数据（1.5分钟）
+设计意图：用量化数据说明教育行业的数据处理痛点——50个学生×8科成绩×2次考试=800个数据点，手动整理需要一天。
+WorkBuddy能帮你：写教学方案、出题、批改作文。但批量处理500份成绩表、计算平均分排名、生成个性化成绩单——这些需要Codex。
+
+教学环节2：成绩数据标准化处理（4分钟）
+知识内容：多班级成绩表合并（不同格式统一为标准化DataFrame）、缺失数据处理（缺考/缓考标记）、异常分数检测（&gt;满分或&lt;0）。
+实操指令：读取3个班级的成绩表格→统一列名→合并为总表→检测异常→输出标准化成绩总表。用Codex写一个成绩分析脚本：按班级/科目/性别分组统计→计算平均分/中位数/标准差/及格率/优秀率→生成带格式的成绩分析报告Excel。
+
+教学环节3：个性化成绩单批量生成（4分钟）
+实操指令：用Codex写脚本批量生成个性化成绩单：读取标准化成绩表→为每个学生生成单独的成绩单PDF/Word→包含各科成绩/班级排名/进退步趋势→添加教师个性化评语模板→一键输出50份成绩单。
+
+教学环节4：学员跟练（3分钟）
+实操指令：使用提供的示例成绩数据(students_scores.xlsx，含3班100人)，完成：合并标准化→描述统计→生成个性化成绩单模板。
+
+教学环节5：总结与课后工单（1.5分钟）
+学员收获：掌握教育行业成绩数据的自动化处理全流程、能够用Codex替代教务系统的大部分手动操作、建立可复用的成绩分析脚本库。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">28-1</span>
+            <div class="ep-info"><div class="ep-title">教育行业Codex实战：学生成绩批量分析与教务报表自动化</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——一位教师每学期末要处理多少数据（1.5分钟）</div><div class="sc">设计意图：用量化数据说明教育行业的数据处理痛点——50个学生×8科成绩×2次考试=800个数据点，手动整理需要一天。
+WorkBuddy能帮你：写教学方案、出题、批改作文。但批量处理500份成绩表、计算平均分排名、生成个性化成绩单——这些需要Codex。</div></div><div class="seg"><div class="sn">教学环节2：成绩数据标准化处理（4分钟）</div><div class="sc">知识内容：多班级成绩表合并（不同格式统一为标准化DataFrame）、缺失数据处理（缺考/缓考标记）、异常分数检测（&gt;满分或&lt;0）。
+实操指令：读取3个班级的成绩表格→统一列名→合并为总表→检测异常→输出标准化成绩总表。用Codex写一个成绩分析脚本：按班级/科目/性别分组统计→计算平均分/中位数/标准差/及格率/优秀率→生成带格式的成绩分析报告Excel。</div></div><div class="seg"><div class="sn">教学环节3：个性化成绩单批量生成（4分钟）</div><div class="sc">实操指令：用Codex写脚本批量生成个性化成绩单：读取标准化成绩表→为每个学生生成单独的成绩单PDF/Word→包含各科成绩/班级排名/进退步趋势→添加教师个性化评语模板→一键输出50份成绩单。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：使用提供的示例成绩数据(students_scores.xlsx，含3班100人)，完成：合并标准化→描述统计→生成个性化成绩单模板。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（1.5分钟）</div><div class="sc">学员收获：掌握教育行业成绩数据的自动化处理全流程、能够用Codex替代教务系统的大部分手动操作、建立可复用的成绩分析脚本库。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+    </div>
+    <div class="category-card" data-ch="29">
+      <div class="card-header">
+        <div class="card-emoji">电商</div>
+        <div><div class="card-title">电商行业Codex实战：多平台订单自动汇总与库存预警系统</div><div class="card-sub">Codex行业实战 . 共1集</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="29" data-ep="1" data-search="电商行业Codex实战：多平台订单自动汇总与库存预警系统 电商Codex 教学环节1：情境导入——运营每天手动从5个平台导出订单是什么体验（1.5分钟）
+设计意图：展示电商运营的典型重复工作——淘宝/京东/拼多多/抖音/微信5个后台每天导出订单→手动整理→分发给仓库→更新库存。
+WorkBuddy帮你：写商品文案、生成详情页、回复客户。Codex帮你：自动汇总订单、库存预警、价格监控。
+
+教学环节2：多平台订单自动汇总（4.5分钟）
+知识内容：各平台订单导出格式差异分析（字段名映射/日期格式/金额格式）、CSV批量合并与去重、订单状态分类汇总。
+实操指令：用Codex写一个订单汇总脚本：读取5个平台的订单CSV→自动识别平台→字段标准化(平台名/订单号/商品/SKU/数量/金额/收件人/状态)→合并去重→按商品汇总→输出统一的日订单汇总表。
+
+教学环节3：库存自动扣减与预警（4分钟）
+实操指令：基于汇总订单→自动扣减库存表→低库存自动标红→生成采购建议清单。写一个价格监控脚本：每日抓取竞品价格→对比自家定价→价格异常自动预警→生成调价建议。
+
+教学环节4：学员跟练（3分钟）
+实操指令：使用提供的模拟数据(3平台×30订单)，完成：订单合并标准化→库存扣减→低库存预警报告。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握电商多平台订单的自动化处理方案、能够搭建库存预警和价格监控系统、理解电商数据中台的基本架构。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">29-1</span>
+            <div class="ep-info"><div class="ep-title">电商行业Codex实战：多平台订单自动汇总与库存预警系统</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——运营每天手动从5个平台导出订单是什么体验（1.5分钟）</div><div class="sc">设计意图：展示电商运营的典型重复工作——淘宝/京东/拼多多/抖音/微信5个后台每天导出订单→手动整理→分发给仓库→更新库存。
+WorkBuddy帮你：写商品文案、生成详情页、回复客户。Codex帮你：自动汇总订单、库存预警、价格监控。</div></div><div class="seg"><div class="sn">教学环节2：多平台订单自动汇总（4.5分钟）</div><div class="sc">知识内容：各平台订单导出格式差异分析（字段名映射/日期格式/金额格式）、CSV批量合并与去重、订单状态分类汇总。
+实操指令：用Codex写一个订单汇总脚本：读取5个平台的订单CSV→自动识别平台→字段标准化(平台名/订单号/商品/SKU/数量/金额/收件人/状态)→合并去重→按商品汇总→输出统一的日订单汇总表。</div></div><div class="seg"><div class="sn">教学环节3：库存自动扣减与预警（4分钟）</div><div class="sc">实操指令：基于汇总订单→自动扣减库存表→低库存自动标红→生成采购建议清单。写一个价格监控脚本：每日抓取竞品价格→对比自家定价→价格异常自动预警→生成调价建议。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：使用提供的模拟数据(3平台×30订单)，完成：订单合并标准化→库存扣减→低库存预警报告。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握电商多平台订单的自动化处理方案、能够搭建库存预警和价格监控系统、理解电商数据中台的基本架构。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+    </div>
+    <div class="category-card" data-ch="30">
+      <div class="card-header">
+        <div class="card-emoji">制造</div>
+        <div><div class="card-title">制造业Codex实战：生产工单自动排程与物料需求计算</div><div class="card-sub">Codex行业实战 . 共1集</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="30" data-ep="1" data-search="制造业Codex实战：生产工单自动排程与物料需求计算 制造Codex 教学环节1：情境导入——工厂排程员的Excel能复杂到什么程度（1.5分钟）
+设计意图：展示制造业排程的复杂度——多产品/多产线/多工序/物料约束/交期约束，一张排程表可能跨30列×500行。
+WorkBuddy帮你：写工艺文件、整理SOP、生成质检报告。Codex帮你：自动排程、物料BOM展开、产能分析。
+
+教学环节2：订单驱动的自动排程（4.5分钟）
+知识内容：排程核心要素（产品/数量/交期/产线能力/工序顺序/工时）、贪心排程算法（按交期排序→按产线分配→检查产能→调整溢出）。
+实操指令：用Codex写一个生产排程脚本：读取销售订单表→展开每个产品的工序路径→按交期优先级排序→分配产线时间槽→检查产能冲突→调整→输出甘特图式排程表。
+
+教学环节3：物料需求自动计算（4分钟）
+实操指令：基于排程结果→读取BOM表→逐层展开物料需求→汇总相同物料→对比库存→生成采购建议清单。写一个BOM管理脚本：从产品BOM Excel自动构建树状结构→支持修改和版本管理→一键导出物料汇总。
+
+教学环节4：学员跟练（3分钟）
+实操指令：使用提供的模拟数据(5产品×5产线×15道工序)，完成：排程计算→物料需求展开→输出排程表和采购清单。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握制造业排程和物料计算的自动化方法、理解ERP/MES系统的核心逻辑、能够为中小工厂搭建轻量级排程工具。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">30-1</span>
+            <div class="ep-info"><div class="ep-title">制造业Codex实战：生产工单自动排程与物料需求计算</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——工厂排程员的Excel能复杂到什么程度（1.5分钟）</div><div class="sc">设计意图：展示制造业排程的复杂度——多产品/多产线/多工序/物料约束/交期约束，一张排程表可能跨30列×500行。
+WorkBuddy帮你：写工艺文件、整理SOP、生成质检报告。Codex帮你：自动排程、物料BOM展开、产能分析。</div></div><div class="seg"><div class="sn">教学环节2：订单驱动的自动排程（4.5分钟）</div><div class="sc">知识内容：排程核心要素（产品/数量/交期/产线能力/工序顺序/工时）、贪心排程算法（按交期排序→按产线分配→检查产能→调整溢出）。
+实操指令：用Codex写一个生产排程脚本：读取销售订单表→展开每个产品的工序路径→按交期优先级排序→分配产线时间槽→检查产能冲突→调整→输出甘特图式排程表。</div></div><div class="seg"><div class="sn">教学环节3：物料需求自动计算（4分钟）</div><div class="sc">实操指令：基于排程结果→读取BOM表→逐层展开物料需求→汇总相同物料→对比库存→生成采购建议清单。写一个BOM管理脚本：从产品BOM Excel自动构建树状结构→支持修改和版本管理→一键导出物料汇总。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：使用提供的模拟数据(5产品×5产线×15道工序)，完成：排程计算→物料需求展开→输出排程表和采购清单。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握制造业排程和物料计算的自动化方法、理解ERP/MES系统的核心逻辑、能够为中小工厂搭建轻量级排程工具。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+    </div>
+    <div class="category-card" data-ch="31">
+      <div class="card-header">
+        <div class="card-emoji">IT</div>
+        <div><div class="card-title">IT行业Codex实战：服务器日志自动分析与部署流水线</div><div class="card-sub">Codex行业实战 . 共1集</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="31" data-ep="1" data-search="IT行业Codex实战：服务器日志自动分析与部署流水线 IT Codex 教学环节1：情境导入——运维工程师的日常：盯着日志找Bug（1.5分钟）
+设计意图：展示IT运维的重复性痛点——每天查看几十个服务器的日志、手动重启异常服务、重复的部署操作。
+WorkBuddy帮你：写技术文档、生成API说明、整理Code Review意见。Codex帮你：自动化日志分析、自动部署脚本、监控告警。
+
+教学环节2：日志自动解析与异常检测（4.5分钟）
+知识内容：常见日志格式（Apache/Nginx/应用日志/系统日志）、正则表达式提取关键字段、异常模式识别（错误率突增/响应时间飙升/磁盘满/内存泄漏）。
+实操指令：用Codex写一个日志分析脚本：批量读取服务器日志→正则提取时间/IP/状态码/响应时间→按小时统计错误率→异常突增自动标记→生成运维日报。
+
+教学环节3：自动部署流水线脚本（4分钟）
+实操指令：写一个自动部署脚本：拉取Git最新代码→运行测试→构建打包→备份当前版本→部署新版本→健康检查→自动回滚（如果健康检查失败）。写一个批量服务器管理脚本：SSH批量执行命令→收集服务器状态→统一输出检查报告。
+
+教学环节4：学员跟练（3分钟）
+实操指令：使用提供的模拟日志数据(access.log)，完成：日志解析→错误统计→异常检测→生成运维日报模板。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握日志自动分析和异常检测的脚本化方法、能够搭建轻量级自动部署流水线、理解DevOps自动化核心实践。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">31-1</span>
+            <div class="ep-info"><div class="ep-title">IT行业Codex实战：服务器日志自动分析与部署流水线</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——运维工程师的日常：盯着日志找Bug（1.5分钟）</div><div class="sc">设计意图：展示IT运维的重复性痛点——每天查看几十个服务器的日志、手动重启异常服务、重复的部署操作。
+WorkBuddy帮你：写技术文档、生成API说明、整理Code Review意见。Codex帮你：自动化日志分析、自动部署脚本、监控告警。</div></div><div class="seg"><div class="sn">教学环节2：日志自动解析与异常检测（4.5分钟）</div><div class="sc">知识内容：常见日志格式（Apache/Nginx/应用日志/系统日志）、正则表达式提取关键字段、异常模式识别（错误率突增/响应时间飙升/磁盘满/内存泄漏）。
+实操指令：用Codex写一个日志分析脚本：批量读取服务器日志→正则提取时间/IP/状态码/响应时间→按小时统计错误率→异常突增自动标记→生成运维日报。</div></div><div class="seg"><div class="sn">教学环节3：自动部署流水线脚本（4分钟）</div><div class="sc">实操指令：写一个自动部署脚本：拉取Git最新代码→运行测试→构建打包→备份当前版本→部署新版本→健康检查→自动回滚（如果健康检查失败）。写一个批量服务器管理脚本：SSH批量执行命令→收集服务器状态→统一输出检查报告。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：使用提供的模拟日志数据(access.log)，完成：日志解析→错误统计→异常检测→生成运维日报模板。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握日志自动分析和异常检测的脚本化方法、能够搭建轻量级自动部署流水线、理解DevOps自动化核心实践。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+    </div>
+    <div class="category-card" data-ch="32">
+      <div class="card-header">
+        <div class="card-emoji">金融</div>
+        <div><div class="card-title">金融行业Codex实战：自动对账核销与异常交易检测</div><div class="card-sub">Codex行业实战 . 共1集</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="32" data-ep="1" data-search="金融行业Codex实战：自动对账核销与异常交易检测 金融Codex 教学环节1：情境导入——财务月底对账的3天可以压缩到30分钟吗（1.5分钟）
+设计意图：展示财务对账的典型工作量——银行流水500条×内部账务300条，手动逐条核对极其耗时。
+WorkBuddy帮你：写财务分析报告、生成预算方案、整理税务资料。Codex帮你：自动对账核销、异常交易检测、报表自动生成。
+
+教学环节2：银行流水自动对账（4.5分钟）
+知识内容：对账匹配逻辑（金额+日期+摘要模糊匹配）、未达账项识别（银行已付企业未付/企业已付银行未付）、差额追溯分析。
+实操指令：用Codex写一个自动对账脚本：读取银行流水和内部账务→按金额+日期双向匹配→标记已核销/未核销/部分核销→生成银行余额调节表→输出未达账项清单和调整建议。
+
+教学环节3：异常交易检测（4分钟）
+实操指令：写一个交易异常检测脚本：检测大额交易(&gt;10万)/重复支付/非工作时间交易/新供应商首笔大额。写一个账龄分析脚本：读取应收账款表→按客户分类→计算账龄(30/60/90/180天)→生成催收建议清单。
+
+教学环节4：学员跟练（3分钟）
+实操指令：使用提供的模拟数据(银行流水200条+内部账务150条)，完成：自动对账→核销标记→余额调节表→异常交易报告。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握财务对账和异常检测的自动化方法、理解银行余额调节表的自动生成逻辑、能够为企业搭建轻量级财务自动化工具。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">32-1</span>
+            <div class="ep-info"><div class="ep-title">金融行业Codex实战：自动对账核销与异常交易检测</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——财务月底对账的3天可以压缩到30分钟吗（1.5分钟）</div><div class="sc">设计意图：展示财务对账的典型工作量——银行流水500条×内部账务300条，手动逐条核对极其耗时。
+WorkBuddy帮你：写财务分析报告、生成预算方案、整理税务资料。Codex帮你：自动对账核销、异常交易检测、报表自动生成。</div></div><div class="seg"><div class="sn">教学环节2：银行流水自动对账（4.5分钟）</div><div class="sc">知识内容：对账匹配逻辑（金额+日期+摘要模糊匹配）、未达账项识别（银行已付企业未付/企业已付银行未付）、差额追溯分析。
+实操指令：用Codex写一个自动对账脚本：读取银行流水和内部账务→按金额+日期双向匹配→标记已核销/未核销/部分核销→生成银行余额调节表→输出未达账项清单和调整建议。</div></div><div class="seg"><div class="sn">教学环节3：异常交易检测（4分钟）</div><div class="sc">实操指令：写一个交易异常检测脚本：检测大额交易(&gt;10万)/重复支付/非工作时间交易/新供应商首笔大额。写一个账龄分析脚本：读取应收账款表→按客户分类→计算账龄(30/60/90/180天)→生成催收建议清单。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：使用提供的模拟数据(银行流水200条+内部账务150条)，完成：自动对账→核销标记→余额调节表→异常交易报告。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握财务对账和异常检测的自动化方法、理解银行余额调节表的自动生成逻辑、能够为企业搭建轻量级财务自动化工具。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+    </div>
+    <div class="category-card" data-ch="33">
+      <div class="card-header">
+        <div class="card-emoji">新媒体</div>
+        <div><div class="card-title">新媒体行业Codex实战：跨平台数据聚合与自动化运营报告</div><div class="card-sub">Codex行业实战 . 共1集</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="33" data-ep="1" data-search="新媒体行业Codex实战：跨平台数据聚合与自动化运营报告 新媒体Codex 教学环节1：情境导入——运营每天打开5个后台抄数据做日报（1分钟）
+设计意图：展示新媒体运营的每日重复——抖音/公众号/B站/小红书/视频号各平台数据手动汇总、格式不统一、指标不统一。
+WorkBuddy帮你：写内容脚本、生成标题、策划选题。Codex帮你：聚合数据、生成报告、定时推送。
+
+教学环节2：多平台数据自动聚合（4.5分钟）
+知识内容：各平台数据格式差异（字段映射/指标换算）、API调用基础（token认证/数据分页/速率限制）、数据标准化中间表设计。
+实操指令：用Codex写一个数据聚合脚本：读取5个平台导出的CSV→自动识别平台→指标标准化(播放量/点赞/收藏/评论/转发/粉丝增长)→合并为统一运营数据表→按时间/平台/内容类型多维汇总。
+
+教学环节3：自动化运营日报（3.5分钟）
+实操指令：基于聚合数据自动生成运营日报：昨日关键指标总结→本周趋势折线图→各平台TOP3内容→数据异常提醒→运营优化建议。写一个排期脚本：根据历史数据分析最佳发布时间→自动生成下周发布计划→输出内容日历。
+
+教学环节4：学员跟练（3分钟）
+实操指令：使用提供的模拟数据(3平台×7天)，完成：数据聚合标准化→运营报告生成→下周排期建议。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握新媒体多平台数据的自动化聚合方法、能够搭建自动化运营报告系统、理解数据驱动的内容运营模式。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">33-1</span>
+            <div class="ep-info"><div class="ep-title">新媒体行业Codex实战：跨平台数据聚合与自动化运营报告</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——运营每天打开5个后台抄数据做日报（1分钟）</div><div class="sc">设计意图：展示新媒体运营的每日重复——抖音/公众号/B站/小红书/视频号各平台数据手动汇总、格式不统一、指标不统一。
+WorkBuddy帮你：写内容脚本、生成标题、策划选题。Codex帮你：聚合数据、生成报告、定时推送。</div></div><div class="seg"><div class="sn">教学环节2：多平台数据自动聚合（4.5分钟）</div><div class="sc">知识内容：各平台数据格式差异（字段映射/指标换算）、API调用基础（token认证/数据分页/速率限制）、数据标准化中间表设计。
+实操指令：用Codex写一个数据聚合脚本：读取5个平台导出的CSV→自动识别平台→指标标准化(播放量/点赞/收藏/评论/转发/粉丝增长)→合并为统一运营数据表→按时间/平台/内容类型多维汇总。</div></div><div class="seg"><div class="sn">教学环节3：自动化运营日报（3.5分钟）</div><div class="sc">实操指令：基于聚合数据自动生成运营日报：昨日关键指标总结→本周趋势折线图→各平台TOP3内容→数据异常提醒→运营优化建议。写一个排期脚本：根据历史数据分析最佳发布时间→自动生成下周发布计划→输出内容日历。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：使用提供的模拟数据(3平台×7天)，完成：数据聚合标准化→运营报告生成→下周排期建议。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握新媒体多平台数据的自动化聚合方法、能够搭建自动化运营报告系统、理解数据驱动的内容运营模式。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+    </div>
+    <div class="category-card" data-ch="34">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">商务/企业服务行业Codex实战：客户数据清洗与合同自动生成</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="34" data-ep="1" data-search="商务/企业服务行业Codex实战：客户数据清洗与合同自动生成 商务Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">34-1</span>
+            <div class="ep-info"><div class="ep-title">商务/企业服务行业Codex实战：客户数据清洗与合同自动生成</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="35">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">创意/营销行业Codex实战：营销活动数据自动分析与A/B测试</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="35" data-ep="1" data-search="创意/营销行业Codex实战：营销活动数据自动分析与A/B测试 营销Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">35-1</span>
+            <div class="ep-info"><div class="ep-title">创意/营销行业Codex实战：营销活动数据自动分析与A/B测试</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="36">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">医疗/卫生行业Codex实战：病历数据脱敏整理与药品库存预警</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="36" data-ep="1" data-search="医疗/卫生行业Codex实战：病历数据脱敏整理与药品库存预警 医疗Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">36-1</span>
+            <div class="ep-info"><div class="ep-title">医疗/卫生行业Codex实战：病历数据脱敏整理与药品库存预警</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="37">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">法律/咨询行业Codex实战：判决文书批量标注与合同条款提取</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="37" data-ep="1" data-search="法律/咨询行业Codex实战：判决文书批量标注与合同条款提取 法律Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">37-1</span>
+            <div class="ep-info"><div class="ep-title">法律/咨询行业Codex实战：判决文书批量标注与合同条款提取</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="38">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">餐饮/酒店行业Codex实战：食材成本自动核算与智能排班</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="38" data-ep="1" data-search="餐饮/酒店行业Codex实战：食材成本自动核算与智能排班 餐饮Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">38-1</span>
+            <div class="ep-info"><div class="ep-title">餐饮/酒店行业Codex实战：食材成本自动核算与智能排班</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="39">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">房地产/建筑行业Codex实战：房源数据清洗与价格趋势分析</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="39" data-ep="1" data-search="房地产/建筑行业Codex实战：房源数据清洗与价格趋势分析 房地产Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">39-1</span>
+            <div class="ep-info"><div class="ep-title">房地产/建筑行业Codex实战：房源数据清洗与价格趋势分析</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="40">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">物流/运输行业Codex实战：配送路线优化与运单自动追踪</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="40" data-ep="1" data-search="物流/运输行业Codex实战：配送路线优化与运单自动追踪 物流Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">40-1</span>
+            <div class="ep-info"><div class="ep-title">物流/运输行业Codex实战：配送路线优化与运单自动追踪</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="41">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">游戏/娱乐行业Codex实战：玩家数据自动分析与运营活动配置</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="41" data-ep="1" data-search="游戏/娱乐行业Codex实战：玩家数据自动分析与运营活动配置 游戏Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">41-1</span>
+            <div class="ep-info"><div class="ep-title">游戏/娱乐行业Codex实战：玩家数据自动分析与运营活动配置</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="42">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">农业/食品行业Codex实战：农产品溯源数据管理与产销对接</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="42" data-ep="1" data-search="农业/食品行业Codex实战：农产品溯源数据管理与产销对接 农业Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">42-1</span>
+            <div class="ep-info"><div class="ep-title">农业/食品行业Codex实战：农产品溯源数据管理与产销对接</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="43">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">政府/公共服务行业Codex实战：民生数据统计与公文自动归档</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="43" data-ep="1" data-search="政府/公共服务行业Codex实战：民生数据统计与公文自动归档 政务Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">43-1</span>
+            <div class="ep-info"><div class="ep-title">政府/公共服务行业Codex实战：民生数据统计与公文自动归档</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="44">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">科研/学术行业Codex实战：实验数据自动批处理与论文图表生成</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="44" data-ep="1" data-search="科研/学术行业Codex实战：实验数据自动批处理与论文图表生成 科研Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">44-1</span>
+            <div class="ep-info"><div class="ep-title">科研/学术行业Codex实战：实验数据自动批处理与论文图表生成</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="45">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">Skills开发行业Codex实战：Skill测试用例自动生成与版本管理</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="45" data-ep="1" data-search="Skills开发行业Codex实战：Skill测试用例自动生成与版本管理 Skills Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">45-1</span>
+            <div class="ep-info"><div class="ep-title">Skills开发行业Codex实战：Skill测试用例自动生成与版本管理</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="46">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">Prompt Engineering Codex实战：提示词效果自动评测与A/B对比</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="46" data-ep="1" data-search="Prompt Engineering Codex实战：提示词效果自动评测与A/B对比 Prompt Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">46-1</span>
+            <div class="ep-info"><div class="ep-title">Prompt Engineering Codex实战：提示词效果自动评测与A/B对比</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="47">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">AI工作流自动化Codex实战：工作流配置化部署与监控脚本</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="47" data-ep="1" data-search="AI工作流自动化Codex实战：工作流配置化部署与监控脚本 工作流Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">47-1</span>
+            <div class="ep-info"><div class="ep-title">AI工作流自动化Codex实战：工作流配置化部署与监控脚本</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="48">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">数据分析进阶Codex实战：高级统计建模脚本与自动化仪表盘</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="48" data-ep="1" data-search="数据分析进阶Codex实战：高级统计建模脚本与自动化仪表盘 数据分析Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">48-1</span>
+            <div class="ep-info"><div class="ep-title">数据分析进阶Codex实战：高级统计建模脚本与自动化仪表盘</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+    <div class="category-card" data-ch="49">
+      <div class="card-header">
+        <div class="card-emoji">soon</div>
+        <div><div class="card-title">AI安全与合规Codex实战：安全审计日志自动分析与合规检查</div><div class="card-sub">Codex行业实战 . 即将上线</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="49" data-ep="1" data-search="AI安全与合规Codex实战：安全审计日志自动分析与合规检查 安全Codex 教学环节1：情境导入（1分钟）
+设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。
+
+教学环节2：行业Codex应用全景（2分钟）
+知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。
+
+教学环节3：课程内容即将上线（1分钟）
+实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">49-1</span>
+            <div class="ep-info"><div class="ep-title">AI安全与合规Codex实战：安全审计日志自动分析与合规检查</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入（1分钟）</div><div class="sc">设计意图：本课程正在紧锣密鼓地开发中，将由行业一线从业者与Codex技术专家联合编写。
+WorkBuddy帮你：该行业的沟通/创作/管理类工作。Codex帮你：该行业的自动化/数据处理/脚本化工作。</div></div><div class="seg"><div class="sn">教学环节2：行业Codex应用全景（2分钟）</div><div class="sc">知识内容：本行业Codex的典型应用场景、常用的数据处理模式、可复用的脚本模板方向。</div></div><div class="seg"><div class="sn">教学环节3：课程内容即将上线（1分钟）</div><div class="sc">实操指令：敬请期待！你可以先学习Codex通用基础课程，掌握核心能力后自行探索本行业的自动化方案。</div></div>
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+          </div>
+        </li>
+        </li></ul>
+    </div>
+</div>
+
+</div>
+</div>
+<div class="footer-enhanced">
+  <div class="footer-path">学习AI场景课程 到 完成行业能力测验 到 线上远程接单/同城就近线下接单 到 长期行业职场协作生态</div>
+  <p style="margin-top:10px;">WorkBuddy 精细化教案 V5.1 | 236集+ | WorkBuddy 24行业 + Codex 22行业 | Codex + 通用AI工具合集</p>
+  <p style="margin-top:6px;font-size:0.72rem;">2026 AI办公学院 - 学完即可接单 - 企业入驻合作：1550449686@qq.com</p>
+</div>
+
+
+</div>
+<a href="#" class="float-btn">接单咨询/企业合作</a>
+<script>
+// Global search redirect
+function globalSearch(q) {
+  if (!q || q.trim() === '') return;
+  window.location.href = 'workbuddy.html?q=' + encodeURIComponent(q);
+}
+var curCh = -1;
+
+</script>
+</body>
+</html>

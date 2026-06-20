@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>通用AI办公合集 | AI办公学院</title>
+<style>
+
+  :root { --bg:#f8f9fa; --card:#ffffff; --text:#1a1a2e; --sub:#6c757d; --border:#e9ecef; --accent:#4f46e5; --alight:#eef2ff; --green:#10b981; --gold:#f59e0b; --glight:#fef3c7; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  .container { max-width:1200px; margin:0 auto; padding:30px 20px; }
+  .header { text-align:center; padding:50px 20px; background:linear-gradient(135deg,#4f46e5,#7c3aed,#a855f7); color:white; border-radius:20px; margin-bottom:30px; }
+  .header h1 { font-size:2.2rem; font-weight:800; margin-bottom:8px; }
+  .header p { opacity:0.9; }
+  .header .stats { display:flex; justify-content:center; gap:36px; margin-top:20px; flex-wrap:wrap; }
+  .header .stat { text-align:center; }
+  .header .stat .num { font-size:1.8rem; font-weight:800; }
+  .header .stat .label { font-size:0.85rem; opacity:0.8; }
+
+  .search-bar { display:flex; gap:10px; margin-bottom:24px; flex-wrap:wrap; }
+  .search-bar input { flex:1; min-width:200px; padding:12px 16px; border:2px solid var(--border); border-radius:12px; font-size:0.95rem; outline:none; }
+  .search-bar input:focus { border-color:var(--accent); }
+  .search-bar select { padding:12px 16px; border:2px solid var(--border); border-radius:12px; font-size:0.95rem; background:white; }
+
+  .ch-tabs { display:flex; gap:5px; margin-bottom:24px; flex-wrap:wrap; }
+  .ch-tabs button { padding:7px 12px; border:none; border-radius:20px; cursor:pointer; font-size:0.8rem; background:#f1f5f9; color:var(--sub); white-space:nowrap; }
+  .ch-tabs button:hover { background:var(--alight); color:var(--accent); }
+  .ch-tabs button.active { background:var(--accent); color:white; }
+
+  .toc { background:var(--card); border-radius:14px; padding:24px; border:1px solid var(--border); margin-bottom:30px; overflow-x:auto; }
+  .toc h3 { font-size:1.2rem; margin-bottom:14px; }
+  .toc table { width:100%; border-collapse:collapse; }
+  .toc th { text-align:left; padding:8px 10px; border-bottom:2px solid var(--border); font-size:0.82rem; color:var(--sub); }
+  .toc td { padding:8px 10px; border-bottom:1px solid var(--border); font-size:0.88rem; }
+
+  .category-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(480px,1fr)); gap:16px; }
+  .category-card { background:var(--card); border-radius:14px; padding:20px; border:1px solid var(--border); }
+  .category-card.hidden { display:none; }
+  .card-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .card-emoji { font-size:1.8rem; }
+  .card-title { font-size:1.15rem; font-weight:700; }
+  .card-sub { font-size:0.82rem; color:var(--sub); }
+
+  .ep-list { list-style:none; }
+  .ep-item { border-radius:8px; margin-bottom:6px; border:1px solid var(--border); }
+  .ep-item.hidden { display:none; }
+  .ep-head { display:flex; align-items:center; gap:8px; padding:10px 12px; cursor:pointer; user-select:none; border-radius:8px; }
+  .ep-head:hover { background:#f8faff; }
+  .ep-num { font-weight:700; font-size:0.82rem; color:var(--accent); min-width:42px; }
+  .ep-info { flex:1; min-width:0; }
+  .ep-title { font-weight:600; font-size:0.9rem; }
+  .ep-meta { font-size:0.75rem; color:var(--sub); }
+  .ep-arr { font-size:0.7rem; color:var(--sub); transition:transform 0.2s; }
+  .ep-item.open .ep-arr { transform:rotate(180deg); }
+  .ep-body { display:none; padding:0 12px 12px; }
+  .ep-item.open .ep-body { display:block; }
+  .ep-body .seg { margin-top:8px; }
+  .ep-body .sn { font-weight:600; font-size:0.82rem; color:#5b21b6; }
+  .ep-body .sc { font-size:0.8rem; color:var(--sub); line-height:1.55; margin-top:2px; }
+
+  .info { font-size:0.85rem; color:var(--sub); margin-bottom:16px; }
+  .footer { text-align:center; padding:30px; color:var(--sub); font-size:0.82rem; }
+  @media(max-width:768px){ .header h1{font-size:1.4rem;} .category-grid{grid-template-columns:1fr;} }
+
+  .top-nav { background:#1a1a2e; color:white; position:sticky; top:0; z-index:1000; box-shadow:0 2px 12px rgba(0,0,0,0.15); }
+  .top-nav-inner { max-width:1300px; margin:0 auto; display:flex; align-items:center; padding:0 20px; height:56px; gap:6px; }
+  .top-nav .logo { font-weight:800; font-size:1.1rem; white-space:nowrap; color:#a5b4fc; margin-right:8px; text-decoration:none; }
+  .top-nav .nav-links { display:flex; align-items:center; gap:2px; flex-wrap:wrap; flex:1; }
+  .top-nav .nav-links a, .top-nav .dropbtn { color:#e0e0e0; text-decoration:none; font-size:0.78rem; padding:8px 8px; border-radius:6px; white-space:nowrap; transition:all 0.2s; cursor:pointer; border:none; background:none; font-family:inherit; }
+  .top-nav .nav-links a:hover, .top-nav .dropbtn:hover { background:#2d2d4a; color:white; }
+  .top-nav .nav-links a.accent { background:#4f46e5; color:white; font-weight:600; }
+  .top-nav .nav-search { margin-left:auto; }
+  .top-nav .nav-search input { padding:6px 12px; border-radius:16px; border:none; font-size:0.8rem; width:150px; background:#2d2d4a; color:white; outline:none; }
+  .top-nav .nav-search input::placeholder { color:#888; }
+  .dropdown { position:relative; display:inline-block; }
+  .dropdown-content { display:none; position:absolute; top:100%; left:0; background:#252540; min-width:320px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.3); z-index:1001; padding:10px 0; columns:2; }
+  .dropdown:hover .dropdown-content { display:block; }
+  .dropdown-content a { display:block; padding:7px 16px; font-size:0.76rem; color:#ccc; text-decoration:none; break-inside:avoid; }
+  .dropdown-content a:hover { background:#3d3d5c; color:white; }
+  @media(max-width:768px){ .top-nav-inner{flex-wrap:wrap;height:auto;padding:8px 10px;} }
+  .banner-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
+  .banner-card { background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:left; backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.18); }
+  .banner-card .bc-icon { font-size:1.6rem; margin-bottom:4px; }
+  .banner-card .bc-title { font-weight:700; font-size:0.95rem; margin-bottom:4px; }
+  .banner-card .bc-desc { font-size:0.78rem; opacity:0.85; line-height:1.5; }
+  @media(max-width:768px){ .banner-cards{grid-template-columns:1fr;} }
+  .cta-row { display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; justify-content:center; }
+  .cta-btn { display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:22px; font-weight:700; font-size:0.85rem; text-decoration:none; transition:all 0.2s; border:none; cursor:pointer; }
+  .cta-free { background:white; color:#4f46e5; }
+  .cta-vip { background:#f59e0b; color:white; }
+  .cta-enterprise { background:#10b981; color:white; }
+  .cta-group { background:#ec4899; color:white; }
+  .cta-btn:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.2); }
+  .section-divider { text-align:center; padding:40px 0 20px; }
+  .section-divider h2 { font-size:1.6rem; color:var(--accent); }
+  .section-divider p { font-size:0.88rem; color:var(--sub); margin-top:6px; }
+  .work-order-block { background:linear-gradient(135deg,#fef3c7,#fef9e7); border:2px dashed #f59e0b; border-radius:12px; padding:16px; margin-top:12px; }
+  .work-order-block .wo-title { font-weight:700; color:#b45309; font-size:0.88rem; margin-bottom:6px; }
+  .work-order-block .wo-desc { font-size:0.78rem; color:#92400e; line-height:1.5; }
+  .work-order-block .wo-btn { display:inline-block; margin-top:8px; padding:6px 14px; background:#f59e0b; color:white; border-radius:14px; font-size:0.78rem; font-weight:600; text-decoration:none; }
+  .ability-test-block { background:linear-gradient(135deg,#eef2ff,#f5f3ff); border:2px solid #4f46e5; border-radius:12px; padding:16px; margin-top:16px; }
+  .ability-test-block .at-title { font-weight:700; color:#3730a3; font-size:0.9rem; margin-bottom:6px; }
+  .ability-test-block .at-desc { font-size:0.78rem; color:#4338ca; line-height:1.5; }
+  .ability-test-block .at-btns { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+  .at-btn { padding:7px 16px; border-radius:18px; font-size:0.8rem; font-weight:600; text-decoration:none; border:none; cursor:pointer; }
+  .at-btn-free { background:#4f46e5; color:white; }
+  .at-btn-pro { background:#7c3aed; color:white; }
+  .price-tag { display:inline-block; padding:3px 10px; border-radius:10px; font-size:0.72rem; font-weight:700; }
+  .price-299 { background:#fef3c7; color:#b45309; }
+  .tag-bar { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+  .tag-item { padding:6px 14px; border-radius:16px; font-size:0.78rem; cursor:pointer; border:1px solid var(--border); background:white; }
+  .tag-item.active { background:var(--accent); color:white; border-color:var(--accent); }
+  .tag-local { background:#10b981; color:white; border-color:#10b981; font-weight:600; }
+  .order-hint { font-size:0.7rem; color:#059669; margin-top:4px; font-style:italic; }
+  .float-btn { position:fixed; right:16px; bottom:24px; background:linear-gradient(135deg,#4f46e5,#7c3aed); color:white; padding:12px 18px; border-radius:24px; font-size:0.82rem; font-weight:700; box-shadow:0 4px 16px rgba(79,70,229,0.4); cursor:pointer; z-index:999; text-decoration:none; white-space:nowrap; transition:transform 0.2s; }
+  .float-btn:hover { transform:translateY(-2px); }
+  .enterprise-section { background:linear-gradient(135deg,#1e1b4b,#312e81,#3730a3); color:white; border-radius:20px; padding:40px; margin:30px 0; }
+  .enterprise-section h2 { font-size:1.5rem; margin-bottom:20px; }
+  .enterprise-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
+  .enterprise-card { background:rgba(255,255,255,0.08); border-radius:12px; padding:20px; border:1px solid rgba(255,255,255,0.12); }
+  .enterprise-card h4 { font-size:1rem; margin-bottom:8px; }
+  .enterprise-card p, .enterprise-card li { font-size:0.82rem; opacity:0.85; line-height:1.6; }
+  .enterprise-card ul { padding-left:16px; }
+  .footer-enhanced { background:#1a1a2e; color:#aaa; text-align:center; padding:36px 20px; margin-top:30px; border-radius:14px; font-size:0.82rem; line-height:1.8; }
+  .footer-enhanced .footer-path { color:#a5b4fc; font-weight:600; font-size:0.9rem; margin:10px 0; }
+
+
+
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="top-nav-inner">
+    <a href="index.html" class="logo">AI办公学院</a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="workbuddy.html" class="accent">WorkBuddy专区</a>
+      <a href="codex.html">Codex行业编程办公专区</a>
+      <a href="general-ai.html">通用AI办公合集</a>
+      <div class="dropdown">
+        <button class="dropbtn">全行业课程库 ▼</button>
+        <div class="dropdown-content">
+          <a href="workbuddy.html?ch=0">通用基础入门</a><a href="workbuddy.html?ch=1">教育/培训</a>
+          <a href="workbuddy.html?ch=2">电商/零售</a><a href="workbuddy.html?ch=3">制造业/供应链</a>
+          <a href="workbuddy.html?ch=4">商务/企业服务</a><a href="workbuddy.html?ch=5">IT/科技</a>
+          <a href="workbuddy.html?ch=6">金融/财会</a><a href="workbuddy.html?ch=7">创意/营销</a>
+          <a href="workbuddy.html?ch=8">医疗/卫生</a><a href="workbuddy.html?ch=9">法律/咨询</a>
+          <a href="workbuddy.html?ch=10">新媒体/内容创作</a><a href="workbuddy.html?ch=11">餐饮/酒店</a>
+          <a href="workbuddy.html?ch=12">房地产/建筑</a><a href="workbuddy.html?ch=13">物流/运输</a>
+          <a href="workbuddy.html?ch=14">游戏/娱乐</a><a href="workbuddy.html?ch=15">农业/食品</a>
+          <a href="workbuddy.html?ch=16">政府/公共服务</a><a href="workbuddy.html?ch=17">科研/学术</a>
+          <a href="workbuddy.html?ch=18">Skills开发</a><a href="workbuddy.html?ch=19">Prompt Engineering</a>
+          <a href="workbuddy.html?ch=20">AI工作流自动化</a><a href="workbuddy.html?ch=21">数据分析进阶</a>
+          <a href="workbuddy.html?ch=22">AI安全与合规</a>
+          <a href="workbuddy.html?ch=23">艺术设计行业</a><a href="workbuddy.html?ch=24">传统手艺/非遗</a>
+        </div>
+      </div>
+<div class="container">
+<div style="padding:20px 0;"><div class="section-divider" id="general-ai-section">
+  <h2>通用AI办公合集</h2>
+  <p>共6集高阶通用课 | 覆盖豆包/飞书AI/WPS AI/Copilot多工具 | 跨平台协同标准教学</p>
+</div>
+<div class="category-grid">
+  <div class="category-card" data-ch="26">
+    <div class="card-header">
+      <div class="card-emoji">通用AI</div>
+      <div><div class="card-title">通用AI办公合集</div><div class="card-sub">专项板块 | 共6集</div></div>
+    </div>
+    <ul class="ep-list">
+<li class="ep-item" data-ch="26" data-ep="1" data-search="全工具通用4W1H万能提示词公式 通用提示词 教学环节1：情境导入——换了AI工具就不会用了？不存在的（1.5分钟）
+设计意图：揭示所有AI工具提示词设计的底层共通逻辑，无论切换到豆包/飞书AI/WPS AI/Copilot都能快速适应。
+核心理念：掌握4W1H，等于掌握了所有AI工具的通用语言。
+
+教学环节2：4W1H公式深度拆解（4分钟）
+知识内容：What(做什么/定义任务边界/明确产出形式)、Who(角色设定/专业背景/语气风格)、Why(目的说明/质量标准/成功定义)、How(步骤约束/格式要求/限制条件)、With(使用什么/工具选择/数据来源/参考素材)。
+实操指令：用4W1H公式分别在豆包、飞书AI、WPS AI中执行同一个任务，对比产出差异和优化方向。
+
+教学环节3：跨平台实操对比（4分钟）
+实操指令：用同一套4W1H提示词，分别在以下工具执行【生成月度销售分析报告】任务：ChatGPT/豆包/飞书AI/WPS AI/Copilot，对比输出质量并记录各工具的最佳参数配置。
+
+教学环节4：学员跟练（3分钟）
+实操指令：选择你常用的2个AI工具，用4W1H公式分别编写提示词完成【竞品分析报告】，对比并优化。
+
+教学环节5：总结与课后工单（1.5分钟）
+学员收获：掌握4W1H万能提示词公式、能够在不同AI工具间自由切换、建立个人提示词质量评估标准。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-1</span>
+            <div class="ep-info"><div class="ep-title">全工具通用4W1H万能提示词公式</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——换了AI工具就不会用了？不存在的（1.5分钟）</div><div class="sc">设计意图：揭示所有AI工具提示词设计的底层共通逻辑，无论切换到豆包/飞书AI/WPS AI/Copilot都能快速适应。
+核心理念：掌握4W1H，等于掌握了所有AI工具的通用语言。</div></div><div class="seg"><div class="sn">教学环节2：4W1H公式深度拆解（4分钟）</div><div class="sc">知识内容：What(做什么/定义任务边界/明确产出形式)、Who(角色设定/专业背景/语气风格)、Why(目的说明/质量标准/成功定义)、How(步骤约束/格式要求/限制条件)、With(使用什么/工具选择/数据来源/参考素材)。
+实操指令：用4W1H公式分别在豆包、飞书AI、WPS AI中执行同一个任务，对比产出差异和优化方向。</div></div><div class="seg"><div class="sn">教学环节3：跨平台实操对比（4分钟）</div><div class="sc">实操指令：用同一套4W1H提示词，分别在以下工具执行【生成月度销售分析报告】任务：ChatGPT/豆包/飞书AI/WPS AI/Copilot，对比输出质量并记录各工具的最佳参数配置。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：选择你常用的2个AI工具，用4W1H公式分别编写提示词完成【竞品分析报告】，对比并优化。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（1.5分钟）</div><div class="sc">学员收获：掌握4W1H万能提示词公式、能够在不同AI工具间自由切换、建立个人提示词质量评估标准。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="26" data-ep="2" data-search="跨AI平台文档协同标准化流程 跨平台协同 教学环节1：情境导入——各部门用不同AI工具，协同像巴别塔（1分钟）
+设计意图：展示企业中多AI工具并存的现实状况和标准化协同方案。
+
+教学环节2：标准化协同框架（3.5分钟）
+知识内容：文档标准中间格式(Markdown→任意格式)、命名规范与版本管理、协同工作流(创作→审核→发布→归档)、跨平台格式兼容性矩阵。
+
+教学环节3：协同流程实操（4.5分钟）
+实操指令：建立团队AI文档协同标准：统一使用Markdown作为中间格式→定义文件命名规则(日期-项目-类型-版本)→设定审核流程(草案→评审→定稿)。演示一个完整的跨平台协同流程：用WPS AI生成初稿→转Markdown→用飞书AI补充数据分析→用豆包润色→输出最终版。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为你所在的团队设计一份AI文档协同标准流程，包含格式规范、命名规则、审核节点。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握跨平台文档协同的标准化流程、能够设计团队级AI协同规范、理解标准化在企业AI落地中的关键作用。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-2</span>
+            <div class="ep-info"><div class="ep-title">跨AI平台文档协同标准化流程</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——各部门用不同AI工具，协同像巴别塔（1分钟）</div><div class="sc">设计意图：展示企业中多AI工具并存的现实状况和标准化协同方案。</div></div><div class="seg"><div class="sn">教学环节2：标准化协同框架（3.5分钟）</div><div class="sc">知识内容：文档标准中间格式(Markdown→任意格式)、命名规范与版本管理、协同工作流(创作→审核→发布→归档)、跨平台格式兼容性矩阵。</div></div><div class="seg"><div class="sn">教学环节3：协同流程实操（4.5分钟）</div><div class="sc">实操指令：建立团队AI文档协同标准：统一使用Markdown作为中间格式→定义文件命名规则(日期-项目-类型-版本)→设定审核流程(草案→评审→定稿)。演示一个完整的跨平台协同流程：用WPS AI生成初稿→转Markdown→用飞书AI补充数据分析→用豆包润色→输出最终版。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为你所在的团队设计一份AI文档协同标准流程，包含格式规范、命名规则、审核节点。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握跨平台文档协同的标准化流程、能够设计团队级AI协同规范、理解标准化在企业AI落地中的关键作用。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="26" data-ep="3" data-search="多工具之间数据互通实操教程 多工具数据互通 教学环节1：情境导入——在5个AI工具之间复制粘贴数据，你应该不陌生（1分钟）
+设计意图：展示工具孤岛导致的数据割裂问题和解决方案。
+
+教学环节2：数据互通技术方案（3.5分钟）
+知识内容：文件级互通(CSV/Excel/Markdown作为数据载体)、API级互通(OAuth认证/REST API/Webhook)、中间件级互通(Zapier/n8n/腾讯云函数)、数据安全与脱敏注意事项。
+
+教学环节3：互通实操（4.5分钟）
+实操指令：实现飞书表格+WPS AI的数据互通：飞书数据导出CSV→WPS AI读取分析→结果写回飞书文档。用Make(原Integromat)搭建豆包+飞书+企微的自动化通知链：豆包生成日报→飞书文档存储→企微群推送。
+
+教学环节4：学员跟练（3分钟）
+实操指令：选择你常用的2个平台，用CSV作为中间格式完成一次数据互通操作。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握多工具数据互通的三种技术方案、能够设计并实施跨平台数据流、理解数据安全在互通场景中的重要性。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-3</span>
+            <div class="ep-info"><div class="ep-title">多工具之间数据互通实操教程</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——在5个AI工具之间复制粘贴数据，你应该不陌生（1分钟）</div><div class="sc">设计意图：展示工具孤岛导致的数据割裂问题和解决方案。</div></div><div class="seg"><div class="sn">教学环节2：数据互通技术方案（3.5分钟）</div><div class="sc">知识内容：文件级互通(CSV/Excel/Markdown作为数据载体)、API级互通(OAuth认证/REST API/Webhook)、中间件级互通(Zapier/n8n/腾讯云函数)、数据安全与脱敏注意事项。</div></div><div class="seg"><div class="sn">教学环节3：互通实操（4.5分钟）</div><div class="sc">实操指令：实现飞书表格+WPS AI的数据互通：飞书数据导出CSV→WPS AI读取分析→结果写回飞书文档。用Make(原Integromat)搭建豆包+飞书+企微的自动化通知链：豆包生成日报→飞书文档存储→企微群推送。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：选择你常用的2个平台，用CSV作为中间格式完成一次数据互通操作。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握多工具数据互通的三种技术方案、能够设计并实施跨平台数据流、理解数据安全在互通场景中的重要性。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="26" data-ep="4" data-search="全行业统一AI内容合规模板教学 内容合规 教学环节1：情境导入——AI生成的内容，你敢直接发给客户吗（1分钟）
+设计意图：展示AI内容不经审核直接使用的风险和合规审查的必要性。
+
+教学环节2：全行业合规检查框架（3.5分钟）
+知识内容：五维合规检查法(事实准确性/数据隐私/行业禁忌/法律责任/品牌一致性)、不同行业的合规重点(金融/医疗/法律/教育等)、AI输出审核清单模板。
+
+教学环节3：合规模板实操（4.5分钟）
+实操指令：创建通用的AI内容合规检查清单模板，适用于6大行业(金融/医疗/法律/教育/电商/政府)。写一个AI内容自动审核脚本：检查敏感词→验证数据引用→检测不恰当表述→标记需要人工审核的段落。为你的行业创建专属的内容合规模板：包含必须检查项+建议检查项+红线清单。
+
+教学环节4：学员跟练（3分钟）
+实操指令：用AI生成一段你的行业相关内容，然后用合规检查清单逐项审核，标注所有风险点。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握五维合规检查法、能够为不同行业定制合规模板、理解AI内容合规在企业中的法务价值。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-4</span>
+            <div class="ep-info"><div class="ep-title">全行业统一AI内容合规模板教学</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——AI生成的内容，你敢直接发给客户吗（1分钟）</div><div class="sc">设计意图：展示AI内容不经审核直接使用的风险和合规审查的必要性。</div></div><div class="seg"><div class="sn">教学环节2：全行业合规检查框架（3.5分钟）</div><div class="sc">知识内容：五维合规检查法(事实准确性/数据隐私/行业禁忌/法律责任/品牌一致性)、不同行业的合规重点(金融/医疗/法律/教育等)、AI输出审核清单模板。</div></div><div class="seg"><div class="sn">教学环节3：合规模板实操（4.5分钟）</div><div class="sc">实操指令：创建通用的AI内容合规检查清单模板，适用于6大行业(金融/医疗/法律/教育/电商/政府)。写一个AI内容自动审核脚本：检查敏感词→验证数据引用→检测不恰当表述→标记需要人工审核的段落。为你的行业创建专属的内容合规模板：包含必须检查项+建议检查项+红线清单。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：用AI生成一段你的行业相关内容，然后用合规检查清单逐项审核，标注所有风险点。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握五维合规检查法、能够为不同行业定制合规模板、理解AI内容合规在企业中的法务价值。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="26" data-ep="5" data-search="低成本切换AI工具工作流适配方案 工具切换 教学环节1：情境导入——公司突然换AI工具了，你的工作流还跑得通吗（1分钟）
+设计意图：展示AI工具更换的常见场景和低成本适配方法。
+
+教学环节2：工具适配的核心方法论（3.5分钟）
+知识内容：功能映射表(找出新旧工具的等效功能)、提示词适配策略(调整格式/补全约束/添加上下文)、工作流重构三步法(分析→映射→测试)、成本效益分析(切换成本vs长期收益)。
+
+教学环节3：切换实操（4.5分钟）
+实操指令：模拟从ChatGPT切换到豆包的全流程：整理现有提示词库→建立功能映射→逐条适配测试→建立新工具的提示词模板库。编写一个自动化脚本：批量将ChatGPT格式的提示词转换为豆包/WPS AI/Copilot三种格式。
+
+教学环节4：学员跟练（3分钟）
+实操指令：梳理你目前使用的AI工具清单，为每个关键工作流设计切换到另一个工具的适配方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握AI工具切换的系统方法论、能够低成本完成工具的迁移、理解工具无关性的架构设计思想。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-5</span>
+            <div class="ep-info"><div class="ep-title">低成本切换AI工具工作流适配方案</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——公司突然换AI工具了，你的工作流还跑得通吗（1分钟）</div><div class="sc">设计意图：展示AI工具更换的常见场景和低成本适配方法。</div></div><div class="seg"><div class="sn">教学环节2：工具适配的核心方法论（3.5分钟）</div><div class="sc">知识内容：功能映射表(找出新旧工具的等效功能)、提示词适配策略(调整格式/补全约束/添加上下文)、工作流重构三步法(分析→映射→测试)、成本效益分析(切换成本vs长期收益)。</div></div><div class="seg"><div class="sn">教学环节3：切换实操（4.5分钟）</div><div class="sc">实操指令：模拟从ChatGPT切换到豆包的全流程：整理现有提示词库→建立功能映射→逐条适配测试→建立新工具的提示词模板库。编写一个自动化脚本：批量将ChatGPT格式的提示词转换为豆包/WPS AI/Copilot三种格式。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：梳理你目前使用的AI工具清单，为每个关键工作流设计切换到另一个工具的适配方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握AI工具切换的系统方法论、能够低成本完成工具的迁移、理解工具无关性的架构设计思想。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="26" data-ep="6" data-search="全行业通用接单交付模板包实操 接单交付 教学环节1：情境导入——学了这么多，怎么把能力变现（1.5分钟）
+设计意图：将课程学习成果转化为可以直接交付给客户的标准产物。
+
+教学环节2：接单交付标准体系（3.5分钟）
+知识内容：交付物四件套(方案文档/执行脚本/操作手册/效果报告)、不同行业定制模板(设计/财务/运营/开发等)、客户沟通话术模板、定价策略和报价单模板。
+
+教学环节3：模板包实操（5分钟）
+实操指令：建立你的【AI办公能力接单交付模板包】，包含：1)需求确认单模板 2)方案设计模板 3)交付报告模板 4)客户验收单模板。写一个案例展示文档：你最近用AI完成的一个任务→结构化展示为接单案例。设计你的个人接单服务菜单：列出5-8个可交付的服务项目及对应价格。
+
+教学环节4：学员跟练（3分钟）
+实操指令：完成你的第一个【虚拟交付】：选择一个课程中练习过的任务，用标准模板包装成可交付的成果。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握接单交付的标准流程和模板体系、能够将学习成果转化为商业价值、建立个人AI办公服务的品牌雏形。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">26-6</span>
+            <div class="ep-info"><div class="ep-title">全行业通用接单交付模板包实操</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——学了这么多，怎么把能力变现（1.5分钟）</div><div class="sc">设计意图：将课程学习成果转化为可以直接交付给客户的标准产物。</div></div><div class="seg"><div class="sn">教学环节2：接单交付标准体系（3.5分钟）</div><div class="sc">知识内容：交付物四件套(方案文档/执行脚本/操作手册/效果报告)、不同行业定制模板(设计/财务/运营/开发等)、客户沟通话术模板、定价策略和报价单模板。</div></div><div class="seg"><div class="sn">教学环节3：模板包实操（5分钟）</div><div class="sc">实操指令：建立你的【AI办公能力接单交付模板包】，包含：1)需求确认单模板 2)方案设计模板 3)交付报告模板 4)客户验收单模板。写一个案例展示文档：你最近用AI完成的一个任务→结构化展示为接单案例。设计你的个人接单服务菜单：列出5-8个可交付的服务项目及对应价格。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：完成你的第一个【虚拟交付】：选择一个课程中练习过的任务，用标准模板包装成可交付的成果。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握接单交付的标准流程和模板体系、能够将学习成果转化为商业价值、建立个人AI办公服务的品牌雏形。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+      </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+
+  </div>
+</div>
+
+<div class="category-grid">
+    </div><div class="category-card" data-ch="23">
+      <div class="card-header">
+        <div class="card-emoji">Art</div>
+        <div><div class="card-title">艺术设计行业</div><div class="card-sub">第23章 . 共12集</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="23" data-ep="1" data-search="AI插画、海报批量标准化生成工作流 插画海报 教学环节1：情境导入——设计师的时间都去哪了（1.5分钟）
+设计意图：展示一个设计工作室的典型工作场景——70%的时间在做重复性素材生成。
+核心理念：AI不会取代设计师，但会用AI的设计师会取代不会用的。
+
+教学环节2：AI图像生成工具对比（3分钟）
+知识内容：主流AI绘图工具能力对比(Midjourney/DALL-E/Stable Diffusion/文心一格/通义万相)、Prompt编写核心技巧(主体描述+风格指定+构图+技术参数)、提示词模板库建设方法。
+
+教学环节3：批量生产工作流（4.5分钟）
+实操指令：建立AI插画批量生成工作流：需求分析→风格定义→Prompt模板→批量生成→初筛→人工精选→最终交付。用WorkBuddy辅助管理设计项目：客户需求录入→自动生成Prompt→批量调用AI工具→成果归档→客户交付。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个虚拟客户(某茶饮品牌)设计一套AI插画批量生成流程，至少包含3个不同场景的海报方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握AI辅助插画和海报批量生成的标准工作流、能够为不同客户建立Prompt模板库。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-1</span>
+            <div class="ep-info"><div class="ep-title">AI插画、海报批量标准化生成工作流</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——设计师的时间都去哪了（1.5分钟）</div><div class="sc">设计意图：展示一个设计工作室的典型工作场景——70%的时间在做重复性素材生成。
+核心理念：AI不会取代设计师，但会用AI的设计师会取代不会用的。</div></div><div class="seg"><div class="sn">教学环节2：AI图像生成工具对比（3分钟）</div><div class="sc">知识内容：主流AI绘图工具能力对比(Midjourney/DALL-E/Stable Diffusion/文心一格/通义万相)、Prompt编写核心技巧(主体描述+风格指定+构图+技术参数)、提示词模板库建设方法。</div></div><div class="seg"><div class="sn">教学环节3：批量生产工作流（4.5分钟）</div><div class="sc">实操指令：建立AI插画批量生成工作流：需求分析→风格定义→Prompt模板→批量生成→初筛→人工精选→最终交付。用WorkBuddy辅助管理设计项目：客户需求录入→自动生成Prompt→批量调用AI工具→成果归档→客户交付。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个虚拟客户(某茶饮品牌)设计一套AI插画批量生成流程，至少包含3个不同场景的海报方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握AI辅助插画和海报批量生成的标准工作流、能够为不同客户建立Prompt模板库。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="2" data-search="电商商品视觉图一键批量产出 电商视觉 教学环节1：情境导入——一个电商店铺需要多少张图（1分钟）
+设计意图：量化电商视觉需求——一个50款产品的店铺需要200+张不同尺寸和场景的商品图。
+
+教学环节2：电商视觉标准规范（3分钟）
+知识内容：各平台图片尺寸标准(淘宝/京东/拼多多/抖音)、白底图/场景图/详情页图/主图视频规格、品牌视觉一致性管理(色调/字体/Logo/风格)。
+
+教学环节3：批量产出实操（5分钟）
+实操指令：建立电商商品图自动化工作流：产品照片→AI去背景→AI场景合成→多尺寸适配→一键上传各平台。用AI生成商品文案搭配图：产品卖点→AI生成文案→AI配图→生成详情页模板。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为5款不同品类的商品(服装/食品/电子/家居/美妆)，分别设计AI辅助视觉图的生成方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握电商视觉图的批量生成方法、理解各平台的差异化视觉要求。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-2</span>
+            <div class="ep-info"><div class="ep-title">电商商品视觉图一键批量产出</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——一个电商店铺需要多少张图（1分钟）</div><div class="sc">设计意图：量化电商视觉需求——一个50款产品的店铺需要200+张不同尺寸和场景的商品图。</div></div><div class="seg"><div class="sn">教学环节2：电商视觉标准规范（3分钟）</div><div class="sc">知识内容：各平台图片尺寸标准(淘宝/京东/拼多多/抖音)、白底图/场景图/详情页图/主图视频规格、品牌视觉一致性管理(色调/字体/Logo/风格)。</div></div><div class="seg"><div class="sn">教学环节3：批量产出实操（5分钟）</div><div class="sc">实操指令：建立电商商品图自动化工作流：产品照片→AI去背景→AI场景合成→多尺寸适配→一键上传各平台。用AI生成商品文案搭配图：产品卖点→AI生成文案→AI配图→生成详情页模板。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为5款不同品类的商品(服装/食品/电子/家居/美妆)，分别设计AI辅助视觉图的生成方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握电商视觉图的批量生成方法、理解各平台的差异化视觉要求。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="3" data-search="短视频脚本+AI分镜配套制作流程 短视频制作 教学环节1：情境导入——一条爆款短视频背后有多少准备工作（1.5分钟）
+设计意图：展示短视频制作从创意到成片的完整工序。
+
+教学环节2：AI短视频制作全流程（4分钟）
+知识内容：爆款脚本公式(3秒钩子+痛点共鸣+解决方案+行动号召)、AI分镜生成(文案→分镜描述→AI生成关键帧→初剪)、各平台差异化要求(抖音/快手/B站/视频号)。
+
+教学环节3：配套制作实操（4分钟）
+实操指令：用AI生成一条60秒短视频的完整制作包：脚本(含口播文案+画面描述)→分镜表(10-15个镜头)→AI生成关键帧参考图→BGM建议→封面图设计。为同一产品生成3个不同风格的短视频方案(剧情类/口播类/展示类)。
+
+教学环节4：学员跟练（3分钟）
+实操指令：选择一个产品或主题，用AI完成一个完整的短视频制作方案包。
+
+教学环节5：总结与课后工单（1.5分钟）
+学员收获：掌握短视频脚本和分镜的AI辅助生成、能够为不同平台定制内容。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-3</span>
+            <div class="ep-info"><div class="ep-title">短视频脚本+AI分镜配套制作流程</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——一条爆款短视频背后有多少准备工作（1.5分钟）</div><div class="sc">设计意图：展示短视频制作从创意到成片的完整工序。</div></div><div class="seg"><div class="sn">教学环节2：AI短视频制作全流程（4分钟）</div><div class="sc">知识内容：爆款脚本公式(3秒钩子+痛点共鸣+解决方案+行动号召)、AI分镜生成(文案→分镜描述→AI生成关键帧→初剪)、各平台差异化要求(抖音/快手/B站/视频号)。</div></div><div class="seg"><div class="sn">教学环节3：配套制作实操（4分钟）</div><div class="sc">实操指令：用AI生成一条60秒短视频的完整制作包：脚本(含口播文案+画面描述)→分镜表(10-15个镜头)→AI生成关键帧参考图→BGM建议→封面图设计。为同一产品生成3个不同风格的短视频方案(剧情类/口播类/展示类)。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：选择一个产品或主题，用AI完成一个完整的短视频制作方案包。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（1.5分钟）</div><div class="sc">学员收获：掌握短视频脚本和分镜的AI辅助生成、能够为不同平台定制内容。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="4" data-search="品牌版式、字体自动排版工具实操 自动排版 教学环节1：情境导入——设计师在排版上花了多少无谓的时间（1分钟）
+设计意图：展示自动化排版工具如何将排版时间从2小时压缩到10分钟。
+
+教学环节2：排版自动化技术（3分钟）
+知识内容：网格系统自动化(列宽/行高/间距的黄金比例计算)、字体配对推荐(AI根据品牌调性推荐中英文字体组合)、色彩方案自动生成(基于主色调的智能配色)。
+
+教学环节3：实操指令（4分钟）
+实操指令：用AI辅助完成一套品牌版式设计：Logo→主色调→辅助色→字体系统→版式网格→输出品牌使用规范文档。建立一个自动化排版模板：输入文字和图片→自动应用版式规则→输出多尺寸适配版本。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个虚拟品牌设计完整的版式规范，包含排版参数、字体搭配、色彩方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握AI辅助排版的核心技术、能够为品牌建立自动化版式系统。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-4</span>
+            <div class="ep-info"><div class="ep-title">品牌版式、字体自动排版工具实操</div><div class="ep-meta">13min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——设计师在排版上花了多少无谓的时间（1分钟）</div><div class="sc">设计意图：展示自动化排版工具如何将排版时间从2小时压缩到10分钟。</div></div><div class="seg"><div class="sn">教学环节2：排版自动化技术（3分钟）</div><div class="sc">知识内容：网格系统自动化(列宽/行高/间距的黄金比例计算)、字体配对推荐(AI根据品牌调性推荐中英文字体组合)、色彩方案自动生成(基于主色调的智能配色)。</div></div><div class="seg"><div class="sn">教学环节3：实操指令（4分钟）</div><div class="sc">实操指令：用AI辅助完成一套品牌版式设计：Logo→主色调→辅助色→字体系统→版式网格→输出品牌使用规范文档。建立一个自动化排版模板：输入文字和图片→自动应用版式规则→输出多尺寸适配版本。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个虚拟品牌设计完整的版式规范，包含排版参数、字体搭配、色彩方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握AI辅助排版的核心技术、能够为品牌建立自动化版式系统。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="5" data-search="全套品牌VI素材批量生成 VI素材 教学环节1：情境导入——一个品牌需要多少VI物料（1.5分钟）
+设计意图：展示全套VI物料清单(Logo/名片/信纸/信封/文件夹/PPT模板/工牌/门头/宣传册等20+项)。
+
+教学环节2：VI标准化体系（3分钟）
+知识内容：VI设计三大系统(基础系统含Logo/色彩/字体、应用系统含办公/环境/宣传、数字系统含网站/社媒/App)。
+
+教学环节3：批量生成实操（5分钟）
+实操指令：用AI辅助完成一套完整VI：Logo设计(提供3个方向)→基础系统生成(色彩/字体/辅助图形)→应用系统批量生成(名片/信纸/PPT模板/社媒头像/宣传册封面)。建立VI物料批量生成工作流：主视觉确定→衍生物料模板→批量替换内容→一键输出全套VI。
+
+教学环节4：学员跟练（3.5分钟）
+实操指令：为一个虚拟品牌生成全套VI物料清单和设计方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握VI全套物料的AI辅助生成方法、能够承接品牌全案设计项目。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-5</span>
+            <div class="ep-info"><div class="ep-title">全套品牌VI素材批量生成</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——一个品牌需要多少VI物料（1.5分钟）</div><div class="sc">设计意图：展示全套VI物料清单(Logo/名片/信纸/信封/文件夹/PPT模板/工牌/门头/宣传册等20+项)。</div></div><div class="seg"><div class="sn">教学环节2：VI标准化体系（3分钟）</div><div class="sc">知识内容：VI设计三大系统(基础系统含Logo/色彩/字体、应用系统含办公/环境/宣传、数字系统含网站/社媒/App)。</div></div><div class="seg"><div class="sn">教学环节3：批量生成实操（5分钟）</div><div class="sc">实操指令：用AI辅助完成一套完整VI：Logo设计(提供3个方向)→基础系统生成(色彩/字体/辅助图形)→应用系统批量生成(名片/信纸/PPT模板/社媒头像/宣传册封面)。建立VI物料批量生成工作流：主视觉确定→衍生物料模板→批量替换内容→一键输出全套VI。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3.5分钟）</div><div class="sc">实操指令：为一个虚拟品牌生成全套VI物料清单和设计方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握VI全套物料的AI辅助生成方法、能够承接品牌全案设计项目。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="6" data-search="商业摄影AI批量后期修图流程 摄影后期 教学环节1：情境导入——一个电商摄影师的日常（1分钟）
+设计意图：展示商业摄影后期的重复性工作量——300张照片需要逐一调色、去瑕疵、统一风格。
+
+教学环节2：AI修图技术栈（3分钟）
+知识内容：批量调色(AI自动白平衡/曝光/对比度)、智能去瑕疵(皮肤/背景/产品瑕疵)、风格统一(批量套用预设/AI风格迁移)、背景替换和合成。
+
+教学环节3：批量修图实操（5分钟）
+实操指令：建立商业摄影AI后期工作流：原始照片导入→AI批量调色→AI去瑕疵→AI背景处理→风格统一→多尺寸导出→自动归档。演示用AI将同一组产品照适配3种不同风格的电商场景(简约白底/INS风格/中国风)。
+
+教学环节4：学员跟练（3分钟）
+实操指令：设计一套针对电商产品照的AI后期批量处理方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握商业摄影AI后期批量处理的完整流程、能够大幅提升摄影后期效率。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-6</span>
+            <div class="ep-info"><div class="ep-title">商业摄影AI批量后期修图流程</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——一个电商摄影师的日常（1分钟）</div><div class="sc">设计意图：展示商业摄影后期的重复性工作量——300张照片需要逐一调色、去瑕疵、统一风格。</div></div><div class="seg"><div class="sn">教学环节2：AI修图技术栈（3分钟）</div><div class="sc">知识内容：批量调色(AI自动白平衡/曝光/对比度)、智能去瑕疵(皮肤/背景/产品瑕疵)、风格统一(批量套用预设/AI风格迁移)、背景替换和合成。</div></div><div class="seg"><div class="sn">教学环节3：批量修图实操（5分钟）</div><div class="sc">实操指令：建立商业摄影AI后期工作流：原始照片导入→AI批量调色→AI去瑕疵→AI背景处理→风格统一→多尺寸导出→自动归档。演示用AI将同一组产品照适配3种不同风格的电商场景(简约白底/INS风格/中国风)。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：设计一套针对电商产品照的AI后期批量处理方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握商业摄影AI后期批量处理的完整流程、能够大幅提升摄影后期效率。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="7" data-search="展会、线下宣传物料快速制作 展会物料 教学环节1：情境导入——下周开展，宣传物料还没做（1分钟）
+设计意图：展示展会物料的紧迫性和AI快速制作的效率优势。
+
+教学环节2：展会物料清单与规范（3分钟）
+知识内容：标准展会物料清单(展板/易拉宝/宣传册/名片/邀请函/手提袋/海报/横幅)、印刷规范(出血/CMYK/分辨率/材质选择)。
+
+教学环节3：快速制作实操（5分钟）
+实操指令：用AI在2小时内完成一套展会物料：主KV设计→展板画面→易拉宝→宣传册→邀请函→名片→产品手册→全部导出印刷文件。建立展会物料快速制作模板库：不同尺寸和风格的展板模板/宣传册模板/海报模板。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个虚拟展会设计全套物料的快速制作方案，标注时间节点。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握展会物料的AI快速制作方法、能够承接展会和活动物料的设计项目。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-7</span>
+            <div class="ep-info"><div class="ep-title">展会、线下宣传物料快速制作</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——下周开展，宣传物料还没做（1分钟）</div><div class="sc">设计意图：展示展会物料的紧迫性和AI快速制作的效率优势。</div></div><div class="seg"><div class="sn">教学环节2：展会物料清单与规范（3分钟）</div><div class="sc">知识内容：标准展会物料清单(展板/易拉宝/宣传册/名片/邀请函/手提袋/海报/横幅)、印刷规范(出血/CMYK/分辨率/材质选择)。</div></div><div class="seg"><div class="sn">教学环节3：快速制作实操（5分钟）</div><div class="sc">实操指令：用AI在2小时内完成一套展会物料：主KV设计→展板画面→易拉宝→宣传册→邀请函→名片→产品手册→全部导出印刷文件。建立展会物料快速制作模板库：不同尺寸和风格的展板模板/宣传册模板/海报模板。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个虚拟展会设计全套物料的快速制作方案，标注时间节点。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握展会物料的AI快速制作方法、能够承接展会和活动物料的设计项目。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="8" data-search="设计师作品集AI自动整理优化 作品集 教学环节1：情境导入——设计师的作品集多久更新一次（1分钟）
+设计意图：展示作品集整理的痛点——设计师忙于做项目，没时间整理自己的作品。
+
+教学环节2：作品集AI优化方法论（3分钟）
+知识内容：作品筛选标准(商业价值/视觉冲击力/技术难度)、叙事结构(项目背景→设计思路→过程展示→最终成果→商业效果)、多平台适配(站酷/Behance/Dribbble/LinkedIn)。
+
+教学环节3：AI辅助整理实操（4分钟）
+实操指令：用AI帮你整理作品集：拖入项目文件夹→AI自动分类和标注→AI生成项目说明文案→AI优化图片排版→生成多平台适配版本。为作品集生成配套的AI优化元素：封面设计→个人介绍→能力标签→联系方式页。
+
+教学环节4：学员跟练（3分钟）
+实操指令：梳理你的作品集清单，用AI生成每一件作品的说明文案和展示方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握AI辅助作品集整理和优化的完整方法、能够快速生成多平台适配的作品集。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-8</span>
+            <div class="ep-info"><div class="ep-title">设计师作品集AI自动整理优化</div><div class="ep-meta">13min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——设计师的作品集多久更新一次（1分钟）</div><div class="sc">设计意图：展示作品集整理的痛点——设计师忙于做项目，没时间整理自己的作品。</div></div><div class="seg"><div class="sn">教学环节2：作品集AI优化方法论（3分钟）</div><div class="sc">知识内容：作品筛选标准(商业价值/视觉冲击力/技术难度)、叙事结构(项目背景→设计思路→过程展示→最终成果→商业效果)、多平台适配(站酷/Behance/Dribbble/LinkedIn)。</div></div><div class="seg"><div class="sn">教学环节3：AI辅助整理实操（4分钟）</div><div class="sc">实操指令：用AI帮你整理作品集：拖入项目文件夹→AI自动分类和标注→AI生成项目说明文案→AI优化图片排版→生成多平台适配版本。为作品集生成配套的AI优化元素：封面设计→个人介绍→能力标签→联系方式页。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：梳理你的作品集清单，用AI生成每一件作品的说明文案和展示方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握AI辅助作品集整理和优化的完整方法、能够快速生成多平台适配的作品集。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="9" data-search="设计方案、报价单AI自动撰写 方案报价 教学环节1：情境导入——写了3小时方案，客户只看3分钟（1.5分钟）
+设计意图：展示设计方案撰写的时间成本和AI加速方案。
+
+教学环节2：设计方案结构标准化（3分钟）
+知识内容：设计方案的黄金结构(项目理解→设计策略→创意方向→执行方案→时间规划→团队配置→预算报价)、报价单标准模板(服务项目/单价/数量/合计/付款方式/版权说明)。
+
+教学环节3：AI自动撰写实操（4.5分钟）
+实操指令：建立设计方案AI生成工作流：客户需求录入→AI分析需求→AI生成方案框架→AI填充内容→人工审核优化→输出客户版。写一个报价单自动生成脚本：选择服务项目→填入数量和周期→自动计算价格→生成专业报价单PDF。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个虚拟设计项目(某品牌VI设计)，用AI生成完整的设计方案和报价单。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握设计方案和报价单的AI自动撰写方法、能够大幅提升接单效率和专业度。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-9</span>
+            <div class="ep-info"><div class="ep-title">设计方案、报价单AI自动撰写</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——写了3小时方案，客户只看3分钟（1.5分钟）</div><div class="sc">设计意图：展示设计方案撰写的时间成本和AI加速方案。</div></div><div class="seg"><div class="sn">教学环节2：设计方案结构标准化（3分钟）</div><div class="sc">知识内容：设计方案的黄金结构(项目理解→设计策略→创意方向→执行方案→时间规划→团队配置→预算报价)、报价单标准模板(服务项目/单价/数量/合计/付款方式/版权说明)。</div></div><div class="seg"><div class="sn">教学环节3：AI自动撰写实操（4.5分钟）</div><div class="sc">实操指令：建立设计方案AI生成工作流：客户需求录入→AI分析需求→AI生成方案框架→AI填充内容→人工审核优化→输出客户版。写一个报价单自动生成脚本：选择服务项目→填入数量和周期→自动计算价格→生成专业报价单PDF。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个虚拟设计项目(某品牌VI设计)，用AI生成完整的设计方案和报价单。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握设计方案和报价单的AI自动撰写方法、能够大幅提升接单效率和专业度。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="10" data-search="客户改稿标准化AI处理流程 改稿流程 教学环节1：情境导入——你是不是也有过第17版的设计文件（1分钟）
+设计意图：展示反复改稿对设计效率和心情的消耗，以及标准化流程的解决方案。
+
+教学环节2：改稿标准化方法论（3.5分钟）
+知识内容：改稿分级制度(免费修改范围/收费修改标准/重大变更定义)、改稿沟通模板(客户反馈→需求确认→影响评估→修改方案→时间报价→确认执行)、版本管理规范(v1.0→v1.1→v2.0命名规则)。
+
+教学环节3：AI辅助改稿实操（4.5分钟）
+实操指令：建立AI辅助改稿流程：客户反馈文本→AI分析修改类型和范围→AI评估工时和成本→AI生成修改方案→设计师确认→AI辅助执行→AI生成修改报告。写一个改稿管理脚本：追踪每次修改需求→记录工时→生成改稿汇总报告→月末统计改稿成本。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个频繁改稿的设计项目设计标准化改稿流程，包含分级标准、沟通模板和版本管理。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握客户改稿的标准化管理方法、能够建立设计项目的版本和变更管理体系。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-10</span>
+            <div class="ep-info"><div class="ep-title">客户改稿标准化AI处理流程</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——你是不是也有过第17版的设计文件（1分钟）</div><div class="sc">设计意图：展示反复改稿对设计效率和心情的消耗，以及标准化流程的解决方案。</div></div><div class="seg"><div class="sn">教学环节2：改稿标准化方法论（3.5分钟）</div><div class="sc">知识内容：改稿分级制度(免费修改范围/收费修改标准/重大变更定义)、改稿沟通模板(客户反馈→需求确认→影响评估→修改方案→时间报价→确认执行)、版本管理规范(v1.0→v1.1→v2.0命名规则)。</div></div><div class="seg"><div class="sn">教学环节3：AI辅助改稿实操（4.5分钟）</div><div class="sc">实操指令：建立AI辅助改稿流程：客户反馈文本→AI分析修改类型和范围→AI评估工时和成本→AI生成修改方案→设计师确认→AI辅助执行→AI生成修改报告。写一个改稿管理脚本：追踪每次修改需求→记录工时→生成改稿汇总报告→月末统计改稿成本。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个频繁改稿的设计项目设计标准化改稿流程，包含分级标准、沟通模板和版本管理。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握客户改稿的标准化管理方法、能够建立设计项目的版本和变更管理体系。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="11" data-search="海量设计文件自动分类归档 文件归档 教学环节1：情境导入——设计师电脑里的文件有多乱（1分钟）
+设计意图：展示设计文件管理的混乱现状和AI自动归档的解决方案。
+
+教学环节2：文件归档方法论（3分钟）
+知识内容：设计文件分类体系(按客户/项目/类型/日期多维度分类)、命名规范(客户-项目-类型-版本-日期)、元数据管理(自动提取文件信息并建立索引)、云存储同步策略。
+
+教学环节3：AI自动归档实操（4分钟）
+实操指令：编写文件自动归档脚本：扫描指定文件夹→识别文件类型(PNG/PSD/AI/Sketch/PDF)→读取元数据→按规则自动分类→重命名→移动到对应文件夹→生成文件索引表。建立一个设计资源库管理系统：海量素材→AI自动打标签→智能搜索→版本追踪→去重。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为你的设计文件现状设计一套AI驱动的自动分类归档方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握设计文件的AI自动分类归档方法、能够建立个人或团队的知识资产管理系统。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-11</span>
+            <div class="ep-info"><div class="ep-title">海量设计文件自动分类归档</div><div class="ep-meta">13min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——设计师电脑里的文件有多乱（1分钟）</div><div class="sc">设计意图：展示设计文件管理的混乱现状和AI自动归档的解决方案。</div></div><div class="seg"><div class="sn">教学环节2：文件归档方法论（3分钟）</div><div class="sc">知识内容：设计文件分类体系(按客户/项目/类型/日期多维度分类)、命名规范(客户-项目-类型-版本-日期)、元数据管理(自动提取文件信息并建立索引)、云存储同步策略。</div></div><div class="seg"><div class="sn">教学环节3：AI自动归档实操（4分钟）</div><div class="sc">实操指令：编写文件自动归档脚本：扫描指定文件夹→识别文件类型(PNG/PSD/AI/Sketch/PDF)→读取元数据→按规则自动分类→重命名→移动到对应文件夹→生成文件索引表。建立一个设计资源库管理系统：海量素材→AI自动打标签→智能搜索→版本追踪→去重。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为你的设计文件现状设计一套AI驱动的自动分类归档方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握设计文件的AI自动分类归档方法、能够建立个人或团队的知识资产管理系统。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="23" data-ep="12" data-search="综合实战：设计工作室完整接单全流程 综合实战 教学环节1：综合项目概述（2分钟）
+设计意图：用一家虚拟设计工作室从接单到交付的完整流程串联第1-11集所有技能。
+全流程：客户咨询→需求沟通→方案报价→创意设计→客户审核→修改优化→最终交付→售后跟进→客户维护。
+
+教学环节2：Stage1——客户获取与需求沟通（3分钟）
+实操指令：用AI完成客户接洽全流程：生成客户需求问卷→AI分析需求并匹配服务方案→自动生成报价单→AI撰写项目提案→发送客户确认。
+
+教学环节3：Stage2——创意设计与制作（3.5分钟）
+实操指令：用AI辅助完成全套设计创作：品牌分析→创意方向→素材生成→版式设计→VI物料批量产出→质量检查→准备交付物。
+
+教学环节4：Stage3——客户审核与修改（3分钟）
+实操指令：AI辅助客户沟通：生成客户审核指南→收集反馈意见→AI评估修改范围→自动生成修改建议→快速执行修改→输出修订版和对比报告。
+
+教学环节5：Stage4——交付与售后服务（3分钟）
+实操指令：AI辅助交付全流程：生成交付清单→整理交付物→自动生成使用指南→发送客户→定时跟进→收集评价→生成案例展示。
+
+教学环节6：总结与课后工单（1.5分钟）
+学员收获：具备独立承接设计项目的完整能力、掌握从获客到交付的全链条AI辅助工作流。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">23-12</span>
+            <div class="ep-info"><div class="ep-title">综合实战：设计工作室完整接单全流程</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：综合项目概述（2分钟）</div><div class="sc">设计意图：用一家虚拟设计工作室从接单到交付的完整流程串联第1-11集所有技能。
+全流程：客户咨询→需求沟通→方案报价→创意设计→客户审核→修改优化→最终交付→售后跟进→客户维护。</div></div><div class="seg"><div class="sn">教学环节2：Stage1——客户获取与需求沟通（3分钟）</div><div class="sc">实操指令：用AI完成客户接洽全流程：生成客户需求问卷→AI分析需求并匹配服务方案→自动生成报价单→AI撰写项目提案→发送客户确认。</div></div><div class="seg"><div class="sn">教学环节3：Stage2——创意设计与制作（3.5分钟）</div><div class="sc">实操指令：用AI辅助完成全套设计创作：品牌分析→创意方向→素材生成→版式设计→VI物料批量产出→质量检查→准备交付物。</div></div><div class="seg"><div class="sn">教学环节4：Stage3——客户审核与修改（3分钟）</div><div class="sc">实操指令：AI辅助客户沟通：生成客户审核指南→收集反馈意见→AI评估修改范围→自动生成修改建议→快速执行修改→输出修订版和对比报告。</div></div><div class="seg"><div class="sn">教学环节5：Stage4——交付与售后服务（3分钟）</div><div class="sc">实操指令：AI辅助交付全流程：生成交付清单→整理交付物→自动生成使用指南→发送客户→定时跟进→收集评价→生成案例展示。</div></div><div class="seg"><div class="sn">教学环节6：总结与课后工单（1.5分钟）</div><div class="sc">学员收获：具备独立承接设计项目的完整能力、掌握从获客到交付的全链条AI辅助工作流。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+        </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+
+    </div>
+    </div><div class="category-card" data-ch="24">
+      <div class="card-header">
+        <div class="card-emoji">Craft</div>
+        <div><div class="card-title">传统手艺/非遗行业</div><div class="card-sub">第24章 . 共8集</div></div>
+      </div>
+      <ul class="ep-list">
+<li class="ep-item" data-ch="24" data-ep="1" data-search="非遗、手工产品品牌故事AI撰写 品牌故事 教学环节1：情境导入——手艺人最不缺故事，最缺会讲故事的人（1.5分钟）
+设计意图：展示传统手艺人【有手艺没品牌】的困境和AI赋能品牌故事的方法。
+核心理念：每一件手工艺品背后都有一个值得被传播的故事。
+
+教学环节2：品牌故事撰写框架（3.5分钟）
+知识内容：品牌故事四要素(起源/传承/匠心/情感)、不同类型手工艺的差异化表达(非遗传承/手工定制/文创产品)、适配不同平台的故事版本(公众号/小红书/抖音/电商详情页)。
+
+教学环节3：AI撰写实操（4.5分钟）
+实操指令：为一种非遗技艺生成品牌故事：技艺介绍→传承人故事→产品故事→文化价值→购买理由，输出5种不同风格的版本。为手工店铺生成系列内容：品牌故事→产品故事→客户故事→匠人日记，每月内容日历。
+
+教学环节4：学员跟练（3分钟）
+实操指令：选择一种你熟悉的手工艺，用AI生成一个完整的品牌故事体系。
+
+教学环节5：总结与课后工单（1.5分钟）
+学员收获：掌握品牌故事的AI撰写方法、能够为手工艺品牌建立内容体系。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">24-1</span>
+            <div class="ep-info"><div class="ep-title">非遗、手工产品品牌故事AI撰写</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——手艺人最不缺故事，最缺会讲故事的人（1.5分钟）</div><div class="sc">设计意图：展示传统手艺人【有手艺没品牌】的困境和AI赋能品牌故事的方法。
+核心理念：每一件手工艺品背后都有一个值得被传播的故事。</div></div><div class="seg"><div class="sn">教学环节2：品牌故事撰写框架（3.5分钟）</div><div class="sc">知识内容：品牌故事四要素(起源/传承/匠心/情感)、不同类型手工艺的差异化表达(非遗传承/手工定制/文创产品)、适配不同平台的故事版本(公众号/小红书/抖音/电商详情页)。</div></div><div class="seg"><div class="sn">教学环节3：AI撰写实操（4.5分钟）</div><div class="sc">实操指令：为一种非遗技艺生成品牌故事：技艺介绍→传承人故事→产品故事→文化价值→购买理由，输出5种不同风格的版本。为手工店铺生成系列内容：品牌故事→产品故事→客户故事→匠人日记，每月内容日历。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：选择一种你熟悉的手工艺，用AI生成一个完整的品牌故事体系。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（1.5分钟）</div><div class="sc">学员收获：掌握品牌故事的AI撰写方法、能够为手工艺品牌建立内容体系。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="2" data-search="手工商品电商详情页批量生成 电商详情页 教学环节1：情境导入——手艺人最头疼的不是做产品，是卖产品（1分钟）
+设计意图：展示手工商品线上销售的痛点和AI辅助电商运营方案。
+
+教学环节2：手工商品电商运营方法论（3.5分钟）
+知识内容：手工商品详情页的差异化要素(工艺展示/原材料溯源/制作过程/匠人介绍)、各平台详情页规范(淘宝/拼多多/抖音小店/微信小店)、SEO优化关键词策略。
+
+教学环节3：批量生成实操（4.5分钟）
+实操指令：用AI为一款手工商品生成完整电商素材包：商品标题→5张主图方案→详情页文案→卖点提炼→规格参数→售后说明→买家秀引导。批量生成店铺同类商品页：建立模板→替换商品信息→统一风格输出。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一款手工产品生成完整的电商详情页方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握手工商品电商详情页的批量生成方法、能够独立运营手工产品电商店铺。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">24-2</span>
+            <div class="ep-info"><div class="ep-title">手工商品电商详情页批量生成</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——手艺人最头疼的不是做产品，是卖产品（1分钟）</div><div class="sc">设计意图：展示手工商品线上销售的痛点和AI辅助电商运营方案。</div></div><div class="seg"><div class="sn">教学环节2：手工商品电商运营方法论（3.5分钟）</div><div class="sc">知识内容：手工商品详情页的差异化要素(工艺展示/原材料溯源/制作过程/匠人介绍)、各平台详情页规范(淘宝/拼多多/抖音小店/微信小店)、SEO优化关键词策略。</div></div><div class="seg"><div class="sn">教学环节3：批量生成实操（4.5分钟）</div><div class="sc">实操指令：用AI为一款手工商品生成完整电商素材包：商品标题→5张主图方案→详情页文案→卖点提炼→规格参数→售后说明→买家秀引导。批量生成店铺同类商品页：建立模板→替换商品信息→统一风格输出。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一款手工产品生成完整的电商详情页方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握手工商品电商详情页的批量生成方法、能够独立运营手工产品电商店铺。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="3" data-search="手作店铺订单、库存台账自动统计 订单库存 教学环节1：情境导入——手工店铺老板的账本（1分钟）
+设计意图：展示手工店铺从【手工记账】到【自动化管理】的效率提升。
+
+教学环节2：台账自动化方法论（3.5分钟）
+知识内容：手工店铺台账模型(订单台账/库存台账/收支台账/客户台账)、原材料BOM管理(每个产品的物料清单和成本核算)、多平台订单汇总(淘宝+微信+线下统一管理)。
+
+教学环节3：自动化统计实操（4.5分钟）
+实操指令：用AI搭建手工店铺的台账管理系统：Excel模板设计→订单自动录入→库存自动扣减→日/周/月自动汇总→库存预警提醒。写一个多平台订单汇总脚本：从各平台导出订单→合并去重→统一格式→生成汇总看板。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个模拟手工店铺设计台账自动化方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握手工店铺台账的自动化管理方法、能够搭建小型ERP系统。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">24-3</span>
+            <div class="ep-info"><div class="ep-title">手作店铺订单、库存台账自动统计</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——手工店铺老板的账本（1分钟）</div><div class="sc">设计意图：展示手工店铺从【手工记账】到【自动化管理】的效率提升。</div></div><div class="seg"><div class="sn">教学环节2：台账自动化方法论（3.5分钟）</div><div class="sc">知识内容：手工店铺台账模型(订单台账/库存台账/收支台账/客户台账)、原材料BOM管理(每个产品的物料清单和成本核算)、多平台订单汇总(淘宝+微信+线下统一管理)。</div></div><div class="seg"><div class="sn">教学环节3：自动化统计实操（4.5分钟）</div><div class="sc">实操指令：用AI搭建手工店铺的台账管理系统：Excel模板设计→订单自动录入→库存自动扣减→日/周/月自动汇总→库存预警提醒。写一个多平台订单汇总脚本：从各平台导出订单→合并去重→统一格式→生成汇总看板。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个模拟手工店铺设计台账自动化方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握手工店铺台账的自动化管理方法、能够搭建小型ERP系统。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="4" data-search="手工艺短视频种草脚本AI生成 短视频种草 教学环节1：情境导入——一个手工艺短视频爆了能带来多少订单（1分钟）
+设计意图：展示短视频种草对手工艺品销售的直接拉动效应。
+
+教学环节2：手工艺短视频方法论（3.5分钟）
+知识内容：手工艺短视频五大类型(制作过程/成品展示/教程分享/匠人故事/客户开箱)、爆款脚本结构(开屏震撼→过程展示→细节特写→成品亮相→引导下单)、拍摄和剪辑要点。
+
+教学环节3：AI生成脚本实操（4.5分钟）
+实操指令：为一件手工艺品生成完整的短视频拍摄方案：选题方向→爆款标题→分镜脚本(15-20个镜头)→口播文案→BGM推荐→发布文案→话题标签。用AI一次生成30天的短视频内容日历，每天一个选题+脚本。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为你熟悉的一种手工艺规划一周的短视频内容方案。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握手工艺短视频的内容规划方法、能够持续产出高质量种草内容。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">24-4</span>
+            <div class="ep-info"><div class="ep-title">手工艺短视频种草脚本AI生成</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——一个手工艺短视频爆了能带来多少订单（1分钟）</div><div class="sc">设计意图：展示短视频种草对手工艺品销售的直接拉动效应。</div></div><div class="seg"><div class="sn">教学环节2：手工艺短视频方法论（3.5分钟）</div><div class="sc">知识内容：手工艺短视频五大类型(制作过程/成品展示/教程分享/匠人故事/客户开箱)、爆款脚本结构(开屏震撼→过程展示→细节特写→成品亮相→引导下单)、拍摄和剪辑要点。</div></div><div class="seg"><div class="sn">教学环节3：AI生成脚本实操（4.5分钟）</div><div class="sc">实操指令：为一件手工艺品生成完整的短视频拍摄方案：选题方向→爆款标题→分镜脚本(15-20个镜头)→口播文案→BGM推荐→发布文案→话题标签。用AI一次生成30天的短视频内容日历，每天一个选题+脚本。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为你熟悉的一种手工艺规划一周的短视频内容方案。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握手工艺短视频的内容规划方法、能够持续产出高质量种草内容。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="5" data-search="线下门店宣传海报、宣传单快速制作 门店宣传 教学环节1：情境导入——手艺人的门店靠什么吸引过路客（1分钟）
+设计意图：展示线下门店宣传物料的需求和AI快速制作方案。
+
+教学环节2：线下宣传物料设计规范（3.5分钟）
+知识内容：门店常用宣传物料(门头/橱窗海报/门口易拉宝/店内菜单/产品介绍牌/促销传单/优惠券/会员卡)、印刷要求和尺寸规范、设计排版要点(大标题+视觉焦点+行动号召)。
+
+教学环节3：快速制作实操（4.5分钟）
+实操指令：用AI快速制作一套门店宣传物料：门头横幅→门口海报→店内价目表→产品介绍牌→促销传单→优惠券模板。建立门店节日促销模板库：春节/端午/中秋/双十一/店庆等各节日的宣传物料模板。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一个虚拟手工门店设计一套节日促销宣传物料。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握线下门店宣传物料的AI快速制作方法、能够为门店持续产出促销素材。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">24-5</span>
+            <div class="ep-info"><div class="ep-title">线下门店宣传海报、宣传单快速制作</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——手艺人的门店靠什么吸引过路客（1分钟）</div><div class="sc">设计意图：展示线下门店宣传物料的需求和AI快速制作方案。</div></div><div class="seg"><div class="sn">教学环节2：线下宣传物料设计规范（3.5分钟）</div><div class="sc">知识内容：门店常用宣传物料(门头/橱窗海报/门口易拉宝/店内菜单/产品介绍牌/促销传单/优惠券/会员卡)、印刷要求和尺寸规范、设计排版要点(大标题+视觉焦点+行动号召)。</div></div><div class="seg"><div class="sn">教学环节3：快速制作实操（4.5分钟）</div><div class="sc">实操指令：用AI快速制作一套门店宣传物料：门头横幅→门口海报→店内价目表→产品介绍牌→促销传单→优惠券模板。建立门店节日促销模板库：春节/端午/中秋/双十一/店庆等各节日的宣传物料模板。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一个虚拟手工门店设计一套节日促销宣传物料。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握线下门店宣传物料的AI快速制作方法、能够为门店持续产出促销素材。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="6" data-search="客户咨询自动回复AI话术搭建 客服话术 教学环节1：情境导入——手艺人一边做产品一边回复客户，效率有多低（1分钟）
+设计意图：展示客服自动化对手艺人时间解放的价值。
+
+教学环节2：客服话术体系设计（3.5分钟）
+知识内容：客户咨询高频问题分类(价格/定制/材质/工期/售后/物流)、标准话术模板设计(欢迎语/产品介绍/议价处理/催单/售后/好评引导)、多平台客服统一管理(微信/淘宝/抖音/小红书)。
+
+教学环节3：AI话术搭建实操（4.5分钟）
+实操指令：为手工店铺搭建AI客服话术库：80+条标准回复话术→按场景分类→设置触发关键词→生成各平台适配版本。建立客户常见异议处理话术：太贵了/能便宜吗/多久能做好/坏了怎么办/为什么比别家贵。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为你熟悉的手工产品设计一套完整的客户咨询自动回复话术。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握AI客服话术的搭建方法、能够为手工店铺建立自动化客服体系。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">24-6</span>
+            <div class="ep-info"><div class="ep-title">客户咨询自动回复AI话术搭建</div><div class="ep-meta">14min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——手艺人一边做产品一边回复客户，效率有多低（1分钟）</div><div class="sc">设计意图：展示客服自动化对手艺人时间解放的价值。</div></div><div class="seg"><div class="sn">教学环节2：客服话术体系设计（3.5分钟）</div><div class="sc">知识内容：客户咨询高频问题分类(价格/定制/材质/工期/售后/物流)、标准话术模板设计(欢迎语/产品介绍/议价处理/催单/售后/好评引导)、多平台客服统一管理(微信/淘宝/抖音/小红书)。</div></div><div class="seg"><div class="sn">教学环节3：AI话术搭建实操（4.5分钟）</div><div class="sc">实操指令：为手工店铺搭建AI客服话术库：80+条标准回复话术→按场景分类→设置触发关键词→生成各平台适配版本。建立客户常见异议处理话术：太贵了/能便宜吗/多久能做好/坏了怎么办/为什么比别家贵。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为你熟悉的手工产品设计一套完整的客户咨询自动回复话术。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握AI客服话术的搭建方法、能够为手工店铺建立自动化客服体系。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="7" data-search="手工产品物料成本自动核算工具 成本核算 教学环节1：情境导入——手艺人的定价为什么总是偏低（1分钟）
+设计意图：展示精确成本核算对利润率的直接影响。
+
+教学环节2：成本核算模型（3分钟）
+知识内容：手工产品成本构成(原材料/辅料/工具折旧/人工工时/包装/物流/平台扣点/推广费)、BOM物料清单管理、动态成本更新(原材料价格波动/批量折扣)、合理定价策略(成本加成法/市场参考法/价值定价法)。
+
+教学环节3：自动核算工具实操（4分钟）
+实操指令：用AI搭建手工产品成本自动核算表：输入材料清单→自动汇总成本→计算建议售价→模拟不同定价方案的利润率。写一个原材料价格波动预警脚本：监控关键原材料价格→超过阈值自动提醒→更新成本核算→建议调价方案。
+
+教学环节4：学员跟练（3分钟）
+实操指令：为一件手工产品建立完整的成本核算模型，并计算出建议售价。
+
+教学环节5：总结与课后工单（2分钟）
+学员收获：掌握手工产品的成本核算方法、能够建立科学的定价体系。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">24-7</span>
+            <div class="ep-info"><div class="ep-title">手工产品物料成本自动核算工具</div><div class="ep-meta">13min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：情境导入——手艺人的定价为什么总是偏低（1分钟）</div><div class="sc">设计意图：展示精确成本核算对利润率的直接影响。</div></div><div class="seg"><div class="sn">教学环节2：成本核算模型（3分钟）</div><div class="sc">知识内容：手工产品成本构成(原材料/辅料/工具折旧/人工工时/包装/物流/平台扣点/推广费)、BOM物料清单管理、动态成本更新(原材料价格波动/批量折扣)、合理定价策略(成本加成法/市场参考法/价值定价法)。</div></div><div class="seg"><div class="sn">教学环节3：自动核算工具实操（4分钟）</div><div class="sc">实操指令：用AI搭建手工产品成本自动核算表：输入材料清单→自动汇总成本→计算建议售价→模拟不同定价方案的利润率。写一个原材料价格波动预警脚本：监控关键原材料价格→超过阈值自动提醒→更新成本核算→建议调价方案。</div></div><div class="seg"><div class="sn">教学环节4：学员跟练（3分钟）</div><div class="sc">实操指令：为一件手工产品建立完整的成本核算模型，并计算出建议售价。</div></div><div class="seg"><div class="sn">教学环节5：总结与课后工单（2分钟）</div><div class="sc">学员收获：掌握手工产品的成本核算方法、能够建立科学的定价体系。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+<li class="ep-item" data-ch="24" data-ep="8" data-search="综合实战：手艺人线上运营+本地线下接单全流程 综合实战 教学环节1：综合项目概述（2分钟）
+设计意图：用一个手艺人的完整创业历程串联第1-7集所有技能。
+全流程：品牌建立→线上开店→内容运营→客户获取→订单管理→生产制作→交付售后→口碑裂变。
+
+教学环节2：Stage1——从零建立线上品牌（3分钟）
+实操指令：用AI辅助完成手艺品牌从0到1：品牌命名→品牌故事→视觉VI→各平台账号搭建→首月内容规划。
+
+教学环节3：Stage2——线上运营与客户获取（3分钟）
+实操指令：用AI辅助日常运营：内容持续产出→电商店铺优化→客户咨询自动回复→订单台账管理→数据分析和优化建议。
+
+教学环节4：Stage3——本地线下接单拓展（3分钟）
+实操指令：拓展本地线下业务：门店宣传物料→社区活动策划→本地社群运营→线下体验课方案→老客户转介绍机制。
+
+教学环节5：Stage4——全链路自动化运营（2.5分钟）
+实操指令：将所有运营环节串联成自动化工作流：AI自动生成内容→定时发布→自动回复咨询→自动处理订单→自动统计报表→AI生成优化建议。
+
+教学环节6：总结与课后工单（1.5分钟）
+学员收获：具备独立运营手工品牌的完整能力、掌握线上+线下的全渠道打法、能够通过AI实现一人工作室的高效运营。">
+          <div class="ep-head" onclick="this.parentElement.classList.toggle('open')">
+            <span class="ep-num">24-8</span>
+            <div class="ep-info"><div class="ep-title">综合实战：手艺人线上运营+本地线下接单全流程</div><div class="ep-meta">15min . </div></div>
+            <span class="ep-arr">v</span>
+          </div>
+          <div class="ep-body"><div class="seg"><div class="sn">教学环节1：综合项目概述（2分钟）</div><div class="sc">设计意图：用一个手艺人的完整创业历程串联第1-7集所有技能。
+全流程：品牌建立→线上开店→内容运营→客户获取→订单管理→生产制作→交付售后→口碑裂变。</div></div><div class="seg"><div class="sn">教学环节2：Stage1——从零建立线上品牌（3分钟）</div><div class="sc">实操指令：用AI辅助完成手艺品牌从0到1：品牌命名→品牌故事→视觉VI→各平台账号搭建→首月内容规划。</div></div><div class="seg"><div class="sn">教学环节3：Stage2——线上运营与客户获取（3分钟）</div><div class="sc">实操指令：用AI辅助日常运营：内容持续产出→电商店铺优化→客户咨询自动回复→订单台账管理→数据分析和优化建议。</div></div><div class="seg"><div class="sn">教学环节4：Stage3——本地线下接单拓展（3分钟）</div><div class="sc">实操指令：拓展本地线下业务：门店宣传物料→社区活动策划→本地社群运营→线下体验课方案→老客户转介绍机制。</div></div><div class="seg"><div class="sn">教学环节5：Stage4——全链路自动化运营（2.5分钟）</div><div class="sc">实操指令：将所有运营环节串联成自动化工作流：AI自动生成内容→定时发布→自动回复咨询→自动处理订单→自动统计报表→AI生成优化建议。</div></div><div class="seg"><div class="sn">教学环节6：总结与课后工单（1.5分钟）</div><div class="sc">学员收获：具备独立运营手工品牌的完整能力、掌握线上+线下的全渠道打法、能够通过AI实现一人工作室的高效运营。</div></div>
+
+          <div class="work-order-block">
+            <div class="wo-title">课后接单实操工单</div>
+            <div class="wo-desc">本行业企业真实重复工作任务，完成后可存入个人学员档案，解锁接单资质。</div>
+            <a href="#" class="wo-btn">素材模板包下载（付费增值）</a>
+          </div>
+
+          </div>
+        </li>
+        </li></ul>
+<div class="order-hint">学完可承接对应行业AI辅助重复工单</div>
+
+      <div class="ability-test-block">
+        <div class="at-title">能力测验</div>
+        <div class="at-desc">完成测验自动生成电子资质证书，企业发包可筛选持证学员。</div>
+        <div class="at-btns">
+          <a href="#" class="at-btn at-btn-free">免费入门能力测评</a>
+          <a href="#" class="at-btn at-btn-pro">企业定制专业测评</a>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+
+</div>
+</div>
+<div class="footer-enhanced">
+  <div class="footer-path">学习AI场景课程 到 完成行业能力测验 到 线上远程接单/同城就近线下接单 到 长期行业职场协作生态</div>
+  <p style="margin-top:10px;">WorkBuddy 精细化教案 V5.1 | 236集+ | WorkBuddy 24行业 + Codex 22行业 | Codex + 通用AI工具合集</p>
+  <p style="margin-top:6px;font-size:0.72rem;">2026 AI办公学院 - 学完即可接单 - 企业入驻合作：1550449686@qq.com</p>
+</div>
+
+
+</div>
+<a href="#" class="float-btn">接单咨询/企业合作</a>
+<script>
+// Global search redirect
+function globalSearch(q) {
+  if (!q || q.trim() === '') return;
+  window.location.href = 'workbuddy.html?q=' + encodeURIComponent(q);
+}
+var curCh = -1;
+
+</script>
+</body>
+</html>
