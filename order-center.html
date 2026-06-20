@@ -6,7 +6,59 @@
 <title>学员接单中心 | （AI）爱之城</title>
 <link rel="stylesheet" href="styles.css">
 <style>
+.oc-hero { text-align:center; padding:32px 24px 20px; background:#fff; border:1px solid var(--border); border-radius:8px; margin-bottom:20px; }
+.oc-hero h1 { font-size:1.5rem; font-weight:700; margin-bottom:6px; }
+.oc-hero p { font-size:0.88rem; color:var(--sub); max-width:600px; margin:0 auto; line-height:1.8; }
+.oc-hero .oc-stats { display:flex; gap:32px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+.oc-hero .oc-stat { text-align:center; }
+.oc-hero .oc-stat .num { font-size:1.4rem; font-weight:700; color:var(--accent); }
+.oc-hero .oc-stat .label { font-size:0.72rem; color:var(--sub); }
 
+.oc-filter { display:flex; gap:8px; align-items:center; background:#fff; border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin-bottom:16px; flex-wrap:wrap; }
+.oc-filter select, .oc-filter input { border:1px solid var(--border); border-radius:4px; padding:6px 10px; font-size:0.78rem; outline:none; font-family:inherit; }
+.oc-filter select:focus, .oc-filter input:focus { border-color:var(--accent); }
+.oc-filter .filter-label { font-size:0.78rem; font-weight:600; color:var(--text); margin-right:4px; white-space:nowrap; }
+.oc-filter .filter-tag { padding:4px 10px; border:1px solid var(--border); border-radius:4px; font-size:0.72rem; cursor:pointer; background:#fff; }
+.oc-filter .filter-tag.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+.oc-section { background:#fff; border:1px solid var(--border); border-radius:8px; padding:24px; margin-bottom:16px; }
+.oc-section h3 { font-size:1.05rem; font-weight:700; margin-bottom:4px; }
+.oc-section .oc-desc { font-size:0.8rem; color:var(--sub); line-height:1.7; margin-bottom:14px; }
+
+.order-grid { display:flex; flex-direction:column; gap:10px; }
+.order-card { border:1px solid var(--border); border-radius:6px; padding:16px; display:flex; gap:14px; align-items:flex-start; }
+.order-card:hover { border-color:var(--accent); }
+.order-card .oc-tag { flex-shrink:0; padding:3px 10px; border-radius:3px; font-size:0.68rem; font-weight:600; }
+.oc-tag-remote { background:#f0f0ff; color:var(--accent); }
+.oc-tag-local { background:#e6faf5; color:var(--green); }
+.order-card .oc-info { flex:1; }
+.order-card .oc-title { font-weight:700; font-size:0.88rem; margin-bottom:4px; }
+.order-card .oc-meta { font-size:0.72rem; color:var(--sub); line-height:1.6; }
+.order-card .oc-price { flex-shrink:0; text-align:right; }
+.order-card .oc-price .amount { font-size:1.2rem; font-weight:700; color:var(--accent); }
+.order-card .oc-price .unit { font-size:0.68rem; color:var(--sub); }
+.order-card .oc-btn { display:inline-block; margin-top:6px; padding:5px 14px; background:var(--accent); color:#fff; border-radius:4px; font-size:0.72rem; font-weight:600; text-decoration:none; }
+
+.level-grid { display:flex; gap:12px; flex-wrap:wrap; }
+.level-card { flex:1; min-width:200px; border:1px solid var(--border); border-radius:6px; padding:16px; text-align:center; }
+.level-card.lv1 { border-top:3px solid #ddd; }
+.level-card.lv2 { border-top:3px solid var(--accent); }
+.level-card.lv3 { border-top:3px solid var(--green); }
+.level-card.lv4 { border-top:3px solid #e17055; }
+.level-card .lv-name { font-weight:700; font-size:0.9rem; margin-bottom:4px; }
+.level-card .lv-req { font-size:0.72rem; color:var(--sub); line-height:1.7; }
+.level-card .lv-price { font-size:0.72rem; color:var(--accent); font-weight:600; margin-top:6px; }
+
+.process-steps { display:flex; gap:8px; flex-wrap:wrap; }
+.process-step { flex:1; min-width:140px; text-align:center; padding:14px; border:1px solid var(--border); border-radius:6px; }
+.process-step .ps-num { width:22px; height:22px; border-radius:50%; background:var(--accent); color:#fff; font-size:0.68rem; font-weight:700; line-height:22px; margin:0 auto 6px; }
+.process-step .ps-title { font-weight:700; font-size:0.82rem; margin-bottom:2px; }
+.process-step .ps-desc { font-size:0.7rem; color:var(--sub); line-height:1.5; }
+
+@media(max-width:768px){
+  .order-card { flex-direction:column; }
+  .level-grid { flex-direction:column; }
+}
 </style>
 </head>
 <body>
@@ -41,52 +93,194 @@
       <a href="enterprise.html">企业入驻&amp;能力测验</a>
       <a href="order-center.html">学员接单中心</a>
       <a href="enterprise.html#pricing" style="color:#f59e0b;font-weight:700;">会员/单课购买</a>
-    
       <a href="community.html">社区</a>
     </div>
-    <div class="nav-search">
-      <input type="text" id="navSearch" placeholder="全局搜索课程..." oninput="applyFilters()">
-    </div>
+    <div class="nav-search"><input type="text" id="navSearch" placeholder="搜索课程..." oninput="var v=this.value.trim();if(v)window.location.href='workbuddy.html?q='+encodeURIComponent(v)"></div>
   </div>
 </div>
 <div class="container">
-<div style="padding:20px 0;">
-<div style="background:var(--card);border-radius:12px;padding:16px;margin-bottom:20px;text-align:center;">
-  <span style="font-weight:700;color:var(--accent);">企业发包岗位筛选：</span>
-  <select style="padding:6px 12px;border:2px solid var(--border);border-radius:8px;margin-left:8px;">
-    <option value="">全部岗位</option>
-    <option value="finance">财会-出纳/税务/成本</option>
-    <option value="ecommerce">电商-运营/美工/客服</option>
-    <option value="design">艺术设计-平面/剪辑/插画</option>
-    <option value="craft">传统手艺-匠人/运营/门店</option>
-    <option value="manufacturing">制造-文员/质检/采购</option>
-    <option value="it">IT-运维/测试/文档</option>
-    <option value="media">新媒体-编辑/剪辑/直播</option>
-  </select>
-  <span style="font-size:0.78rem;color:var(--sub);margin-left:12px;">企业可按行业+细分岗位精准匹配持证学员</span>
+
+<div class="oc-hero">
+  <h1>学员接单中心</h1>
+  <p>完成课程学习并通过能力测验后，浏览企业发布的工单，选择匹配的线上远程/同城线下任务，积累经验与信用，实现学完即接单。</p>
+  <div class="oc-stats">
+    <div class="oc-stat"><div class="num">200+</div><div class="label">在招工单</div></div>
+    <div class="oc-stat"><div class="num">24</div><div class="label">覆盖行业</div></div>
+    <div class="oc-stat"><div class="num">500+</div><div class="label">持证学员</div></div>
+    <div class="oc-stat"><div class="num">95%</div><div class="label">好评率</div></div>
+  </div>
 </div>
 
-<h2 style="text-align:center;font-size:1.4rem;color:var(--accent);margin-bottom:24px;">学员接单中心</h2><div class="enterprise-section" style="margin:0;"><div class="enterprise-grid"><div class="enterprise-card" id="order-center">
-      <h4>学员接单中心</h4>
-      <p>完成课程学习和能力测验后，学员可在此浏览和承接企业发布的工单。</p>
-      <ul><li>按行业/区域/难度筛选工单</li><li>在线提交接单申请和交付物</li><li>积累接单评分和信用等级</li></ul>
+<div class="oc-filter">
+  <span class="filter-label">工单筛选：</span>
+  <select><option value="">全部行业</option><option>教育/培训</option><option>电商/零售</option><option>制造业</option><option>金融/财会</option><option>IT/科技</option><option>新媒体</option><option>艺术设计</option><option>传统手艺</option></select>
+  <select><option value="">全部岗位</option><option>出纳/会计</option><option>电商运营</option><option>生产文员</option><option>平面设计</option><option>短视频剪辑</option><option>法务助理</option><option>手作匠人</option></select>
+  <select><option value="">交付方式</option><option>远程线上</option><option>同城线下</option></select>
+  <select><option value="">难度等级</option><option>入门（200-500元）</option><option>进阶（500-1500元）</option><option>高级（1500+元）</option></select>
+</div>
+
+<div class="oc-section">
+  <h3>推荐工单</h3>
+  <p class="oc-desc">以下为企业发布的最新工单，完成对应课程并通过测评即可申请接单</p>
+  <div class="order-grid">
+
+    <div class="order-card">
+      <span class="oc-tag oc-tag-remote">远程</span>
+      <div class="oc-info">
+        <div class="oc-title">电商月度销售数据汇总与可视化报表</div>
+        <div class="oc-meta">电商/零售 · 数据分析岗 · 需要: Excel技能+数据分析课程证书 · 交付周期: 3天 · 发布企业: 某电商运营公司</div>
+      </div>
+      <div class="oc-price">
+        <div class="amount">¥800</div>
+        <div class="unit">/单</div>
+        <a href="workbuddy.html?ch=2" class="oc-btn">学习课程</a>
+      </div>
     </div>
-<div class="enterprise-card"><h4>线上远程工单</h4><p>全国范围匹配企业发包需求，在线完成工单交付。</p><ul><li>按行业/难度筛选工单</li><li>在线提交接单申请和交付物</li><li>积累接单评分和信用等级</li></ul></div>
-<div class="enterprise-card"><h4>同城就近线下工单</h4><p>LBS匹配本地学员，适合设计/手工艺/餐饮/房地产等需现场操作的行业。</p><ul><li>同城定位匹配工单</li><li>线下见面确认需求</li><li>面对面交付更高效</li></ul></div>
-<div class="enterprise-card"><h4>资质准入标准</h4><p>完成课程+通过测验后获得接单资质。</p><ul><li>完成对应行业全部课程</li><li>入门测评60分及格</li><li>专业测评80分及格（高价工单）</li></ul></div>
-</div></div></div>
+
+    <div class="order-card">
+      <span class="oc-tag oc-tag-remote">远程</span>
+      <div class="oc-info">
+        <div class="oc-title">教育机构学期学生成绩批量分析与个性化评语生成</div>
+        <div class="oc-meta">教育/培训 · 教务管理岗 · 需要: AI文档处理+教育行业课程证书 · 交付周期: 5天 · 发布企业: 某K12教育集团</div>
+      </div>
+      <div class="oc-price">
+        <div class="amount">¥1,200</div>
+        <div class="unit">/单</div>
+        <a href="workbuddy.html?ch=1" class="oc-btn">学习课程</a>
+      </div>
+    </div>
+
+    <div class="order-card">
+      <span class="oc-tag oc-tag-remote">远程</span>
+      <div class="oc-info">
+        <div class="oc-title">品牌VI素材批量生成（LOGO/名片/海报/宣传单）</div>
+        <div class="oc-meta">艺术设计 · 平面设计岗 · 需要: AI设计工具+艺术设计课程证书 · 交付周期: 7天 · 发布企业: 某品牌设计工作室</div>
+      </div>
+      <div class="oc-price">
+        <div class="amount">¥3,000</div>
+        <div class="unit">/套</div>
+        <a href="workbuddy.html?ch=23" class="oc-btn">学习课程</a>
+      </div>
+    </div>
+
+    <div class="order-card">
+      <span class="oc-tag oc-tag-local">同城·线下</span>
+      <div class="oc-info">
+        <div class="oc-title">手工皮具品牌电商详情页批量设计制作</div>
+        <div class="oc-meta">传统手艺 · 线上运营岗 · 需要: AI电商视觉+传统手艺课程证书 · 交付周期: 面议 · 发布企业: 某手作品牌 · 限同城学员</div>
+      </div>
+      <div class="oc-price">
+        <div class="amount">¥2,500</div>
+        <div class="unit">/套</div>
+        <a href="workbuddy.html?ch=24" class="oc-btn">学习课程</a>
+      </div>
+    </div>
+
+    <div class="order-card">
+      <span class="oc-tag oc-tag-remote">远程</span>
+      <div class="oc-info">
+        <div class="oc-title">企业采购合同批量审查与风险条款标注</div>
+        <div class="oc-meta">法律/咨询 · 法务助理岗 · 需要: 合同审查+法律行业课程证书 · 交付周期: 3天 · 发布企业: 某律师事务所</div>
+      </div>
+      <div class="oc-price">
+        <div class="amount">¥1,500</div>
+        <div class="unit">/批</div>
+        <a href="workbuddy.html?ch=9" class="oc-btn">学习课程</a>
+      </div>
+    </div>
+
+    <div class="order-card">
+      <span class="oc-tag oc-tag-remote">远程</span>
+      <div class="oc-info">
+        <div class="oc-title">制造业生产日报表自动化处理与不良率统计脚本</div>
+        <div class="oc-meta">制造业 · 生产文员岗 · 需要: Codex自动化+制造课程证书 · 交付周期: 4天 · 发布企业: 某电子制造厂</div>
+      </div>
+      <div class="oc-price">
+        <div class="amount">¥1,000</div>
+        <div class="unit">/单</div>
+        <a href="codex.html" class="oc-btn">学习课程</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="oc-section">
+  <h3>学员接单等级体系</h3>
+  <p class="oc-desc">根据学习完成度和测评成绩，学员自动获得对应接单等级，解锁不同价位的工单</p>
+  <div class="level-grid">
+    <div class="level-card lv1">
+      <div class="lv-name">Lv.1 新手上路</div>
+      <div class="lv-req">完成任意1个行业全部课程<br>通过免费入门测评（60分）</div>
+      <div class="lv-price">可接单价: ¥200-500</div>
+    </div>
+    <div class="level-card lv2">
+      <div class="lv-name">Lv.2 熟练助手</div>
+      <div class="lv-req">完成3个行业全部课程<br>通过专业测评（80分）<br>累计完成10个工单</div>
+      <div class="lv-price">可接单价: ¥500-1500</div>
+    </div>
+    <div class="level-card lv3">
+      <div class="lv-name">Lv.3 行业专家</div>
+      <div class="lv-req">完成5个行业全部课程<br>累计完成30个工单<br>好评率 ≥ 90%</div>
+      <div class="lv-price">可接单价: ¥1500-5000</div>
+    </div>
+    <div class="level-card lv4">
+      <div class="lv-name">Lv.4 金牌导师</div>
+      <div class="lv-req">累计完成100+工单<br>好评率 ≥ 95%<br>可带教学徒</div>
+      <div class="lv-price">可接单价: ¥5000+</div>
+    </div>
+  </div>
+</div>
+
+<div class="oc-section">
+  <h3>接单流程</h3>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="ps-num">1</div>
+      <div class="ps-title">学习课程</div>
+      <div class="ps-desc">选择感兴趣的行业，完成全部课程学习</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num">2</div>
+      <div class="ps-title">通过测评</div>
+      <div class="ps-desc">参加能力测验，获得电子资质证书</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num">3</div>
+      <div class="ps-title">浏览工单</div>
+      <div class="ps-desc">在接单中心按行业+岗位筛选匹配工单</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num">4</div>
+      <div class="ps-title">提交申请</div>
+      <div class="ps-desc">选择合适工单，提交接单申请和资质证明</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num">5</div>
+      <div class="ps-title">完成交付</div>
+      <div class="ps-desc">按企业要求在线/线下完成工单，上传交付物</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num">6</div>
+      <div class="ps-title">获得收益</div>
+      <div class="ps-desc">企业验收后结算报酬，积累信用与好评</div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:20px;background:var(--accent-light);border-radius:6px;margin-top:8px;">
+  <p style="font-size:0.9rem;font-weight:700;color:var(--accent);margin-bottom:8px;">还没有学习课程？从零开始，学完即可接单</p>
+  <a href="workbuddy.html" style="display:inline-block;padding:8px 24px;background:var(--accent);color:#fff;border-radius:4px;font-weight:600;text-decoration:none;margin-right:10px;">WorkBuddy课程专区</a>
+  <a href="codex.html" style="display:inline-block;padding:8px 24px;background:#fff;border:1px solid var(--accent);color:var(--accent);border-radius:4px;font-weight:600;text-decoration:none;">Codex专区</a>
+</div>
+
 </div>
 <div class="footer-enhanced">
   <div class="footer-path">学习AI场景课程 到 完成行业能力测验 到 线上远程接单/同城就近线下接单 到 长期行业职场协作生态</div>
-  <p style="margin-top:10px;">WorkBuddy 精细化教案 V5.1 | 236集+ | WorkBuddy 24行业 + Codex 22行业 | Codex + 通用AI工具合集</p>
+  <p style="margin-top:10px;">WorkBuddy 精细化教案 · 236集+覆盖24大行业 · 学员接单中心</p>
   <p style="margin-top:6px;font-size:0.72rem;">2026 （AI）爱之城 - 学完即可接单 - 企业入驻合作：1550449686@qq.com</p>
 </div>
 <a href="enterprise.html" class="float-btn">接单咨询/企业合作</a>
-<script>
-
-</script>
-<script>
-</script>
 <script src="admin.js"></script>
 </body>
 </html>
