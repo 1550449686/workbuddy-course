@@ -180,4 +180,70 @@ a:hover, .nav-links a:hover, .dropdown-content a:hover {
 .category-card.collapsed .order-hint,
 .category-card.collapsed .ability-test-block { display:none; }
 .category-card.collapsed .card-toggle { transform:rotate(-90deg); }
-/* V6.4 force refresh */
+
+
+/* V7.0: Position layer styles */
+.positions-section {
+  margin-top: 12px;
+  border-top: 2px solid var(--accent);
+  padding-top: 8px;
+}
+.pos-section-header {
+  cursor: pointer;
+  padding: 10px 12px;
+  background: var(--alight);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+.pos-section-header:hover { background: #dde4ff; }
+.pos-arrow { font-size: 0.9rem; transition: transform 0.3s; }
+.positions-section.pos-section-open .pos-arrow { transform: rotate(90deg); }
+.pos-section-body { display: none; }
+.positions-section.pos-section-open .pos-section-body { display: block; }
+.position-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 8px 0;
+  background: #fafbff;
+}
+.pos-header {
+  cursor: pointer;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  user-select: none;
+}
+.pos-header:hover { background: #eef2ff; }
+.pos-icon { font-size: 0.85rem; color: var(--accent); transition: transform 0.3s; }
+.position-card.pos-open .pos-icon { transform: rotate(45deg); }
+.pos-title { font-weight: 600; font-size: 0.85rem; flex: 1; }
+.pos-tag { font-size: 0.65rem; background: #10b981; color: white; padding: 2px 8px; border-radius: 10px; }
+.pos-body { display: none; padding: 0 14px 12px; }
+.position-card.pos-open .pos-body { display: block; }
+.pos-intro, .pos-core, .pos-repeat, .pos-course-ref {
+  font-size: 0.78rem;
+  color: var(--sub);
+  line-height: 1.6;
+  margin: 6px 0;
+  padding: 8px;
+  background: white;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+}
+.pos-core { border-left-color: #f59e0b; }
+.pos-repeat { border-left-color: #10b981; }
+.pos-course-ref { border-left-color: #8b5cf6; }
+.pos-body .work-order-block { margin: 8px 0; }
+.pos-body .order-hint { margin-top: 6px; }
+
+/* Position filter on index/home */
+.pos-filter { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0; align-items: center; }
+.pos-filter select { padding: 8px 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 0.82rem; }

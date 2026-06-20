@@ -108,6 +108,34 @@
 </div>
 <div class="search-bar" style="margin:16px 0;"><input type="text" id="q" placeholder="搜索全部课程关键词..." oninput="var v=this.value.trim();if(v)window.location.href='workbuddy.html?q='+encodeURIComponent(v)"></div>
 <div style="text-align:center;padding:30px 0;">
+
+<div class="pos-filter" style="margin:12px 0;text-align:center;">
+  <span style="font-size:0.82rem;color:var(--sub);">岗位快速筛选：</span>
+  <select onchange="var v=this.value;if(v){var parts=v.split('|');window.location.href='workbuddy.html?ch='+parts[0];}">
+    <option value="">选择行业→岗位</option>
+    <option value="1|1">教育-教务管理专员</option><option value="1|2">教育-课程设计师</option>
+    <option value="2|1">电商-电商运营专员</option><option value="2|2">电商-电商美工</option>
+    <option value="3|1">制造-生产文员</option><option value="3|2">制造-质检专员</option>
+    <option value="4|1">商务-商务助理</option><option value="4|2">商务-客户成功专员</option>
+    <option value="5|1">IT-运维工程师助理</option><option value="5|2">IT-测试工程师助理</option>
+    <option value="6|1">财会-出纳</option><option value="6|2">财会-税务会计</option>
+    <option value="7|1">营销-文案策划</option><option value="7|2">营销-社媒运营</option>
+    <option value="8|1">医疗-医疗文书专员</option>
+    <option value="9|1">法律-法务助理</option>
+    <option value="10|1">新媒体-内容编辑</option><option value="10|2">新媒体-视频剪辑助理</option>
+    <option value="11|1">餐饮-门店店长助理</option>
+    <option value="12|1">房地产-房产经纪人助理</option>
+    <option value="13|1">物流-物流调度员</option>
+    <option value="14|1">游戏-游戏运营</option>
+    <option value="15|1">农业-农业数据员</option>
+    <option value="16|1">政府-行政文秘</option>
+    <option value="17|1">科研-科研助理</option>
+    <option value="23|1">艺术设计-平面设计师</option><option value="23|2">艺术设计-短视频剪辑师</option>
+    <option value="24|1">传统手艺-手作匠人</option><option value="24|2">传统手艺-线上运营专员</option>
+  </select>
+  <span style="font-size:0.72rem;color:var(--sub);margin-left:8px;">支持按行业+岗位双维度检索课程</span>
+</div>
+
 <h2 style="font-size:1.3rem;margin-bottom:20px;">两大教学板块</h2>
 <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
 <a href="workbuddy.html" style="flex:1;min-width:280px;max-width:450px;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:white;border-radius:16px;padding:30px;text-decoration:none;"><div style="font-size:2rem;margin-bottom:8px;">WorkBuddy</div><div style="font-size:1.1rem;font-weight:700;">全行业岗位标准化AI场景实操（覆盖24大行业日常办公）</div><div style="font-size:0.82rem;opacity:0.85;">216集细化教案 | 24大行业 | 知识沟通管理</div></a>
