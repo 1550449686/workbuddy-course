@@ -527,3 +527,32 @@ a, button, .card-header, .ep-head, .ch-tabs button, .tag-item, .cta-btn,
 
 /* ====== Smooth transition defaults ====== */
 .top-nav, .category-card, .job-panel, .ability-test-block, .float-btn { transition: opacity 0.2s ease; }
+
+/* ====== Admin Upload System ====== */
+.au-login-btn {
+  margin-left: auto;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: #fff;
+  color: #aaa;
+  font-size: 0.68rem;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.au-login-btn:hover { border-color: var(--accent); color: var(--accent); }
+.au-area { margin-top: 8px; padding: 8px; border: 1px dashed var(--border); border-radius: 4px; }
+.au-area .au-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 3px;
+  background: #fff; color: #888; font-size: 0.68rem; cursor: pointer;
+  font-family: inherit; margin-right: 4px;
+}
+.au-area .au-btn:hover { border-color: var(--accent); color: var(--accent); }
+.au-area .au-del:hover { border-color: #e17055; color: #e17055; }
+.au-file { display: none; }
+.au-hint { font-size: 0.62rem; color: #bbb; margin-top: 4px; }
+.au-preview { margin-top: 6px; }
+.au-video { width: 100%; max-width: 360px; border-radius: 4px; border: 1px solid var(--border); background: #000; }
+.au-actions { margin-top: 4px; display: flex; gap: 4px; }
+@media(max-width:768px){ .au-video{max-width:100%;} }
