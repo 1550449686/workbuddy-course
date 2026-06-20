@@ -518,3 +518,41 @@ body {
 /* ====== Anchor cleanup ====== */
 a, button, .card-header, .ep-head, .ch-tabs button, .tag-item, .cta-btn,
 .dropbtn, .at-btn, .wo-btn, .float-btn, .nav-links a { cursor: pointer; transition: all 0.15s ease; }
+
+
+/* V8.1: Hand-drawn sketch entrance animation */
+@keyframes sketchIn {
+  0% { clip-path: inset(0 100% 0 0); opacity: 0; }
+  40% { clip-path: inset(0 0 0 0); opacity: 0.6; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes paperIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.sketch-loading .container,
+.sketch-loading .top-nav,
+.sketch-loading .float-btn,
+.sketch-loading .footer-enhanced { opacity: 0; }
+
+.sketch-ready { animation: paperIn 0.4s ease forwards; }
+.sketch-nav { animation: sketchIn 0.5s ease forwards; }
+.sketch-title { animation: fadeUp 0.5s 0.15s ease both; }
+.sketch-card { animation: fadeUp 0.5s 0.3s ease both; }
+.sketch-content { animation: fadeUp 0.5s 0.45s ease both; }
+.sketch-footer { animation: fadeUp 0.4s 0.6s ease both; }
+.sketch-float { animation: fadeUp 0.4s 0.8s ease both; }
+
+body.sketch-loading { background: #f5f2eb; }
+body.sketch-ready { background: var(--bg); transition: background 0.6s ease; }
+
+.top-nav, .header, .banner-card, .category-card, .ep-item,
+.job-panel, .ability-test-block, .work-order-block,
+.cta-btn, .at-btn, .float-btn {
+  will-change: transform, opacity;
+}
