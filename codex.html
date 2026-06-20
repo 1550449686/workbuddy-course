@@ -1963,40 +1963,6 @@ WorkBuddy帮你写促销文案和客户话术。Codex帮你把进销存全流程
 
 </script>
 <script>
-// V8.1: Hand-drawn sketch entrance animation
-(function(){
-  if (sessionStorage.getItem('sketch_played')) return;
-  sessionStorage.setItem('sketch_played', '1');
-  
-  document.body.classList.add('sketch-loading');
-  
-  function addClass(el, cls, delay) {
-    if (!el) return;
-    setTimeout(function() { el.classList.add(cls); }, delay);
-  }
-  
-  setTimeout(function() {
-    document.body.classList.remove('sketch-loading');
-    document.body.classList.add('sketch-ready');
-  }, 50);
-  
-  addClass(document.querySelector('.top-nav'), 'sketch-nav', 100);
-  addClass(document.querySelector('.header'), 'sketch-title', 250);
-  
-  var cards = document.querySelectorAll('.banner-card, .category-card');
-  cards.forEach(function(card, i) {
-    addClass(card, 'sketch-card', 400 + i * 80);
-  });
-  
-  var contents = document.querySelectorAll('.toc, .search-bar, .ch-tabs, .tag-bar, .section-divider, .enterprise-section, .job-panel, .ability-test-block, .work-order-block');
-  contents.forEach(function(el, i) {
-    addClass(el, 'sketch-content', 600 + i * 60);
-  });
-  
-  addClass(document.querySelector('.footer-enhanced'), 'sketch-footer', 1000);
-  addClass(document.querySelector('.float-btn'), 'sketch-float', 1150);
-})();
-
 </script>
 </body>
 </html>

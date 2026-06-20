@@ -7,9 +7,116 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 
+
+/* V8.2: Butterfly intro animation */
+#sketch-intro {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #f5f2eb;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+#sketch-intro.hidden { opacity: 0; pointer-events: none; }
+#intro-svg { width: 100%; max-width: 800px; height: auto; max-height: 90vh; }
+
+.trail { stroke-dasharray: 800; stroke-dashoffset: 800; }
+.t1 { animation: drawTrail 1.5s 0.3s ease forwards; }
+.t2 { animation: drawTrail 1.5s 0.5s ease forwards; }
+.t3 { animation: drawTrail 1.5s 0.4s ease forwards; }
+.t4 { animation: drawTrail 1.5s 0.6s ease forwards; }
+
+@keyframes drawTrail {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@media(max-width:768px){
+  .title-text { font-size: 24px !important; }
+  #intro-svg { max-width: 95%; }
+}
+
 </style>
 </head>
 <body>
+<div id="sketch-intro">
+  <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" id="intro-svg">
+    <!-- Butterfly trails -->
+    <path class="trail t1" d="M10,400 Q100,50 250,250 T400,200 T550,280" fill="none" stroke="#6c5ce7" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3,3"/>
+    <path class="trail t2" d="M790,80 Q600,200 500,150 T300,220 T150,180" fill="none" stroke="#00b894" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3,3"/>
+    <path class="trail t3" d="M20,60 Q200,300 350,200 Q500,150 650,300" fill="none" stroke="#e17055" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3,3"/>
+    <path class="trail t4" d="M780,380 Q500,200 400,280 Q250,350 100,250" fill="none" stroke="#fdcb6e" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3,3"/>
+    
+    <!-- Butterfly 1: purple -->
+    <g class="butterfly b1">
+      <path d="M0,0 Q-5,-8 -2,-14 Q2,-8 0,0" fill="#6c5ce7" fill-opacity="0.4" stroke="#6c5ce7" stroke-width="0.8">
+        <animateTransform attributeName="transform" type="scale" values="1,1;1,0.3;1,1" dur="0.25s" repeatCount="indefinite"/>
+      </path>
+      <path d="M0,0 Q5,-8 2,-14 Q-2,-8 0,0" fill="#6c5ce7" fill-opacity="0.4" stroke="#6c5ce7" stroke-width="0.8">
+        <animateTransform attributeName="transform" type="scale" values="1,1;1,0.3;1,1" dur="0.25s" repeatCount="indefinite"/>
+      </path>
+      <animateMotion dur="2.5s" repeatCount="1" fill="freeze" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1" keyTimes="0;0.35;0.7;1" path="M10,400 Q100,50 250,250 T400,200 T550,280"/>
+    </g>
+    
+    <!-- Butterfly 2: green -->
+    <g class="butterfly b2">
+      <path d="M0,0 Q-5,-7 -2,-12 Q2,-7 0,0" fill="#00b894" fill-opacity="0.4" stroke="#00b894" stroke-width="0.8">
+        <animateTransform attributeName="transform" type="scale" values="1,1;1,0.3;1,1" dur="0.3s" repeatCount="indefinite"/>
+      </path>
+      <path d="M0,0 Q5,-7 2,-12 Q-2,-7 0,0" fill="#00b894" fill-opacity="0.4" stroke="#00b894" stroke-width="0.8">
+        <animateTransform attributeName="transform" type="scale" values="1,1;1,0.3;1,1" dur="0.3s" repeatCount="indefinite"/>
+      </path>
+      <animateMotion dur="2.5s" repeatCount="1" fill="freeze" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1" keyTimes="0;0.35;0.7;1" path="M790,80 Q600,200 500,150 T300,220 T150,180"/>
+    </g>
+    
+    <!-- Butterfly 3: coral -->
+    <g class="butterfly b3">
+      <path d="M0,0 Q-4,-7 -2,-12 Q2,-7 0,0" fill="#e17055" fill-opacity="0.4" stroke="#e17055" stroke-width="0.8">
+        <animateTransform attributeName="transform" type="scale" values="1,1;1,0.3;1,1" dur="0.22s" repeatCount="indefinite"/>
+      </path>
+      <path d="M0,0 Q4,-7 2,-12 Q-2,-7 0,0" fill="#e17055" fill-opacity="0.4" stroke="#e17055" stroke-width="0.8">
+        <animateTransform attributeName="transform" type="scale" values="1,1;1,0.3;1,1" dur="0.22s" repeatCount="indefinite"/>
+      </path>
+      <animateMotion dur="2.5s" repeatCount="1" fill="freeze" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1" keyTimes="0;0.35;0.7;1" path="M20,60 Q200,300 350,200 Q500,150 650,300"/>
+    </g>
+    
+    <!-- Butterfly 4: yellow -->
+    <g class="butterfly b4">
+      <path d="M0,0 Q-4,-8 -2,-13 Q2,-8 0,0" fill="#fdcb6e" fill-opacity="0.4" stroke="#fdcb6e" stroke-width="0.8">
+        <animateTransform attributeName="transform" type="scale" values="1,1;1,0.3;1,1" dur="0.28s" repeatCount="indefinite"/>
+      </path>
+      <path d="M0,0 Q4,-8 2,-13 Q-2,-8 0,0" fill="#fdcb6e" fill-opacity="0.4" stroke="#fdcb6e" stroke-width="0.8">
+        <animateTransform attributeName="transform" type="scale" values="1,1;1,0.3;1,1" dur="0.28s" repeatCount="indefinite"/>
+      </path>
+      <animateMotion dur="2.5s" repeatCount="1" fill="freeze" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1" keyTimes="0;0.35;0.7;1" path="M780,380 Q500,200 400,280 Q250,350 100,250"/>
+    </g>
+    
+    <!-- Planet: simple ring + circle, drawn in at 2s -->
+    <g class="planet-group" opacity="0">
+      <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.8;0.9" dur="2.5s" fill="freeze"/>
+      <ellipse cx="400" cy="250" rx="50" ry="14" fill="none" stroke="#6c5ce7" stroke-width="0.8" transform="rotate(-15,400,250)"/>
+      <circle cx="400" cy="250" r="22" fill="none" stroke="#6c5ce7" stroke-width="1"/>
+      <circle cx="400" cy="250" r="18" fill="#6c5ce7" fill-opacity="0.08"/>
+    </g>
+    
+    <!-- Title text: drawn by stroke -->
+    <text class="title-text" x="400" y="320" text-anchor="middle" font-size="32" font-weight="400" fill="#6c5ce7" opacity="0" font-family="serif" letter-spacing="6">
+      <animate attributeName="opacity" values="0;0;0.8;1" keyTimes="0;0.7;0.85;0.95" dur="2.5s" fill="freeze"/>
+      行星下的学院
+    </text>
+    <text class="title-text" x="400" y="360" text-anchor="middle" font-size="14" fill="#888" opacity="0" font-family="serif">
+      <animate attributeName="opacity" values="0;0;0;0.7" keyTimes="0;0.8;0.9;1" dur="2.5s" fill="freeze"/>
+      AI办公 . 手绘开场
+    </text>
+  </svg>
+</div>
 <div class="top-nav">
   <div class="top-nav-inner">
     <a href="index.html" class="logo">AI办公学院</a>
@@ -166,40 +273,22 @@
 
 </script>
 <script>
-// V8.1: Hand-drawn sketch entrance animation
+// V8.2: Butterfly intro animation
 (function(){
-  if (sessionStorage.getItem('sketch_played')) return;
-  sessionStorage.setItem('sketch_played', '1');
-  
-  document.body.classList.add('sketch-loading');
-  
-  function addClass(el, cls, delay) {
-    if (!el) return;
-    setTimeout(function() { el.classList.add(cls); }, delay);
+  if (sessionStorage.getItem('intro_played')) {
+    var el = document.getElementById('sketch-intro');
+    if (el) el.remove();
+    return;
   }
-  
+  sessionStorage.setItem('intro_played', '1');
   setTimeout(function() {
-    document.body.classList.remove('sketch-loading');
-    document.body.classList.add('sketch-ready');
-  }, 50);
-  
-  addClass(document.querySelector('.top-nav'), 'sketch-nav', 100);
-  addClass(document.querySelector('.header'), 'sketch-title', 250);
-  
-  var cards = document.querySelectorAll('.banner-card, .category-card');
-  cards.forEach(function(card, i) {
-    addClass(card, 'sketch-card', 400 + i * 80);
-  });
-  
-  var contents = document.querySelectorAll('.toc, .search-bar, .ch-tabs, .tag-bar, .section-divider, .enterprise-section, .job-panel, .ability-test-block, .work-order-block');
-  contents.forEach(function(el, i) {
-    addClass(el, 'sketch-content', 600 + i * 60);
-  });
-  
-  addClass(document.querySelector('.footer-enhanced'), 'sketch-footer', 1000);
-  addClass(document.querySelector('.float-btn'), 'sketch-float', 1150);
+    var intro = document.getElementById('sketch-intro');
+    if (intro) {
+      intro.classList.add('hidden');
+      setTimeout(function() { intro.remove(); }, 500);
+    }
+  }, 2800);
 })();
-
 </script>
 </body>
 </html>
