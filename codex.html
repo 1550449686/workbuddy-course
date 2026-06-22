@@ -45,17 +45,21 @@
       <a href="community.html">社区</a>
     </div>
     <div class="nav-search">
-      <input type="text" id="navSearch" placeholder="全局搜索课程..." oninput="applyFilters()">
+      <input type="text" id="navSearch" placeholder="全局搜索课程...">
     </div>
   </div>
 </div>
+<input type="hidden" id="q">
+<input type="hidden" id="chFilter" value="all">
 <div class="container">
 <div class="section-divider" id="codex-section">
   <h2>Codex专区</h2>
   <p style="font-size:0.9rem;color:var(--sub);">同一行业，不同工具——Codex用脚本和自动化解决WorkBuddy不擅长的批量处理/数据运算/系统对接场景</p>
   <p style="font-size:0.78rem;color:var(--sub);margin-top:4px;">三大单元24节课 | 单元1基础自动化 + 单元2行业脚本实战 + 单元3 WorkBuddy联动高阶</p>
 </div>
-<div class="category-grid">
+<div class="ch-tabs" id="tabs"></div>
+<div class="info" id="info"></div>
+<div class="category-grid" id="catGrid">
     <div class="category-card" data-ch="27">
       <div class="card-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="card-emoji">Codex</div>
@@ -1964,7 +1968,90 @@ WorkBuddy帮你写促销文案和客户话术。Codex帮你把进销存全流程
 </div>
 <a href="enterprise.html" class="float-btn">接单咨询/企业合作</a>
 <script>
+var ns = document.getElementById("navSearch"); if (ns) { ns.addEventListener("input", function() {
+  document.getElementById("q").value = this.value;
+  applyFilters();
+}); }
 
+var curCh = -1;
+var tabToCh = [27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51];
+
+function switchChapter(idx) {
+  curCh = (typeof idx === 'string' && idx === 'all') ? -1 : parseInt(idx);
+  var chVal = curCh === -1 ? 'all' : tabToCh[curCh];
+  document.getElementById('chFilter').value = chVal;
+  
+  var btns = document.querySelectorAll('.ch-tabs button');
+  btns.forEach(function(b) {
+    var ti = b.getAttribute('data-tidx');
+    b.className = (ti === '' && curCh === -1) || parseInt(ti) === curCh ? 'active' : '';
+  });
+  
+  applyFilters();
+}
+
+function doSearch() { applyFilters(); }
+
+function applyFilters() {
+  var q = (document.getElementById('q').value || '').toLowerCase();
+  var cards = document.querySelectorAll('.category-card');
+  var shown = 0, total = 0;
+  var targetCh = curCh === -1 ? -1 : tabToCh[curCh];
+  
+  cards.forEach(function(card) {
+    var chId = parseInt(card.getAttribute('data-ch'));
+    var cardVisible = (curCh === -1 || chId === targetCh);
+    card.style.display = cardVisible ? '' : 'none';
+    
+    var items = card.querySelectorAll('.ep-item');
+    items.forEach(function(item) {
+      total++;
+      var match = (!q || item.getAttribute('data-search').toLowerCase().indexOf(q) > -1);
+      if (cardVisible && match) {
+        item.classList.remove('hidden');
+        shown++;
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  });
+  
+  document.getElementById('info').innerHTML = '<b>' + shown + '</b> / ' + total + ' 集 · 点击课程卡片展开查看教学环节';
+  if (shown === 0 && q) {
+    document.getElementById('info').innerHTML = '没有匹配 "' + q + '" 的课程，换个关键词试试';
+  }
+}
+
+(function() {
+  var t = document.getElementById('tabs');
+  var chs = ['💻Codex通用基础','🎓教育','🛒电商','🏭制造','💻IT','📊金融','📱新媒体','💼商务','🎨营销','🏥医疗','⚖️法律','🍽️餐饮','🏗️房地产','🚚物流','🎮游戏','🌾农业','🏛️政务','🔬科研','🔧Skills','🧠Prompt','🤖工作流','📈数据分析','🔒安全','📦行业脚本','🔗WB联动'];
+  t.innerHTML = '<button class="active" data-tidx="" onclick="switchChapter(\'all\')">全部</button>';
+  chs.forEach(function(n, i) {
+    t.innerHTML += '<button data-tidx="' + i + '" onclick="switchChapter(' + i + ')">' + n + '</button>';
+  });
+})();
+
+document.getElementById('q').addEventListener('input', applyFilters);
+document.getElementById('chFilter').addEventListener('change', function() {
+  var v = this.value;
+  if (v === 'all') { switchChapter('all'); return; }
+  var ci = tabToCh.indexOf(parseInt(v));
+  if (ci >= 0) switchChapter(ci);
+});
+
+(function(){
+ var p=new URLSearchParams(window.location.search);
+ var q=p.get("q");if(q){document.getElementById("q").value=q;applyFilters();}
+ var c=p.get("ch");if(c){
+   var chNum=parseInt(c);
+   var ci = tabToCh.indexOf(chNum);
+   if(ci >= 0){
+     switchChapter(ci);
+     var card=document.querySelector(".category-card[data-ch='"+chNum+"']");
+     if(card){card.classList.remove("collapsed");setTimeout(function(){ card.scrollIntoView({behavior:"smooth",block:"start"}); }, 100);}
+   }
+ }
+})();
 </script>
 <script>
 </script>
